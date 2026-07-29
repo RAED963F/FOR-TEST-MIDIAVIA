@@ -1,0 +1,2391 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MediVia — Medical Concierge · Russia</title>
+  <meta name="description"
+    content="MediVia connects international patients with licensed hospitals and specialists in Russia. One coordinator, one agreed price, your documents protected — from first message to your flight home.">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2248%22%20fill%3D%22%231A3E4C%22/%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2243%22%20fill%3D%22none%22%20stroke%3D%22%23C88A66%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%2244%22%20y%3D%2226%22%20width%3D%2212%22%20height%3D%2248%22%20rx%3D%222.5%22%20fill%3D%22%23EEF0EC%22/%3E%3Crect%20x%3D%2226%22%20y%3D%2244%22%20width%3D%2248%22%20height%3D%2212%22%20rx%3D%222.5%22%20fill%3D%22%23EEF0EC%22/%3E%3Crect%20x%3D%2244%22%20y%3D%2244%22%20width%3D%2212%22%20height%3D%2212%22%20rx%3D%221.5%22%20fill%3D%22%23C88A66%22/%3E%3C/svg%3E">
+  <link rel="apple-touch-icon"
+    href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2248%22%20fill%3D%22%231A3E4C%22/%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2243%22%20fill%3D%22none%22%20stroke%3D%22%23C88A66%22%20stroke-width%3D%222.5%22/%3E%3Crect%20x%3D%2244%22%20y%3D%2226%22%20width%3D%2212%22%20height%3D%2248%22%20rx%3D%222.5%22%20fill%3D%22%23EEF0EC%22/%3E%3Crect%20x%3D%2226%22%20y%3D%2244%22%20width%3D%2248%22%20height%3D%2212%22%20rx%3D%222.5%22%20fill%3D%22%23EEF0EC%22/%3E%3Crect%20x%3D%2244%22%20y%3D%2244%22%20width%3D%2212%22%20height%3D%2212%22%20rx%3D%221.5%22%20fill%3D%22%23C88A66%22/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      /* brand */
+      --fog: #EEF0EC;
+      --mist: #D4DDD5;
+      --sage: #7A8B7B;
+      --aqua: #1A3E4C;
+      --aqua-deep: #132D38;
+      --aqua-ink: #0D2029;
+      --copper: #C88A66;
+
+      /* contrast-safe text tokens (all AA on their stated background) */
+      --ink: #16323D;
+      /* 11.8:1 on fog  — headings on light */
+      --muted: #4C5F66;
+      /*  5.8:1 on fog  — body on light     */
+      --copper-ink: #92512E;
+      /*  5.3:1 on fog  — eyebrows on light */
+      --on-dark: #EEF0EC;
+      /* 10.0:1 on aqua — body on dark      */
+      --on-dark-mute: #C3D0C5;
+      /*  7.2:1 on aqua — secondary on dark */
+      --copper-lite: #DFA987;
+      /*  5.5:1 on aqua — eyebrows on dark  */
+      --line: #DCE3DD;
+      --warn: #96412C;
+
+      --display: "Cormorant Garamond", Georgia, serif;
+      --body: "Inter", system-ui, sans-serif;
+      --pad: clamp(20px, 5vw, 72px);
+      --shadow: 0 24px 60px -34px rgba(22, 50, 61, .3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      background: #fff;
+      color: var(--ink);
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--copper-ink);
+      outline-offset: 3px;
+      border-radius: 2px
+    }
+
+    img,
+    svg {
+      display: block
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-inline: var(--pad)
+    }
+
+    .pad {
+      padding-block: clamp(64px, 8vw, 112px)
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--display);
+      font-weight: 400;
+      line-height: 1.14;
+      letter-spacing: -.005em;
+      color: var(--ink)
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      font-weight: 300
+    }
+
+    h2 {
+      font-size: clamp(1.85rem, 3.6vw, 2.9rem);
+      font-weight: 300
+    }
+
+    h3 {
+      font-size: 1.28rem
+    }
+
+    p {
+      color: var(--muted)
+    }
+
+    .lead {
+      font-size: clamp(1.02rem, 1.4vw, 1.15rem);
+      line-height: 1.75
+    }
+
+    .eyebrow {
+      font-family: var(--body);
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--copper-ink);
+    }
+
+    .rule {
+      width: 52px;
+      height: 2px;
+      background: var(--copper);
+      margin: 20px 0 0
+    }
+
+    .head {
+      max-width: 62ch;
+      margin-bottom: clamp(36px, 4.5vw, 60px)
+    }
+
+    .head h2 {
+      margin-top: 14px
+    }
+
+    .head p {
+      margin-top: 18px
+    }
+
+    .head.mid {
+      margin-inline: auto;
+      text-align: center
+    }
+
+    .head.mid .rule {
+      margin-inline: auto
+    }
+
+    /* dark surfaces */
+    .dark {
+      background: var(--aqua);
+      color: var(--on-dark)
+    }
+
+    .dark h1,
+    .dark h2,
+    .dark h3 {
+      color: var(--on-dark)
+    }
+
+    .dark p {
+      color: var(--on-dark-mute)
+    }
+
+    .dark .eyebrow {
+      color: var(--copper-lite)
+    }
+
+    .tint {
+      background: var(--fog)
+    }
+
+    .stripe {
+      height: 3px;
+      background: linear-gradient(90deg, var(--copper) 0 55%, var(--sage) 100%)
+    }
+
+    /* ── header ───────────────────────────── */
+    header {
+      position: fixed;
+      inset-block-start: 0;
+      inset-inline: 0;
+      z-index: 60;
+      transition: background .35s, box-shadow .35s
+    }
+
+    header.stuck {
+      background: #fff;
+      box-shadow: 0 1px 0 var(--line), 0 10px 30px -24px rgba(22, 50, 61, .5)
+    }
+
+    .bar {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      height: 76px
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px
+    }
+
+    .brand svg {
+      width: 34px;
+      height: 34px;
+      flex: none
+    }
+
+    .bw {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      letter-spacing: .055em;
+      line-height: 1;
+      color: #fff;
+      transition: color .35s
+    }
+
+    .bw i {
+      font-style: normal;
+      color: var(--copper)
+    }
+
+    header.stuck .bw {
+      color: var(--ink)
+    }
+
+    header:not(.stuck) .mark-onlight {
+      display: none
+    }
+
+    header.stuck .mark-ondark {
+      display: none
+    }
+
+    .spacer {
+      flex: 1
+    }
+
+    nav.main {
+      display: flex;
+      gap: 28px;
+      font-size: .83rem;
+      font-weight: 400;
+      color: rgba(255, 255, 255, .86);
+      transition: color .35s
+    }
+
+    header.stuck nav.main {
+      color: var(--muted)
+    }
+
+    nav.main a {
+      position: relative;
+      padding-block: 4px
+    }
+
+    nav.main a::after {
+      content: "";
+      position: absolute;
+      inset-block-end: 0;
+      inset-inline-start: 0;
+      width: 0;
+      height: 1px;
+      background: var(--copper);
+      transition: width .3s
+    }
+
+    nav.main a:hover::after {
+      width: 100%
+    }
+
+    @media(max-width:900px) {
+      nav.main {
+        display: none
+      }
+    }
+
+    .cta-top {
+      background: var(--copper);
+      color: #0D2029;
+      font-weight: 500;
+      padding: 11px 22px;
+      border-radius: 2px;
+      font-size: .8rem;
+      letter-spacing: .02em;
+      transition: .28s;
+      white-space: nowrap
+    }
+
+    .cta-top:hover {
+      background: #B87954
+    }
+
+    @media(max-width:520px) {
+      .cta-top {
+        display: none
+      }
+    }
+
+    /* ── buttons ──────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 30px;
+      border-radius: 2px;
+      font-family: var(--body);
+      font-size: .86rem;
+      font-weight: 500;
+      letter-spacing: .02em;
+      transition: .28s;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-align: center
+    }
+
+    .btn-p {
+      background: var(--copper);
+      color: #0D2029
+    }
+
+    .btn-p:hover {
+      background: #B87954
+    }
+
+    .btn-dark {
+      background: var(--aqua);
+      color: var(--fog);
+      border-color: var(--aqua)
+    }
+
+    .btn-dark:hover {
+      background: var(--aqua-deep)
+    }
+
+    .btn-ghost {
+      border-color: rgba(255, 255, 255, .42);
+      color: #fff
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, .1);
+      border-color: #fff
+    }
+
+    .btn-line {
+      border-color: var(--line);
+      color: var(--muted);
+      background: #fff
+    }
+
+    .btn-line:hover {
+      border-color: var(--sage);
+      color: var(--ink)
+    }
+
+    .btn[disabled] {
+      opacity: .5;
+      pointer-events: none
+    }
+
+    /* ── hero ─────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: min(94svh, 860px);
+      display: flex;
+      align-items: center;
+      background: var(--aqua);
+      overflow: hidden;
+      perspective: 1400px
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(120% 90% at 78% 30%, #24586B 0%, rgba(36, 88, 107, 0) 62%),
+        linear-gradient(160deg, var(--aqua) 0%, var(--aqua-ink) 100%)
+    }
+
+    /* soft 3D depth field — translucent glass panels drifting on a tilt */
+    .depth {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      transform-style: preserve-3d;
+      transform: translate3d(var(--mx, 0px), var(--my, 0px), 0);
+      transition: transform .5s cubic-bezier(.22, .61, .36, 1)
+    }
+
+    /* medical 3D silhouettes */
+    .med3d {
+      position: absolute;
+      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .3));
+      animation: medfloat 20s ease-in-out infinite
+    }
+
+    .m-cross {
+      width: clamp(180px, 22vw, 320px);
+      top: 8%;
+      left: 62%;
+      transform: rotate(-22deg);
+      animation-delay: -2s
+    }
+
+    .m-ecg {
+      width: clamp(280px, 32vw, 500px);
+      top: 58%;
+      left: 54%;
+      opacity: .9;
+      animation-delay: -7s
+    }
+
+    .m-pill {
+      width: clamp(60px, 7vw, 100px);
+      top: 18%;
+      left: 82%;
+      transform: rotate(28deg);
+      animation-delay: -12s;
+      opacity: .85
+    }
+
+    .m-steth {
+      width: clamp(100px, 12vw, 170px);
+      top: 42%;
+      left: 78%;
+      transform: rotate(12deg);
+      animation-delay: -16s;
+      opacity: .8
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(46px);
+      opacity: .5;
+      animation: medfloat 26s ease-in-out infinite
+    }
+
+    .orb.o1 {
+      width: 340px;
+      height: 340px;
+      top: 8%;
+      left: 52%;
+      background: radial-gradient(circle at 40% 40%, rgba(200, 138, 102, .42), transparent 68%)
+    }
+
+    .orb.o2 {
+      width: 420px;
+      height: 420px;
+      top: 40%;
+      left: 82%;
+      background: radial-gradient(circle at 50% 50%, rgba(122, 139, 123, .4), transparent 70%);
+      animation-delay: -11s
+    }
+
+    .rings {
+      position: absolute;
+      inset-block-start: 50%;
+      inset-inline-start: 72%;
+      translate: -50% -50%;
+      width: min(130vh, 1080px);
+      aspect-ratio: 1;
+      pointer-events: none
+    }
+
+    .rings circle {
+      fill: none;
+      stroke: #9DB6A0;
+      stroke-width: .4;
+      opacity: .28
+    }
+
+    .rings .pulse {
+      transform-origin: center;
+      animation: breathe 16s ease-in-out infinite
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        opacity: .14
+      }
+
+      50% {
+        opacity: .34
+      }
+    }
+
+    @keyframes medfloat {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-20px)
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      .med3d,
+      .orb {
+        animation: none
+      }
+
+      .depth {
+        transition: none
+      }
+    }
+
+    @media(max-width:640px) {
+      .depth {
+        opacity: .6
+      }
+
+      .m-steth,
+      .m-pill {
+        display: none
+      }
+    }
+
+    .hero-in {
+      position: relative;
+      z-index: 2;
+      padding-block: 132px 84px;
+      max-width: 760px
+    }
+
+    .hero .eyebrow {
+      color: var(--copper-lite)
+    }
+
+    .hero h1 {
+      color: #fff;
+      margin-top: 22px
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--copper)
+    }
+
+    .hero .lead {
+      margin-top: 24px;
+      max-width: 52ch;
+      color: #DCE5DE
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px
+    }
+
+    /* ── stats band ───────────────────────── */
+    .stats {
+      background: #fff;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .stats-in {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .stat {
+      padding: clamp(34px, 4vw, 54px) 28px;
+      text-align: center;
+      border-inline-start: 1px solid var(--line)
+    }
+
+    .stat:first-child {
+      border-inline-start: 0
+    }
+
+    .stat .n {
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 5vw, 3.6rem);
+      line-height: 1;
+      color: var(--aqua);
+      font-weight: 400
+    }
+
+    .stat .n sup {
+      font-size: .4em;
+      color: var(--copper-ink);
+      vertical-align: super;
+      margin-inline-start: 2px
+    }
+
+    .stat .l {
+      margin-top: 10px;
+      font-size: .85rem;
+      color: var(--muted);
+      max-width: 26ch;
+      margin-inline: auto
+    }
+
+    @media(max-width:760px) {
+      .stats-in {
+        grid-template-columns: 1fr
+      }
+
+      .stat {
+        border-inline-start: 0;
+        border-block-start: 1px solid var(--line)
+      }
+
+      .stat:first-child {
+        border-block-start: 0
+      }
+    }
+
+    /* ── split intro ──────────────────────── */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 5vw, 72px);
+      align-items: center
+    }
+
+    @media(max-width:880px) {
+      .split {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .checks {
+      list-style: none;
+      display: grid;
+      gap: 14px
+    }
+
+    .checks li {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      font-size: .95rem;
+      color: var(--muted)
+    }
+
+    .checks svg {
+      width: 19px;
+      height: 19px;
+      flex: none;
+      margin-top: 3px
+    }
+
+    .quote-card {
+      border: 1px solid var(--line);
+      border-inline-start: 3px solid var(--copper);
+      padding: 30px 32px;
+      background: var(--fog);
+      border-radius: 2px
+    }
+
+    .quote-card p {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      line-height: 1.4;
+      color: var(--ink)
+    }
+
+    .quote-card .who {
+      margin-top: 16px;
+      font-size: .74rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500
+    }
+
+    /* ── safety cards ─────────────────────── */
+    .cards4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(238px, 1fr));
+      gap: 20px
+    }
+
+    .scard {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 32px 26px;
+      transition: .3s;
+      position: relative;
+      overflow: hidden
+    }
+
+    .scard::before {
+      content: "";
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--copper);
+      scale: 0 1;
+      transform-origin: left;
+      transition: scale .4s
+    }
+
+    .scard:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+      border-color: var(--mist)
+    }
+
+    .scard:hover::before {
+      scale: 1 1
+    }
+
+    .scard svg.ic {
+      width: 52px;
+      height: 52px;
+      margin-bottom: 18px
+    }
+
+    .scard h3 {
+      margin-bottom: 8px
+    }
+
+    .scard p {
+      font-size: .89rem
+    }
+
+    /* ── service grid ─────────────────────── */
+    .grid6 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      overflow: hidden
+    }
+
+    .svc {
+      background: #fff;
+      padding: 34px 30px;
+      transition: background .3s
+    }
+
+    .svc:hover {
+      background: var(--fog)
+    }
+
+    .svc .ic2 {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 16px;
+      stroke: var(--aqua);
+      fill: none;
+      stroke-width: 1.3
+    }
+
+    .svc .ic2 .cu {
+      stroke: var(--copper)
+    }
+
+    .svc h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px
+    }
+
+    .svc p {
+      font-size: .88rem
+    }
+
+    /* how-it-works 5-step */
+    .steps5 {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      overflow: hidden
+    }
+
+    .step5 {
+      position: relative;
+      padding-top: 40px
+    }
+
+    .step5 .stepnum {
+      position: absolute;
+      inset-block-start: 22px;
+      inset-inline-end: 26px;
+      font-family: var(--display);
+      font-size: 2.6rem;
+      line-height: 1;
+      color: var(--mist);
+      font-weight: 400;
+      transition: color .3s;
+      pointer-events: none
+    }
+
+    .step5:hover .stepnum {
+      color: var(--copper)
+    }
+
+    @media(max-width:1080px) {
+      .steps5 {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:560px) {
+      .steps5 {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* ═══ intake ═══ */
+    .sheet {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      max-width: 900px;
+      margin-inline: auto
+    }
+
+    .sheet-top {
+      background: var(--aqua);
+      padding: 22px 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap
+    }
+
+    .sheet-top svg {
+      width: 30px;
+      height: 30px;
+      flex: none
+    }
+
+    .st-t {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      color: #fff;
+      line-height: 1.2
+    }
+
+    .st-s {
+      font-size: .68rem;
+      letter-spacing: .16em;
+      color: var(--on-dark-mute);
+      text-transform: uppercase;
+      font-weight: 500
+    }
+
+    .ref {
+      margin-inline-start: auto;
+      text-align: end;
+      font-size: .72rem;
+      letter-spacing: .12em;
+      color: var(--copper-lite)
+    }
+
+    .ref b {
+      display: block;
+      color: var(--on-dark-mute);
+      font-weight: 500;
+      letter-spacing: .16em;
+      font-size: .62rem;
+      text-transform: uppercase
+    }
+
+    .steps {
+      display: flex;
+      border-block-end: 1px solid var(--line);
+      background: var(--fog)
+    }
+
+    .step-h {
+      flex: 1;
+      padding: 15px 12px;
+      text-align: center;
+      font-size: .7rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-inline-end: 1px solid var(--line);
+      position: relative;
+      transition: .3s;
+      cursor: default
+    }
+
+    .step-h:last-child {
+      border-inline-end: 0
+    }
+
+    .step-h::after {
+      content: "";
+      position: absolute;
+      inset-block-end: -1px;
+      inset-inline-start: 0;
+      height: 2px;
+      width: 0;
+      background: var(--copper);
+      transition: width .4s
+    }
+
+    .step-h.active {
+      color: var(--ink);
+      background: #fff
+    }
+
+    .step-h.active::after {
+      width: 100%
+    }
+
+    .step-h.done {
+      color: var(--copper-ink);
+      cursor: pointer
+    }
+
+    .step-h .n {
+      font-family: var(--display);
+      font-size: .92rem;
+      margin-inline-end: 6px
+    }
+
+    .panes {
+      padding: clamp(24px, 3.6vw, 40px)
+    }
+
+    .pane {
+      display: none;
+      animation: fade .4s ease
+    }
+
+    .pane.show {
+      display: block
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(8px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .pane-h {
+      font-family: var(--display);
+      font-size: 1.55rem;
+      color: var(--ink);
+      margin-bottom: 6px
+    }
+
+    .pane-s {
+      font-size: .9rem;
+      color: var(--muted);
+      margin-bottom: 26px
+    }
+
+    .f-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 22px
+    }
+
+    @media(max-width:640px) {
+      .f-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px
+    }
+
+    .field.full {
+      grid-column: 1/-1
+    }
+
+    label {
+      font-size: .7rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted)
+    }
+
+    label .req {
+      color: var(--copper-ink)
+    }
+
+    input[type=text],
+    input[type=number],
+    input[type=email],
+    input[type=tel],
+    textarea {
+      width: 100%;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      padding: 13px 14px;
+      font-family: var(--body);
+      font-size: .95rem;
+      font-weight: 400;
+      color: var(--ink);
+      transition: border-color .22s, box-shadow .22s;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #93A29A
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 190px;
+      line-height: 1.75
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--aqua);
+      box-shadow: 0 0 0 3px rgba(26, 62, 76, .09)
+    }
+
+    input.err,
+    textarea.err {
+      border-color: var(--warn);
+      background: #FDF7F5
+    }
+
+    .hint {
+      font-size: .76rem;
+      color: var(--muted)
+    }
+
+    .errmsg {
+      font-size: .76rem;
+      color: var(--warn);
+      display: none;
+      font-weight: 500
+    }
+
+    .errmsg.show {
+      display: block
+    }
+
+    .seg {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap
+    }
+
+    .seg input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0
+    }
+
+    .seg label {
+      border: 1px solid var(--line);
+      border-radius: 2px;
+      padding: 11px 24px;
+      cursor: pointer;
+      font-size: .85rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--muted);
+      transition: .22s;
+      background: #fff
+    }
+
+    .seg input:checked+label {
+      background: var(--aqua);
+      border-color: var(--aqua);
+      color: #fff
+    }
+
+    .seg input:focus-visible+label {
+      outline: 2px solid var(--copper-ink);
+      outline-offset: 2px
+    }
+
+    .counter {
+      display: flex;
+      justify-content: space-between;
+      font-size: .76rem;
+      color: var(--muted)
+    }
+
+    .counter.near {
+      color: var(--copper-ink);
+      font-weight: 500
+    }
+
+    .counter.over {
+      color: var(--warn);
+      font-weight: 500
+    }
+
+    .drop {
+      border: 1px dashed var(--mist);
+      border-radius: 3px;
+      padding: 32px 20px;
+      text-align: center;
+      background: var(--fog);
+      cursor: pointer;
+      transition: .25s
+    }
+
+    .drop:hover,
+    .drop.hot {
+      border-color: var(--copper);
+      background: #FDFBF9
+    }
+
+    .drop svg {
+      margin-inline: auto;
+      width: 46px;
+      height: 46px
+    }
+
+    .drop .dt {
+      font-family: var(--display);
+      font-size: 1.15rem;
+      margin-top: 13px;
+      color: var(--ink)
+    }
+
+    .drop .ds {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: 3px
+    }
+
+    .drop input {
+      display: none
+    }
+
+    .files {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: 12px;
+      margin-top: 14px
+    }
+
+    .thumb {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      overflow: hidden;
+      background: #fff;
+      aspect-ratio: 1
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .thumb .rm {
+      position: absolute;
+      inset-block-start: 5px;
+      inset-inline-end: 5px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(13, 32, 41, .88);
+      color: #fff;
+      border: 0;
+      cursor: pointer;
+      font-size: .8rem;
+      display: grid;
+      place-items: center;
+      transition: .2s
+    }
+
+    .thumb .rm:hover {
+      background: var(--warn)
+    }
+
+    .thumb .sz {
+      position: absolute;
+      inset-block-end: 0;
+      inset-inline: 0;
+      background: rgba(13, 32, 41, .82);
+      color: var(--fog);
+      font-size: .62rem;
+      padding: 3px 6px;
+      text-align: center
+    }
+
+    .pdfrow {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 13px 15px;
+      margin-top: 13px;
+      background: #fff
+    }
+
+    .pi-ic {
+      width: 34px;
+      height: 34px;
+      flex: none;
+      display: grid;
+      place-items: center;
+      border: 1px solid #E2C8B6;
+      border-radius: 2px;
+      color: var(--copper-ink);
+      font-size: .6rem;
+      letter-spacing: .05em;
+      font-weight: 600
+    }
+
+    .pdfrow .nm {
+      flex: 1;
+      font-size: .88rem;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: var(--ink)
+    }
+
+    .pdfrow .mt {
+      font-size: .76rem;
+      color: var(--muted)
+    }
+
+    .pdfrow .rm2 {
+      background: none;
+      border: 0;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: .2s
+    }
+
+    .pdfrow .rm2:hover {
+      color: var(--warn)
+    }
+
+    .safebar {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 22px;
+      padding: 16px 18px;
+      background: var(--fog);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+    }
+
+    .safebar svg {
+      width: 20px;
+      height: 20px;
+      flex: none;
+      margin-top: 2px
+    }
+
+    .safebar p {
+      font-size: .8rem;
+      line-height: 1.65
+    }
+
+    .consent {
+      text-transform: none;
+      letter-spacing: normal;
+      font-weight: 400;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-top: 24px;
+      padding: 18px 20px;
+      background: var(--fog);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      cursor: pointer
+    }
+
+    .consent input {
+      margin-top: 4px;
+      accent-color: var(--copper-ink);
+      width: 16px;
+      height: 16px;
+      flex: none
+    }
+
+    .consent p {
+      font-size: .82rem;
+      line-height: 1.7
+    }
+
+    .nav-row {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      margin-top: 32px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      flex-wrap: wrap
+    }
+
+    .review {
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      overflow: hidden
+    }
+
+    .rrow {
+      display: flex;
+      gap: 16px;
+      padding: 13px 18px;
+      border-block-end: 1px solid var(--line);
+      font-size: .9rem;
+      background: #fff
+    }
+
+    .rrow:nth-child(odd) {
+      background: var(--fog)
+    }
+
+    .rrow:last-child {
+      border-block-end: 0
+    }
+
+    .rrow .rk {
+      width: 32%;
+      color: var(--muted);
+      font-size: .7rem;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      font-weight: 600;
+      flex: none;
+      padding-top: 3px
+    }
+
+    .rrow .rval {
+      flex: 1;
+      color: var(--ink);
+      min-width: 0;
+      overflow-wrap: anywhere
+    }
+
+    .rrow .rval.empty {
+      color: #93A29A;
+      font-style: italic
+    }
+
+    .done-panel {
+      display: none;
+      text-align: center;
+      padding: 24px 10px
+    }
+
+    .done-panel.show {
+      display: block;
+      animation: fade .5s
+    }
+
+    .done-panel .tick {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 20px
+    }
+
+    .done-panel h3 {
+      font-size: 1.9rem;
+      margin-bottom: 10px
+    }
+
+    .done-panel p {
+      max-width: 46ch;
+      margin: 0 auto
+    }
+
+    .done-ref {
+      display: inline-block;
+      margin-top: 20px;
+      border: 1px dashed #E2C8B6;
+      border-radius: 2px;
+      padding: 10px 22px;
+      font-size: .82rem;
+      letter-spacing: .1em;
+      color: var(--copper-ink);
+      font-weight: 500
+    }
+
+    /* ── contact ──────────────────────────── */
+    .channels {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      max-width: 900px;
+      margin-inline: auto
+    }
+
+    .chan {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 22px 24px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: #fff;
+      transition: .3s
+    }
+
+    .chan:hover {
+      border-color: var(--mist);
+      box-shadow: var(--shadow);
+      transform: translateY(-3px)
+    }
+
+    .chan svg {
+      width: 52px;
+      height: 52px;
+      flex: none
+    }
+
+    .chan .t {
+      font-size: .66rem;
+      letter-spacing: .18em;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: 600
+    }
+
+    .chan .v {
+      font-size: 1rem;
+      color: var(--ink);
+      font-weight: 500
+    }
+
+    /* ── footer ───────────────────────────── */
+    footer {
+      background: var(--aqua-ink);
+      padding-block: 52px 40px;
+      color: var(--on-dark-mute)
+    }
+
+    .fgrid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 36px;
+      padding-bottom: 34px;
+      border-bottom: 1px solid rgba(238, 240, 236, .14)
+    }
+
+    @media(max-width:760px) {
+      .fgrid {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .fgrid h4 {
+      font-size: .72rem;
+      font-family: var(--body);
+      font-weight: 600;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--copper-lite);
+      margin-bottom: 16px
+    }
+
+    .fgrid ul {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+      font-size: .88rem
+    }
+
+    .fgrid a:hover {
+      color: #fff
+    }
+
+    .fgrid .about {
+      font-size: .88rem;
+      max-width: 40ch;
+      color: var(--on-dark-mute);
+      margin-top: 16px
+    }
+
+    footer .bw {
+      color: #fff
+    }
+
+    .fbot {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      padding-top: 26px;
+      font-size: .78rem
+    }
+
+    .disclaimer {
+      margin-top: 22px;
+      font-size: .76rem;
+      line-height: 1.75;
+      color: #9FB0A4;
+      max-width: 88ch
+    }
+
+    .rv {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .75s, transform .75s
+    }
+
+    .rv.in {
+      opacity: 1;
+      transform: none
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stripe"></div>
+
+  <header id="hdr">
+    <div class="wrap bar">
+      <a class="brand" href="#top" aria-label="MediVia home">
+        <!-- mark for dark backgrounds -->
+        <svg class="mark-ondark" viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#EEF0EC" stroke-width="3" opacity=".28" />
+          <circle cx="100" cy="100" r="82" fill="none" stroke="#C88A66" stroke-width="2" opacity=".75" />
+          <rect x="88" y="58" width="24" height="84" rx="4" fill="#EEF0EC" />
+          <rect x="58" y="88" width="84" height="24" rx="4" fill="#EEF0EC" />
+          <rect x="88" y="88" width="24" height="24" rx="2" fill="#C88A66" />
+        </svg>
+        <!-- mark for the white sticky bar -->
+        <svg class="mark-onlight" viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="90" fill="#1A3E4C" />
+          <circle cx="100" cy="100" r="82" fill="none" stroke="#D3875F" stroke-width="1.8" opacity=".6" />
+          <rect x="88" y="58" width="24" height="84" rx="4" fill="#EEF0EC" />
+          <rect x="58" y="88" width="84" height="24" rx="4" fill="#EEF0EC" />
+          <rect x="88" y="88" width="24" height="24" rx="2" fill="#D3875F" />
+        </svg>
+        <span class="bw">Medi<i>Via</i></span>
+      </a>
+      <div class="spacer"></div>
+      <nav class="main">
+        <a href="#about">Who we are</a>
+        <a href="#services">How it works</a>
+        <a href="#request">Book a case</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="cta-top" href="#request">Start a case</a>
+    </div>
+  </header>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero" id="top">
+    <div class="hero-bg"></div>
+    <div class="depth" id="depth" aria-hidden="true">
+      <div class="orb o1"></div>
+      <div class="orb o2"></div>
+      <!-- medical cross -->
+      <svg class="med3d m-cross" viewBox="0 0 200 200">
+        <rect x="70" y="20" width="60" height="160" rx="12" fill="rgba(238,240,236,.07)" stroke="rgba(238,240,236,.12)"
+          stroke-width="1" />
+        <rect x="20" y="70" width="160" height="60" rx="12" fill="rgba(238,240,236,.07)" stroke="rgba(238,240,236,.12)"
+          stroke-width="1" />
+        <rect x="78" y="78" width="44" height="44" rx="6" fill="rgba(200,138,102,.12)" stroke="rgba(200,138,102,.18)"
+          stroke-width="1" />
+      </svg>
+      <!-- ECG heartbeat line -->
+      <svg class="med3d m-ecg" viewBox="0 0 400 120">
+        <polyline
+          points="0,60 60,60 80,60 95,20 110,100 125,40 140,70 160,60 250,60 270,60 285,25 300,95 315,45 330,65 350,60 400,60"
+          fill="none" stroke="rgba(238,240,236,.14)" stroke-width="2.2" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <polyline
+          points="0,60 60,60 80,60 95,20 110,100 125,40 140,70 160,60 250,60 270,60 285,25 300,95 315,45 330,65 350,60 400,60"
+          fill="none" stroke="rgba(200,138,102,.2)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <!-- pill capsule -->
+      <svg class="med3d m-pill" viewBox="0 0 100 220">
+        <rect x="10" y="10" width="80" height="200" rx="40" fill="rgba(238,240,236,.06)" stroke="rgba(238,240,236,.1)"
+          stroke-width="1.2" />
+        <line x1="10" y1="110" x2="90" y2="110" stroke="rgba(200,138,102,.18)" stroke-width="1.2" />
+        <rect x="10" y="110" width="80" height="100" rx="40" fill="rgba(200,138,102,.06)" />
+      </svg>
+      <!-- stethoscope outline -->
+      <svg class="med3d m-steth" viewBox="0 0 160 200">
+        <path d="M50 30 Q50 10 70 10 L90 10 Q110 10 110 30 L110 100 Q110 160 80 170 Q50 160 50 100 Z"
+          fill="rgba(238,240,236,.05)" stroke="rgba(238,240,236,.1)" stroke-width="1.2" />
+        <circle cx="80" cy="170" r="16" fill="rgba(200,138,102,.08)" stroke="rgba(200,138,102,.16)"
+          stroke-width="1.2" />
+        <circle cx="80" cy="170" r="6" fill="rgba(200,138,102,.14)" />
+        <line x1="50" y1="10" x2="50" y2="0" stroke="rgba(238,240,236,.12)" stroke-width="3" stroke-linecap="round" />
+        <line x1="110" y1="10" x2="110" y2="0" stroke="rgba(238,240,236,.12)" stroke-width="3" stroke-linecap="round" />
+      </svg>
+    </div>
+    <svg class="rings" viewBox="0 0 1000 1000" aria-hidden="true">
+      <circle class="pulse" cx="500" cy="500" r="185" />
+      <circle class="pulse" cx="500" cy="500" r="295" style="animation-delay:-4s" />
+      <circle class="pulse" cx="500" cy="500" r="400" style="animation-delay:-8s" />
+      <circle class="pulse" cx="500" cy="500" r="492" style="animation-delay:-12s" />
+    </svg>
+    <div class="wrap hero-in">
+      <p class="eyebrow">Medical concierge · Russia</p>
+      <h1>From First Contact<br>to <em>Full Recovery</em></h1>
+      <p class="lead">We're already at work — connecting international patients with licensed hospitals and specialists
+        in Russia. One coordinator. One agreed price. Everything translated, arranged and accompanied.</p>
+      <div class="hero-cta">
+        <a class="btn btn-p" href="#request">Start a case — free review</a>
+        <a class="btn btn-ghost" href="#services">How it works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STATS ══ -->
+  <section class="stats">
+    <div class="wrap" style="padding-inline:0">
+      <div class="stats-in">
+        <div class="stat">
+          <div class="n">4</div>
+          <div class="l">Licensed partner hospitals, chosen and proven by our medical team</div>
+        </div>
+        <div class="stat">
+          <div class="n">10</div>
+          <div class="l">Treatment specialties covered across our partner network</div>
+        </div>
+        <div class="stat">
+          <div class="n">5</div>
+          <div class="l">Clear steps from first message to full recovery — never a guess</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ INTRO SPLIT (Who We Are) ══ -->
+  <section class="pad" id="about">
+    <div class="wrap split">
+      <div class="rv">
+        <p class="eyebrow">Who we are</p>
+        <div class="rule"></div>
+        <h2 style="margin-top:20px">Two worlds,<br>known from the inside.</h2>
+        <p class="lead" style="margin-top:20px">MediVia is led by two Arabs who have lived in Russia their whole lives
+          and know both worlds from the inside. Our medical direction comes from a doctor who runs his own successful
+          clinic in Russia, holds numerous medical awards, and has built one of the widest partner networks among
+          clinics and specialists across the country.</p>
+        <p style="margin-top:16px">Our operations are led by someone with deep experience managing business between
+          Russia and the Arab world — trusted by major Arab companies to handle their affairs in Russia, and familiar
+          with exactly where the obstacles lie, and how to remove them.</p>
+        <p style="margin-top:16px">Together, that combination is the organization: medical judgment on one side, and the
+          operational knowledge to make every step — finding the right doctor, understanding the process, trusting the
+          price — simple and clear on the other.</p>
+      </div>
+      <div class="rv">
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="11" fill="#EEF0EC" />
+              <path d="M17 9l-6.2 6.2L7 11.4" stroke="#92512E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg><span><b style="color:var(--ink)">Medical judgment at the helm.</b> A doctor who runs his own
+              award-winning clinic in Russia leads our medical direction — not a call centre.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="11" fill="#EEF0EC" />
+              <path d="M17 9l-6.2 6.2L7 11.4" stroke="#92512E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg><span><b style="color:var(--ink)">Operational knowledge that removes obstacles.</b> Years of managing
+              business between Russia and the Arab world, for companies that trust us with it.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="11" fill="#EEF0EC" />
+              <path d="M17 9l-6.2 6.2L7 11.4" stroke="#92512E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg><span><b style="color:var(--ink)">Licensed, proven clinics only.</b> Our medical team works
+              exclusively with four partner hospitals across ten treatment specialties.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="11" fill="#EEF0EC" />
+              <path d="M17 9l-6.2 6.2L7 11.4" stroke="#92512E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg><span><b style="color:var(--ink)">Both worlds, from the inside.</b> Led by two Arabs who have lived in
+              Russia their whole lives — no gap between you and the system.</span></li>
+        </ul>
+        <div class="quote-card" style="margin-top:28px">
+          <p>“MediVia exists for one reason: to make getting treated in Russia an easy path, not a hard one.”</p>
+          <div class="who">Why MediVia exists</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ══ SERVICES ══ -->
+  <section class="pad" id="services">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">How it works</p>
+        <h2>From first message to full recovery</h2>
+        <div class="rule" style="margin-top:18px"></div>
+        <p>A clear path in five steps — and you're never guessing what comes next.</p>
+      </div>
+      <div class="steps5 rv">
+
+        <div class="svc step5">
+          <span class="stepnum">01</span>
+          <svg class="ic2" viewBox="0 0 36 36" aria-hidden="true">
+            <path d="M6 8h24a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H14l-6 5v-5H6a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"
+              stroke-linejoin="round" />
+            <line x1="11" y1="14" x2="25" y2="14" />
+            <line class="cu" x1="11" y1="19" x2="19" y2="19" stroke-width="2" />
+          </svg>
+          <h3>First contact</h3>
+          <p>Reach us on WhatsApp or through the form on this site — whichever is easier. Send what you already have: a
+            diagnosis, test results, even a phone photo of a report. No need to prepare anything formal first.</p>
+        </div>
+
+        <div class="svc step5">
+          <span class="stepnum">02</span>
+          <svg class="ic2" viewBox="0 0 36 36" aria-hidden="true">
+            <rect x="4" y="3" width="20" height="26" rx="2" />
+            <path class="cu" d="M12 33h20a0 0 0 0 0 0 0V9a2 2 0 0 0-2-2h-6" stroke-linejoin="round" />
+            <line x1="9" y1="10" x2="19" y2="10" />
+            <line x1="9" y1="15" x2="19" y2="15" />
+            <line x1="9" y1="20" x2="15" y2="20" />
+          </svg>
+          <h3>Medical review</h3>
+          <p>Our medical team reviews your case and matches it with the right clinic and specialist from our partner
+            network — the decision is based on your condition, not convenience.</p>
+        </div>
+
+        <div class="svc step5">
+          <span class="stepnum">03</span>
+          <svg class="ic2" viewBox="0 0 36 36" aria-hidden="true">
+            <path d="M20 4H10a1 1 0 0 0-1 1v26a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V11z" stroke-linejoin="round" />
+            <path class="cu" d="M20 4v7h7" stroke-linejoin="round" />
+            <line x1="13" y1="18" x2="23" y2="18" />
+            <line x1="13" y1="23" x2="23" y2="23" />
+            <line class="cu" x1="13" y1="28" x2="19" y2="28" stroke-width="2" />
+          </svg>
+          <h3>Clear plan, clear price</h3>
+          <p>You receive a proposed treatment plan and cost in writing before you decide anything. No hidden steps, no
+            surprises later.</p>
+        </div>
+
+        <div class="svc step5">
+          <span class="stepnum">04</span>
+          <svg class="ic2" viewBox="0 0 36 36" aria-hidden="true">
+            <path d="M5 20l26-9a1 1 0 0 1 1.3 1.2l-2 7" stroke-linejoin="round" />
+            <path d="M5 20l7 3 3 7 4-6" stroke-linejoin="round" />
+            <circle class="cu" cx="25" cy="24" r="5" />
+            <path class="cu" d="M25 21.5v2.5l1.8 1.1" stroke-width="1.6" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+          <h3>Travel &amp; arrival</h3>
+          <p>Once you're ready to proceed, we handle the visa invitation, transfers and accommodation — so the only
+            thing you need to do is arrive.</p>
+        </div>
+
+        <div class="svc step5">
+          <span class="stepnum">05</span>
+          <svg class="ic2" viewBox="0 0 36 36" aria-hidden="true">
+            <path d="M18 6l3.5 5 6 .3-2 4.7 4 4.5-6 1.3-2 5.5-3.5-5-6-.3 2-4.7-4-4.5 6-1.3z" stroke-linejoin="round" />
+            <path class="cu" d="M14.5 18.5l2.5 2.5 5-5" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+          <h3>Treatment &amp; beyond</h3>
+          <p>During treatment, you're accompanied and everything is translated for you. After you return home, we stay
+            reachable for follow-up questions and support.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ══ INTAKE ══ -->
+  <section class="tint pad" id="request">
+    <div class="wrap">
+      <div class="head mid">
+        <p class="eyebrow">Start a case</p>
+        <h2>Open your case file</h2>
+        <div class="rule" style="margin-top:18px"></div>
+        <p>Tell us who you are and what's happening. A coordinator reads it — not a bot — and replies within the hour
+          with questions, options, or an honest “we're not the right fit”. Reviewing your case costs nothing and commits
+          you to nothing.</p>
+      </div>
+
+      <div class="sheet rv">
+        <div class="sheet-top">
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <circle cx="100" cy="100" r="90" fill="none" stroke="#EEF0EC" stroke-width="3" opacity=".3" />
+            <circle cx="100" cy="100" r="82" fill="none" stroke="#C88A66" stroke-width="2" opacity=".8" />
+            <rect x="88" y="58" width="24" height="84" rx="4" fill="#EEF0EC" />
+            <rect x="58" y="88" width="84" height="24" rx="4" fill="#EEF0EC" />
+            <rect x="88" y="88" width="24" height="24" rx="2" fill="#C88A66" />
+          </svg>
+          <div>
+            <div class="st-t">Patient intake</div>
+            <div class="st-s">Confidential · Reviewed by a coordinator</div>
+          </div>
+          <div class="ref"><b>Reference</b><span id="refno">MV-2026-000</span></div>
+        </div>
+
+        <div class="steps" id="steps">
+          <div class="step-h active" data-step="1"><span class="n">01</span>About you</div>
+          <div class="step-h" data-step="2"><span class="n">02</span>Your case</div>
+          <div class="step-h" data-step="3"><span class="n">03</span>Documents</div>
+          <div class="step-h" data-step="4"><span class="n">04</span>Review</div>
+        </div>
+
+        <div class="panes">
+          <form id="intake" novalidate>
+
+            <div class="pane show" data-pane="1">
+              <div class="pane-h">Who are we writing back to?</div>
+              <div class="pane-s">Basics only. Nothing here reaches a hospital until you say so.</div>
+              <div class="f-grid">
+                <div class="field">
+                  <label for="first">First name <span class="req">*</span></label>
+                  <input type="text" id="first" name="firstName" autocomplete="given-name" required>
+                  <span class="errmsg">Please enter your first name.</span>
+                </div>
+                <div class="field">
+                  <label for="last">Last name <span class="req">*</span></label>
+                  <input type="text" id="last" name="lastName" autocomplete="family-name" required>
+                  <span class="errmsg">Please enter your last name.</span>
+                </div>
+                <div class="field">
+                  <label for="nat">Nationality <span class="req">*</span></label>
+                  <input type="text" id="nat" name="nationality" list="nats" autocomplete="country-name" required>
+                  <datalist id="nats">
+                    <option>Saudi Arabia</option>
+                    <option>United Arab Emirates</option>
+                    <option>Kuwait</option>
+                    <option>Qatar</option>
+                    <option>Bahrain</option>
+                    <option>Oman</option>
+                    <option>Yemen</option>
+                    <option>Iraq</option>
+                    <option>Jordan</option>
+                    <option>Syria</option>
+                    <option>Lebanon</option>
+                    <option>Palestine</option>
+                    <option>Egypt</option>
+                    <option>Sudan</option>
+                    <option>Libya</option>
+                    <option>Algeria</option>
+                    <option>Morocco</option>
+                    <option>Tunisia</option>
+                    <option>Mauritania</option>
+                    <option>Somalia</option>
+                    <option>Djibouti</option>
+                    <option>Turkey</option>
+                    <option>Iran</option>
+                    <option>Afghanistan</option>
+                    <option>Pakistan</option>
+                    <option>India</option>
+                    <option>Bangladesh</option>
+                    <option>Kazakhstan</option>
+                    <option>Uzbekistan</option>
+                    <option>Azerbaijan</option>
+                    <option>Russia</option>
+                    <option>Other</option>
+                  </datalist>
+                  <span class="errmsg">Please enter your nationality.</span>
+                </div>
+                <div class="field">
+                  <label for="age">Age <span class="req">*</span></label>
+                  <input type="number" id="age" name="age" min="0" max="120" step="1" inputmode="numeric" required>
+                  <span class="errmsg">Enter an age between 0 and 120.</span>
+                </div>
+                <div class="field full">
+                  <label>Sex <span class="req">*</span></label>
+                  <div class="seg" id="sexseg">
+                    <input type="radio" name="sex" id="sx-m" value="male"><label for="sx-m">Male</label>
+                    <input type="radio" name="sex" id="sx-f" value="female"><label for="sx-f">Female</label>
+                  </div>
+                  <span class="hint">Hospitals require this on every referral — it's a clinical field, not a
+                    preference.</span>
+                  <span class="errmsg">Please select one.</span>
+                </div>
+                <div class="field">
+                  <label for="wa">WhatsApp number</label>
+                  <input type="tel" id="wa" name="whatsapp" placeholder="+966 ..." autocomplete="tel">
+                  <span class="hint">Optional — but it's how we reply fastest.</span>
+                </div>
+                <div class="field">
+                  <label for="mail">Email</label>
+                  <input type="email" id="mail" name="email" autocomplete="email">
+                  <span class="errmsg">That email doesn't look right.</span>
+                </div>
+              </div>
+              <div class="nav-row"><span></span><button type="button" class="btn btn-dark nxt" data-go="2">Continue to
+                  your case</button></div>
+            </div>
+
+            <div class="pane" data-pane="2">
+              <div class="pane-h">What's happening?</div>
+              <div class="pane-s">Write it the way you'd say it out loud. Plain words are enough — we handle the medical
+                language.</div>
+              <div class="f-grid">
+                <div class="field full">
+                  <label for="reason">The problem, in one line <span class="req">*</span></label>
+                  <input type="text" id="reason" name="reason" maxlength="140" required
+                    placeholder="e.g. Herniated disc, L4–L5, surgery advised">
+                  <span class="hint">Up to 140 characters.</span>
+                  <span class="errmsg">Please describe the problem in one line.</span>
+                </div>
+                <div class="field full">
+                  <label for="detail">The full story <span class="req">*</span></label>
+                  <textarea id="detail" name="details" maxlength="4000" required
+                    placeholder="When it started, what you've been told so far, treatments already tried, medications, other conditions, and what you're hoping for."></textarea>
+                  <div class="counter" id="cnt"><span>Take the space you need.</span><span><b id="cn">0</b> /
+                      4000</span></div>
+                  <span class="errmsg">Please tell us a little more — at least a few sentences.</span>
+                </div>
+              </div>
+              <div class="nav-row"><button type="button" class="btn btn-line prv" data-go="1">Back</button><button
+                  type="button" class="btn btn-dark nxt" data-go="3">Continue to documents</button></div>
+            </div>
+
+            <div class="pane" data-pane="3">
+              <div class="pane-h">Anything you already have</div>
+              <div class="pane-s">Scans, lab results, a doctor's letter, a photo of the report on your desk. A phone
+                photo is fine — we translate it.</div>
+
+              <label style="margin-bottom:9px;display:block">Images — up to 5, max 10 MB each</label>
+              <div class="drop" id="dropImg" tabindex="0" role="button" aria-label="Add images">
+                <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
+                  <circle cx="30" cy="30" r="30" fill="#1A3E4C" />
+                  <circle cx="30" cy="30" r="27" stroke="#7A8B7B" stroke-width=".5" />
+                  <rect x="14" y="18" width="32" height="24" rx="2" stroke="#EEF0EC" stroke-width="1.3" />
+                  <path d="M14 36 L23 27 L31 35 L37 30 L46 38" stroke="#EEF0EC" stroke-width="1.3"
+                    stroke-linejoin="round" />
+                  <circle cx="38" cy="24.5" r="2.4" fill="#C88A66" />
+                </svg>
+                <div class="dt">Drop images here, or browse</div>
+                <div class="ds">JPG, PNG, HEIC or WebP · 5 files · 10 MB each</div>
+                <input type="file" id="imgs" accept="image/*" multiple>
+              </div>
+              <div class="files" id="thumbs"></div>
+              <div class="errmsg" id="imgErr"></div>
+
+              <label style="margin:28px 0 9px;display:block">PDF report — one file, max 10 MB</label>
+              <div class="drop" id="dropPdf" tabindex="0" role="button" aria-label="Add a PDF">
+                <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
+                  <circle cx="30" cy="30" r="30" fill="#1A3E4C" />
+                  <circle cx="30" cy="30" r="27" stroke="#7A8B7B" stroke-width=".5" />
+                  <path d="M21 15 h11 l7 7 v23 a2 2 0 0 1 -2 2 H21 a2 2 0 0 1 -2 -2 V17 a2 2 0 0 1 2 -2 Z"
+                    stroke="#EEF0EC" stroke-width="1.3" stroke-linejoin="round" />
+                  <path d="M32 15 v7 h7" stroke="#C88A66" stroke-width="1.3" stroke-linejoin="round" />
+                  <line x1="24" y1="31" x2="35" y2="31" stroke="#EEF0EC" stroke-width="1" />
+                  <line x1="24" y1="36" x2="35" y2="36" stroke="#EEF0EC" stroke-width="1" />
+                  <line x1="24" y1="41" x2="30" y2="41" stroke="#EEF0EC" stroke-width="1" />
+                </svg>
+                <div class="dt">Drop a PDF here, or browse</div>
+                <div class="ds">One PDF · up to 10 MB</div>
+                <input type="file" id="pdf" accept="application/pdf,.pdf">
+              </div>
+              <div id="pdfBox"></div>
+              <div class="errmsg" id="pdfErr"></div>
+
+              <div class="safebar">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="4" y="10" width="16" height="11" rx="2" stroke="#1A3E4C" stroke-width="1.6" />
+                  <path d="M7.5 10V6.5a4.5 4.5 0 0 1 9 0V10" stroke="#1A3E4C" stroke-width="1.6" />
+                  <circle cx="12" cy="15.5" r="1.6" fill="#92512E" />
+                </svg>
+                <p>Your documents go to your coordinator and nowhere else. They reach a hospital only after you have
+                  chosen that hospital — and you can ask us to delete everything at any time.</p>
+              </div>
+
+              <div class="nav-row"><button type="button" class="btn btn-line prv" data-go="2">Back</button><button
+                  type="button" class="btn btn-dark nxt" data-go="4">Review before sending</button></div>
+            </div>
+
+            <div class="pane" data-pane="4">
+              <div id="reviewWrap">
+                <div class="pane-h">Read it once more</div>
+                <div class="pane-s">This is exactly what lands on a coordinator's desk.</div>
+                <div class="review" id="review"></div>
+                <label class="consent" for="ok">
+                  <input type="checkbox" id="ok" name="consent">
+                  <p>I agree that MediVia may review these documents and share them with hospitals and specialists in
+                    Russia for the purpose of assessing my case. I understand that MediVia is a coordination service and
+                    does not provide medical diagnosis or treatment.</p>
+                </label>
+                <span class="errmsg" id="okErr">Please agree before sending.</span>
+                <div class="nav-row"><button type="button" class="btn btn-line prv" data-go="3">Back</button><button
+                    type="submit" class="btn btn-p" id="send">Send my case</button></div>
+              </div>
+              <div class="done-panel" id="done">
+                <svg class="tick" viewBox="0 0 100 100" aria-hidden="true">
+                  <circle cx="50" cy="50" r="46" fill="none" stroke="#D4DDD5" />
+                  <circle cx="50" cy="50" r="38" fill="#1A3E4C" />
+                  <path d="M34 51 L45 62 L67 39" fill="none" stroke="#C88A66" stroke-width="3.4" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+                <h3>Your file is open.</h3>
+                <p>A coordinator has it now. You'll hear back within the hour — and the first message will come from a
+                  person, with your name on it.</p>
+                <div class="done-ref" id="doneRef">MV-2026-000</div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ══ CONTACT ══ -->
+  <section class="tint pad" id="contact">
+    <div class="wrap">
+      <div class="head mid">
+        <p class="eyebrow">Speak to MediVia today</p>
+        <h2>Not ready for a form? Write to a person.</h2>
+        <div class="rule" style="margin-top:18px"></div>
+        <p>One message is enough for us to read your file and tell you honestly whether we're the right fit.</p>
+      </div>
+      <div class="channels rv">
+        <a class="chan" href="https://wa.me/79032809009">
+          <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
+            <circle cx="30" cy="30" r="30" fill="#1A3E4C" />
+            <circle cx="30" cy="30" r="27" stroke="#7A8B7B" stroke-width=".5" />
+            <path
+              d="M19 15 L41 15 Q45 15 45 19 L45 36 Q45 40 41 40 L29 40 L23 46 L24.5 40 L19 40 Q15 40 15 36 L15 19 Q15 15 19 15 Z"
+              stroke="#EEF0EC" stroke-width="1.3" stroke-linejoin="round" />
+            <g transform="translate(30.5, 27) rotate(-30) scale(0.88)" fill="#EEF0EC">
+              <rect x="-2.8" y="-9" width="5.6" height="5" rx="2.5" />
+              <rect x="-1.6" y="-4.5" width="3.2" height="9.5" />
+              <rect x="-2.8" y="5" width="5.6" height="5" rx="2.5" />
+            </g>
+            <circle cx="40" cy="20" r="2.2" fill="#C88A66" />
+          </svg>
+          <span><span class="t">WhatsApp</span><br><span class="v">+7 903 280 90 09</span></span>
+        </a>
+        <a class="chan" href="mailto:a@medical-via.com">
+          <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
+            <circle cx="30" cy="30" r="30" fill="#1A3E4C" />
+            <circle cx="30" cy="30" r="27" stroke="#7A8B7B" stroke-width=".5" />
+            <rect x="13" y="19" width="34" height="23" rx="2" stroke="#EEF0EC" stroke-width="1.3" />
+            <polyline points="13,19 30,33 47,19" stroke="#C88A66" stroke-width="1.3" stroke-linejoin="round" />
+            <line x1="13" y1="42" x2="23.5" y2="31.5" stroke="#EEF0EC" stroke-width=".8" />
+            <line x1="47" y1="42" x2="36.5" y2="31.5" stroke="#EEF0EC" stroke-width=".8" />
+          </svg>
+          <span><span class="t">Email</span><br><span class="v">a@medical-via.com</span></span>
+        </a>
+        <a class="chan" href="https://medical-via.com">
+          <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
+            <circle cx="30" cy="30" r="30" fill="#1A3E4C" />
+            <circle cx="30" cy="30" r="27" stroke="#7A8B7B" stroke-width=".5" />
+            <circle cx="30" cy="30" r="13.5" stroke="#EEF0EC" stroke-width="1.3" />
+            <ellipse cx="30" cy="30" rx="5.5" ry="13.5" stroke="#EEF0EC" stroke-width="1.3" />
+            <clipPath id="gc">
+              <circle cx="30" cy="30" r="13.4" />
+            </clipPath>
+            <g clip-path="url(#gc)">
+              <line x1="10" y1="30" x2="50" y2="30" stroke="#EEF0EC" stroke-width="1.3" />
+              <line x1="10" y1="23.5" x2="50" y2="23.5" stroke="#EEF0EC" stroke-width=".8" />
+              <line x1="10" y1="36.5" x2="50" y2="36.5" stroke="#EEF0EC" stroke-width=".8" />
+            </g>
+            <circle cx="30" cy="16.5" r="1.8" fill="#C88A66" />
+          </svg>
+          <span><span class="t">Website</span><br><span class="v">medical-via.com</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="fgrid">
+        <div>
+          <span class="bw">Medi<i>Via</i></span>
+          <p class="about">Medical concierge · Russia. We connect international patients with licensed hospitals and
+            specialists in Moscow, and carry everything around their care — from the first message to the flight home.
+          </p>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#safety">Your safety</a></li>
+            <li><a href="#services">What we handle</a></li>
+            <li><a href="#path">The path</a></li>
+            <li><a href="#moscow">Moscow</a></li>
+            <li><a href="#faq">Questions</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://wa.me/79032809009">+7 903 280 90 09</a></li>
+            <li><a href="mailto:a@medical-via.com">a@medical-via.com</a></li>
+            <li><a href="https://medical-via.com">medical-via.com</a></li>
+            <li><a href="#request">Start a case</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="fbot">
+        <small>© 2026 MediVia · Medical concierge · Russia</small>
+        <small>Confidential — your file is never shared without your consent</small>
+      </div>
+      <p class="disclaimer">MediVia is a medical concierge and coordination service. We facilitate access to licensed
+        hospitals and physicians in Russia; we do not practise medicine, provide diagnosis, prescribe treatment, or
+        guarantee any medical outcome. All clinical decisions are made by the treating physician together with the
+        patient. Nothing on this site is medical advice.</p>
+    </div>
+  </footer>
+  <div class="stripe"></div>
+
+  <script>
+    /* header */
+    const hdr = document.getElementById('hdr');
+    addEventListener('scroll', () => hdr.classList.toggle('stuck', scrollY > 40), { passive: true });
+
+    /* soft 3D parallax on the hero depth field */
+    const depth = document.getElementById('depth');
+    if (depth && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
+      function loop() {
+        cx += (tx - cx) * .06; cy += (ty - cy) * .06;
+        depth.style.setProperty('--mx', cx.toFixed(2) + 'px');
+        depth.style.setProperty('--my', cy.toFixed(2) + 'px');
+        raf = (Math.abs(tx - cx) > .1 || Math.abs(ty - cy) > .1) ? requestAnimationFrame(loop) : null;
+      }
+      function kick() { if (!raf) raf = requestAnimationFrame(loop); }
+      addEventListener('pointermove', e => {
+        tx = (e.clientX / innerWidth - .5) * 30;
+        ty = (e.clientY / innerHeight - .5) * 22;
+        kick();
+      }, { passive: true });
+      addEventListener('scroll', () => { ty = -Math.min(scrollY, 700) * .04; kick(); }, { passive: true });
+    }
+
+    /* reveal */
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
+    document.querySelectorAll('.rv').forEach(n => io.observe(n));
+
+
+    /* reference */
+    const REF = 'MV-2026-' + String(Math.floor(Math.random() * 9000) + 1000);
+    document.getElementById('refno').textContent = REF;
+    document.getElementById('doneRef').textContent = REF;
+
+    /* intake */
+    const MAX_IMG = 5, MAX_IMG_BYTES = 10 * 1024 * 1024, MAX_PDF_BYTES = 10 * 1024 * 1024;
+    let images = [], pdfFile = null;
+    const $ = s => document.querySelector(s);
+    const panes = [...document.querySelectorAll('.pane')];
+    const heads = [...document.querySelectorAll('.step-h')];
+    const fmt = b => b < 1024 * 1024 ? (b / 1024).toFixed(0) + ' KB' : (b / 1048576).toFixed(1) + ' MB';
+
+    function goto(n) {
+      panes.forEach(p => p.classList.toggle('show', +p.dataset.pane === n));
+      heads.forEach(h => {
+        const s = +h.dataset.step;
+        h.classList.toggle('active', s === n);
+        h.classList.toggle('done', s < n);
+      });
+      if (n === 4) buildReview();
+      scrollTo({
+        top: $('.sheet').getBoundingClientRect().top + scrollY - 90,
+        behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+      });
+    }
+    document.querySelectorAll('.nxt').forEach(b => b.addEventListener('click', () => {
+      if (validate(+b.closest('.pane').dataset.pane)) goto(+b.dataset.go);
+    }));
+    document.querySelectorAll('.prv').forEach(b => b.addEventListener('click', () => goto(+b.dataset.go)));
+    heads.forEach(h => h.addEventListener('click', () => {
+      const target = +h.dataset.step, cur = +document.querySelector('.pane.show').dataset.pane;
+      if (target < cur) goto(target);
+    }));
+
+    function mark(el, bad) {
+      el.classList.toggle('err', bad);
+      const m = el.parentElement.querySelector('.errmsg');
+      if (m) m.classList.toggle('show', bad);
+      return !bad;
+    }
+    function validate(step) {
+      let ok = true;
+      if (step === 1) {
+        ok = mark($('#first'), !$('#first').value.trim()) && ok;
+        ok = mark($('#last'), !$('#last').value.trim()) && ok;
+        ok = mark($('#nat'), !$('#nat').value.trim()) && ok;
+        const a = +$('#age').value;
+        ok = mark($('#age'), !$('#age').value || a < 0 || a > 120) && ok;
+        const sex = document.querySelector('input[name=sex]:checked');
+        $('#sexseg').parentElement.querySelector('.errmsg').classList.toggle('show', !sex);
+        if (!sex) ok = false;
+        const m = $('#mail');
+        if (m.value.trim()) ok = mark(m, !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m.value.trim())) && ok;
+        else mark(m, false);
+      }
+      if (step === 2) {
+        ok = mark($('#reason'), !$('#reason').value.trim()) && ok;
+        ok = mark($('#detail'), $('#detail').value.trim().length < 30) && ok;
+      }
+      if (!ok) {
+        const bad = document.querySelector('.pane.show .err, .pane.show .errmsg.show');
+        if (bad) bad.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      }
+      return ok;
+    }
+    ['#first', '#last', '#nat', '#age', '#reason', '#detail', '#mail'].forEach(s => {
+      $(s).addEventListener('input', () => {
+        $(s).classList.remove('err');
+        const m = $(s).parentElement.querySelector('.errmsg');
+        if (m) m.classList.remove('show');
+      });
+    });
+    document.querySelectorAll('input[name=sex]').forEach(r =>
+      r.addEventListener('change', () => $('#sexseg').parentElement.querySelector('.errmsg').classList.remove('show')));
+
+    const detail = $('#detail'), cn = $('#cn'), cnt = $('#cnt');
+    detail.addEventListener('input', () => {
+      const n = detail.value.length;
+      cn.textContent = n;
+      cnt.classList.toggle('near', n > 3500 && n < 4000);
+      cnt.classList.toggle('over', n >= 4000);
+    });
+
+    function showErr(el, msg) { el.textContent = msg; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 5000); }
+    function addImages(list) {
+      const err = $('#imgErr');
+      for (const f of list) {
+        if (!f.type.startsWith('image/')) { showErr(err, '“' + f.name + '” isn\'t an image.'); continue; }
+        if (f.size > MAX_IMG_BYTES) { showErr(err, '“' + f.name + '” is ' + fmt(f.size) + ' — the limit is 10 MB per image.'); continue; }
+        if (images.length >= MAX_IMG) { showErr(err, 'Five images is the maximum. Remove one to add another.'); break; }
+        images.push({ file: f, url: URL.createObjectURL(f) });
+      }
+      renderThumbs();
+    }
+    function renderThumbs() {
+      const box = $('#thumbs'); box.innerHTML = '';
+      images.forEach((im, i) => {
+        const d = document.createElement('div'); d.className = 'thumb';
+        d.innerHTML = '<img alt="" src="' + im.url + '"><span class="sz">' + fmt(im.file.size) + '</span>';
+        const b = document.createElement('button');
+        b.className = 'rm'; b.type = 'button'; b.innerHTML = '&times;'; b.setAttribute('aria-label', 'Remove image');
+        b.onclick = () => { URL.revokeObjectURL(im.url); images.splice(i, 1); renderThumbs(); };
+        d.appendChild(b); box.appendChild(d);
+      });
+    }
+    function setPdf(f) {
+      const err = $('#pdfErr');
+      if (!f) return;
+      if (f.type !== 'application/pdf' && !/\.pdf$/i.test(f.name)) { showErr(err, 'That file isn\'t a PDF.'); return; }
+      if (f.size > MAX_PDF_BYTES) { showErr(err, 'That PDF is ' + fmt(f.size) + ' — the limit is 10 MB.'); return; }
+      pdfFile = f; renderPdf();
+    }
+    function renderPdf() {
+      const box = $('#pdfBox'); box.innerHTML = '';
+      if (!pdfFile) return;
+      const d = document.createElement('div'); d.className = 'pdfrow';
+      d.innerHTML = '<span class="pi-ic">PDF</span><span class="nm"></span><span class="mt">' + fmt(pdfFile.size) + '</span>';
+      d.querySelector('.nm').textContent = pdfFile.name;
+      const b = document.createElement('button');
+      b.className = 'rm2'; b.type = 'button'; b.innerHTML = '&times;'; b.setAttribute('aria-label', 'Remove file');
+      b.onclick = () => { pdfFile = null; $('#pdf').value = ''; renderPdf(); };
+      d.appendChild(b); box.appendChild(d);
+    }
+    function wireDrop(zone, input, handler) {
+      zone.addEventListener('click', () => input.click());
+      zone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } });
+      ;['dragenter', 'dragover'].forEach(ev => zone.addEventListener(ev, e => { e.preventDefault(); zone.classList.add('hot'); }));
+      ;['dragleave', 'drop'].forEach(ev => zone.addEventListener(ev, e => { e.preventDefault(); zone.classList.remove('hot'); }));
+      zone.addEventListener('drop', e => handler(e.dataTransfer.files));
+      input.addEventListener('change', () => { handler(input.files); if (input.multiple) input.value = ''; });
+    }
+    wireDrop($('#dropImg'), $('#imgs'), f => addImages(f));
+    wireDrop($('#dropPdf'), $('#pdf'), f => setPdf(f[0]));
+
+    function buildReview() {
+      const sexEl = document.querySelector('input[name=sex]:checked');
+      const rows = [
+        ['Name', ($('#first').value + ' ' + $('#last').value).trim()],
+        ['Nationality', $('#nat').value],
+        ['Age', $('#age').value ? $('#age').value + ' years' : ''],
+        ['Sex', sexEl ? (sexEl.value === 'male' ? 'Male' : 'Female') : ''],
+        ['WhatsApp', $('#wa').value],
+        ['Email', $('#mail').value],
+        ['Problem', $('#reason').value],
+        ['Details', $('#detail').value],
+        ['Images', images.length ? images.length + ' file(s) · ' + fmt(images.reduce((s, i) => s + i.file.size, 0)) : ''],
+        ['PDF', pdfFile ? pdfFile.name + ' · ' + fmt(pdfFile.size) : '']
+      ];
+      const box = $('#review'); box.innerHTML = '';
+      rows.forEach(([k, v]) => {
+        const r = document.createElement('div'); r.className = 'rrow';
+        const kk = document.createElement('div'); kk.className = 'rk'; kk.textContent = k;
+        const vv = document.createElement('div'); vv.className = 'rval' + (v ? '' : ' empty');
+        vv.textContent = v || '— not provided';
+        r.append(kk, vv); box.appendChild(r);
+      });
+    }
+
+    $('#intake').addEventListener('submit', e => {
+      e.preventDefault();
+      if (!validate(1)) { goto(1); return; }
+      if (!validate(2)) { goto(2); return; }
+      if (!$('#ok').checked) { $('#okErr').classList.add('show'); return; }
+      $('#okErr').classList.remove('show');
+
+      /* ── Payload for the backend phase ───────────────────────── */
+      const fd = new FormData();
+      fd.append('reference', REF);
+      fd.append('firstName', $('#first').value.trim());
+      fd.append('lastName', $('#last').value.trim());
+      fd.append('nationality', $('#nat').value.trim());
+      fd.append('age', $('#age').value);
+      fd.append('sex', document.querySelector('input[name=sex]:checked').value);
+      fd.append('whatsapp', $('#wa').value.trim());
+      fd.append('email', $('#mail').value.trim());
+      fd.append('reason', $('#reason').value.trim());
+      fd.append('details', $('#detail').value.trim());
+      fd.append('submittedAt', new Date().toISOString());
+      images.forEach((im, i) => fd.append('images[' + i + ']', im.file, im.file.name));
+      if (pdfFile) fd.append('report', pdfFile, pdfFile.name);
+
+      console.log('MediVia intake — ready to POST /api/cases');
+      console.table([...fd.entries()].map(([k, v]) => ({ field: k, value: v instanceof File ? v.name + ' (' + fmt(v.size) + ')' : v })));
+      // TODO (next phase): await fetch('/api/cases', { method:'POST', body: fd })
+
+      const btn = $('#send');
+      btn.disabled = true; btn.textContent = 'Sending…';
+      setTimeout(() => {
+        $('#reviewWrap').style.display = 'none';
+        $('#done').classList.add('show');
+        heads.forEach(h => { h.classList.add('done'); h.classList.remove('active'); });
+        scrollTo({
+          top: $('.sheet').getBoundingClientRect().top + scrollY - 110,
+          behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+        });
+      }, 700);
+    });
+  </script>
+</body>
+
+</html>
