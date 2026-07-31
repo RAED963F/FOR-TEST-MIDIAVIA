@@ -138,11 +138,6 @@
       color: var(--muted)
     }
 
-    .lead {
-      font-size: clamp(1.02rem, 1.4vw, 1.15rem);
-      line-height: 1.75
-    }
-
     .eyebrow {
       font-family: var(--body);
       font-size: .7rem;
@@ -245,7 +240,7 @@
 
     .bw {
       font-family: var(--display);
-      font-size: 1.5rem;
+      font-size: 1.9rem;
       letter-spacing: .055em;
       line-height: 1;
       color: #fff;
@@ -426,47 +421,6 @@
       transition: transform .5s cubic-bezier(.22, .61, .36, 1)
     }
 
-    /* medical 3D silhouettes */
-    .med3d {
-      position: absolute;
-      filter: drop-shadow(0 30px 60px rgba(0, 0, 0, .3));
-      animation: medfloat 20s ease-in-out infinite
-    }
-
-    .m-cross {
-      width: clamp(180px, 22vw, 320px);
-      top: 8%;
-      left: 62%;
-      transform: rotate(-22deg);
-      animation-delay: -2s
-    }
-
-    .m-ecg {
-      width: clamp(280px, 32vw, 500px);
-      top: 58%;
-      left: 54%;
-      opacity: .9;
-      animation-delay: -7s
-    }
-
-    .m-pill {
-      width: clamp(60px, 7vw, 100px);
-      top: 18%;
-      left: 82%;
-      transform: rotate(28deg);
-      animation-delay: -12s;
-      opacity: .85
-    }
-
-    .m-steth {
-      width: clamp(100px, 12vw, 170px);
-      top: 42%;
-      left: 78%;
-      transform: rotate(12deg);
-      animation-delay: -16s;
-      opacity: .8
-    }
-
     .orb {
       position: absolute;
       border-radius: 50%;
@@ -539,8 +493,6 @@
     }
 
     @media(prefers-reduced-motion:reduce) {
-
-      .med3d,
       .orb {
         animation: none
       }
@@ -553,11 +505,6 @@
     @media(max-width:640px) {
       .depth {
         opacity: .6
-      }
-
-      .m-steth,
-      .m-pill {
-        display: none
       }
     }
 
@@ -586,6 +533,11 @@
       margin-top: 24px;
       max-width: 52ch;
       color: #DCE5DE
+    }
+
+    .hero .lead em{
+      font-style: normal;
+      color: var(--copper)
     }
 
     .hero-cta {
@@ -674,6 +626,33 @@
       gap: 14px
     }
 
+    .checks-wide {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px
+    }
+
+    .checks-wide li {
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .checks-wide svg {
+      width: 26px;
+      height: 26px;
+      margin-top: 0
+    }
+
+    @media(max-width:820px) {
+      .checks-wide {
+        grid-template-columns: 1fr;
+        gap: 18px
+      }
+
+      .checks-wide li {
+        flex-direction: row
+      }
+    }
+
     .checks li {
       display: flex;
       gap: 13px;
@@ -687,30 +666,6 @@
       height: 19px;
       flex: none;
       margin-top: 3px
-    }
-
-    .quote-card {
-      border: 1px solid var(--line);
-      border-inline-start: 3px solid var(--copper);
-      padding: 30px 32px;
-      background: var(--fog);
-      border-radius: 2px
-    }
-
-    .quote-card p {
-      font-family: var(--display);
-      font-size: 1.5rem;
-      line-height: 1.4;
-      color: var(--ink)
-    }
-
-    .quote-card .who {
-      margin-top: 16px;
-      font-size: .74rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 500
     }
 
     /* ── safety cards ─────────────────────── */
@@ -810,48 +765,190 @@
       font-size: .88rem
     }
 
-    /* how-it-works 5-step */
-    .steps5 {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1px;
-      background: var(--line);
+    /* how-it-works — dual path rail */
+    .rail {
+      position: relative;
+      margin-top: 16px
+    }
+
+.rail-line{
+
+position:absolute;
+
+left:46px;
+
+top:0;
+
+bottom:0;
+
+width:1px;
+
+background:var(--mist);
+
+}
+
+.rail-fill{
+    position:absolute;
+    top:0;
+    left:46px;
+    width:1px;
+    height:0;
+    background:var(--copper);
+}
+
+.stage{
+    display:grid;
+    grid-template-columns:92px 1fr;
+    gap:24px;
+    align-items:flex-start;
+    margin-bottom:42px;
+    position:relative;
+}
+
+   .node{
+    position:relative;
+
+    width:16px;
+
+    height:16px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    border:3px solid var(--copper);
+
+    justify-self:center;
+
+    margin-top:18px;
+}
+
+    .stage.on .node {
+      background: var(--copper);
+      border-color: var(--copper);
+      box-shadow: 0 0 0 6px rgba(200, 138, 102, .18)
+    }
+
+    .num{
+
+position:absolute;
+
+left:50%;
+
+bottom:100%;
+
+transform:translateX(-50%);
+
+margin-bottom:12px;
+
+font-size:.72rem;
+
+font-weight:600;
+
+color:var(--muted);
+
+letter-spacing:.08em;
+
+}
+
+    .card {
+      background: #fff;
       border: 1px solid var(--line);
       border-radius: 3px;
-      overflow: hidden
+      padding: 24px 26px;
+      opacity: 0;
+      transition: opacity .7s, transform .7s
     }
 
-    .step5 {
-      position: relative;
-      padding-top: 40px
+  .card.clin{
+
+width:100%;
+
+background:#fff;
+
+border:1px solid var(--mist);
+
+padding:30px;
+
+border-radius:4px;
+
+transition:.35s;
+
+}
+
+.card.clin:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 10px 35px rgba(0,0,0,.06);
+
+}
+    .stage.on .card {
+      opacity: 1;
+      transform: none
     }
 
-    .step5 .stepnum {
-      position: absolute;
-      inset-block-start: 22px;
-      inset-inline-end: 26px;
-      font-family: var(--display);
-      font-size: 2.6rem;
-      line-height: 1;
-      color: var(--mist);
-      font-weight: 400;
-      transition: color .3s;
-      pointer-events: none
+    .tag {
+      font-size: .62rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px
     }
 
-    .step5:hover .stepnum {
-      color: var(--copper)
+    .tag::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor
     }
 
-    @media(max-width:1080px) {
-      .steps5 {
-        grid-template-columns: repeat(2, 1fr)
+
+    .card h3 {
+      font-size: 1.22rem;
+      margin: 11px 0 7px
+    }
+
+    .card p {
+      font-size: .88rem;
+      color: var(--muted)
+    }
+
+    @media(max-width:820px) {
+
+      .rail-line,
+      .rail-fill {
+        inset-inline-start: 7px;
+        translate: 0 0
       }
-    }
 
-    @media(max-width:560px) {
-      .steps5 {
-        grid-template-columns: 1fr
+      
+
+      .stage {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding-inline-start: 36px;
+        padding-block: 20px
+      }
+
+      .node {
+        grid-column: 1;
+        position: absolute;
+        inset-inline-start: 1px;
+        margin-block-start: 5px
+      }
+
+      .num {
+        inset-block-start: -23px;
+        inset-inline-start: 0;
+        translate: 0 0
+      }
+
+      .card.clin{
+        transform: translateY(12px)
       }
     }
 
@@ -1492,74 +1589,6 @@
     }
 
     /* ── footer ───────────────────────────── */
-    footer {
-      background: var(--aqua-ink);
-      padding-block: 52px 40px;
-      color: var(--on-dark-mute)
-    }
-
-    .fgrid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 36px;
-      padding-bottom: 34px;
-      border-bottom: 1px solid rgba(238, 240, 236, .14)
-    }
-
-    @media(max-width:760px) {
-      .fgrid {
-        grid-template-columns: 1fr
-      }
-    }
-
-    .fgrid h4 {
-      font-size: .72rem;
-      font-family: var(--body);
-      font-weight: 600;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--copper-lite);
-      margin-bottom: 16px
-    }
-
-    .fgrid ul {
-      list-style: none;
-      display: grid;
-      gap: 9px;
-      font-size: .88rem
-    }
-
-    .fgrid a:hover {
-      color: #fff
-    }
-
-    .fgrid .about {
-      font-size: .88rem;
-      max-width: 40ch;
-      color: var(--on-dark-mute);
-      margin-top: 16px
-    }
-
-    footer .bw {
-      color: #fff
-    }
-
-    .fbot {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-      padding-top: 26px;
-      font-size: .78rem
-    }
-
-    .disclaimer {
-      margin-top: 22px;
-      font-size: .76rem;
-      line-height: 1.75;
-      color: #9FB0A4;
-      max-width: 88ch
-    }
 
     .rv {
       opacity: 0;
@@ -1571,6 +1600,72 @@
       opacity: 1;
       transform: none
     }
+
+
+     /* ── split intro ──────────────────────── */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(32px, 5vw, 72px);
+      align-items: center
+    }
+
+    @media(max-width:880px) {
+      .split {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .checks {
+      list-style: none;
+      display: grid;
+      gap: 14px
+    }
+
+    .checks li {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      font-size: .95rem;
+      color: var(--muted)
+    }
+
+    .checks svg {
+      width: 19px;
+      height: 19px;
+      flex: none;
+      margin-top: 3px
+    }
+
+    .quote-card {
+      border: 1px solid var(--line);
+      border-inline-start: 3px solid var(--copper);
+      padding: 30px 32px;
+      background: var(--fog);
+      border-radius: 2px
+    }
+
+    .quote-card p {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      line-height: 1.4;
+      color: var(--ink)
+    }
+
+    .quote-card .who {
+      margin-top: 16px;
+      font-size: .74rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500
+    }
+
+    .split p{
+    margin-top:24px;
+    line-height:1.9;
+}
+
   </style>
 </head>
 
@@ -1602,8 +1697,6 @@
       <nav class="main">
         <a href="#about">Who we are</a>
         <a href="#services">How it works</a>
-        <a href="#request">Book a case</a>
-        <a href="#contact">Contact</a>
       </nav>
       <a class="cta-top" href="#request">Start a case</a>
     </div>
@@ -1615,42 +1708,6 @@
     <div class="depth" id="depth" aria-hidden="true">
       <div class="orb o1"></div>
       <div class="orb o2"></div>
-      <!-- medical cross -->
-      <svg class="med3d m-cross" viewBox="0 0 200 200">
-        <rect x="70" y="20" width="60" height="160" rx="12" fill="rgba(238,240,236,.07)" stroke="rgba(238,240,236,.12)"
-          stroke-width="1" />
-        <rect x="20" y="70" width="160" height="60" rx="12" fill="rgba(238,240,236,.07)" stroke="rgba(238,240,236,.12)"
-          stroke-width="1" />
-        <rect x="78" y="78" width="44" height="44" rx="6" fill="rgba(200,138,102,.12)" stroke="rgba(200,138,102,.18)"
-          stroke-width="1" />
-      </svg>
-      <!-- ECG heartbeat line -->
-      <svg class="med3d m-ecg" viewBox="0 0 400 120">
-        <polyline
-          points="0,60 60,60 80,60 95,20 110,100 125,40 140,70 160,60 250,60 270,60 285,25 300,95 315,45 330,65 350,60 400,60"
-          fill="none" stroke="rgba(238,240,236,.14)" stroke-width="2.2" stroke-linecap="round"
-          stroke-linejoin="round" />
-        <polyline
-          points="0,60 60,60 80,60 95,20 110,100 125,40 140,70 160,60 250,60 270,60 285,25 300,95 315,45 330,65 350,60 400,60"
-          fill="none" stroke="rgba(200,138,102,.2)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-      <!-- pill capsule -->
-      <svg class="med3d m-pill" viewBox="0 0 100 220">
-        <rect x="10" y="10" width="80" height="200" rx="40" fill="rgba(238,240,236,.06)" stroke="rgba(238,240,236,.1)"
-          stroke-width="1.2" />
-        <line x1="10" y1="110" x2="90" y2="110" stroke="rgba(200,138,102,.18)" stroke-width="1.2" />
-        <rect x="10" y="110" width="80" height="100" rx="40" fill="rgba(200,138,102,.06)" />
-      </svg>
-      <!-- stethoscope outline -->
-      <svg class="med3d m-steth" viewBox="0 0 160 200">
-        <path d="M50 30 Q50 10 70 10 L90 10 Q110 10 110 30 L110 100 Q110 160 80 170 Q50 160 50 100 Z"
-          fill="rgba(238,240,236,.05)" stroke="rgba(238,240,236,.1)" stroke-width="1.2" />
-        <circle cx="80" cy="170" r="16" fill="rgba(200,138,102,.08)" stroke="rgba(200,138,102,.16)"
-          stroke-width="1.2" />
-        <circle cx="80" cy="170" r="6" fill="rgba(200,138,102,.14)" />
-        <line x1="50" y1="10" x2="50" y2="0" stroke="rgba(238,240,236,.12)" stroke-width="3" stroke-linecap="round" />
-        <line x1="110" y1="10" x2="110" y2="0" stroke="rgba(238,240,236,.12)" stroke-width="3" stroke-linecap="round" />
-      </svg>
     </div>
     <svg class="rings" viewBox="0 0 1000 1000" aria-hidden="true">
       <circle class="pulse" cx="500" cy="500" r="185" />
@@ -1661,8 +1718,7 @@
     <div class="wrap hero-in">
       <p class="eyebrow">Medical concierge · Russia</p>
       <h1>From First Contact<br>to <em>Full Recovery</em></h1>
-      <p class="lead">We're already at work — connecting international patients with licensed hospitals and specialists
-        in Russia. One coordinator. One agreed price. Everything translated, arranged and accompanied.</p>
+      <p class="lead"><em>We're already at work</em> — the full site follows shortly.</p>
       <div class="hero-cta">
         <a class="btn btn-p" href="#request">Start a case — free review</a>
         <a class="btn btn-ghost" href="#services">How it works</a>
@@ -1690,136 +1746,117 @@
     </div>
   </section>
 
-  <!-- ══ INTRO SPLIT (Who We Are) ══ -->
-  <section class="pad" id="about">
+<!-- ══ INTRO SPLIT ══ -->
+  <section class="pad">
     <div class="wrap split">
       <div class="rv">
-        <p class="eyebrow">Who we are</p>
-        <div class="rule"></div>
-        <h2 style="margin-top:20px">Two worlds,<br>known from the inside.</h2>
-        <p class="lead" style="margin-top:20px">MediVia is led by two Arabs who have lived in Russia their whole lives
-          and know both worlds from the inside. Our medical direction comes from a doctor who runs his own successful
-          clinic in Russia, holds numerous medical awards, and has built one of the widest partner networks among
-          clinics and specialists across the country.</p>
-        <p style="margin-top:16px">Our operations are led by someone with deep experience managing business between
-          Russia and the Arab world — trusted by major Arab companies to handle their affairs in Russia, and familiar
-          with exactly where the obstacles lie, and how to remove them.</p>
-        <p style="margin-top:16px">Together, that combination is the organization: medical judgment on one side, and the
-          operational knowledge to make every step — finding the right doctor, understanding the process, trusting the
-          price — simple and clear on the other.</p>
-      </div>
+
+    <p class="eyebrow">Who we are</p>
+
+    <div class="rule"></div>
+
+
+    <p class="lead">
+        MediVia was built on one simple idea: getting treated in Russia should be easy for Arab patients, not something they have to figure out alone.
+    </p>
+
+    <p>
+        We are led by two Arabs who have lived in Russia their whole lives and know both worlds from the inside. Our medical direction comes from a doctor who runs his own successful clinic in Russia, holds numerous medical awards, and has built one of the widest partner networks among clinics and specialists across the country.
+    </p>
+
+    <p>
+        Our operations are led by someone with deep experience managing business between Russia and the Arab world — trusted by major Arab companies to handle their affairs in Russia, and familiar with exactly where the obstacles lie, and how to remove them.
+    </p>
+
+    <p>
+        Together, that combination is the organization: medical judgment on one side, and the operational knowledge to make every step — finding the right doctor, understanding the process, trusting the price — simple and clear on the other.
+    </p>
+
+</div>
       <div class="rv">
         <ul class="checks">
           <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <circle cx="12" cy="12" r="11" fill="#EEF0EC" />
               <path d="M17 9l-6.2 6.2L7 11.4" stroke="#92512E" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" />
-            </svg><span><b style="color:var(--ink)">Medical judgment at the helm.</b> A doctor who runs his own
-              award-winning clinic in Russia leads our medical direction — not a call centre.</span></li>
+            </svg><span><b style="color:var(--ink)">Medical judgment at the helm.</b> A doctor who runs his own award-winning clinic in Russia leads our medical direction — not a call centre.</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <circle cx="12" cy="12" r="11" fill="#EEF0EC" />
               <path d="M17 9l-6.2 6.2L7 11.4" stroke="#92512E" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" />
-            </svg><span><b style="color:var(--ink)">Operational knowledge that removes obstacles.</b> Years of managing
-              business between Russia and the Arab world, for companies that trust us with it.</span></li>
+            </svg><span><b style="color:var(--ink)">Operational knowledge that removes obstacles.</b>Years of managing business between Russia and the Arab world, for companies that trust us with it.</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <circle cx="12" cy="12" r="11" fill="#EEF0EC" />
               <path d="M17 9l-6.2 6.2L7 11.4" stroke="#92512E" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" />
-            </svg><span><b style="color:var(--ink)">Licensed, proven clinics only.</b> Our medical team works
-              exclusively with four partner hospitals across ten treatment specialties.</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="12" cy="12" r="11" fill="#EEF0EC" />
-              <path d="M17 9l-6.2 6.2L7 11.4" stroke="#92512E" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg><span><b style="color:var(--ink)">Both worlds, from the inside.</b> Led by two Arabs who have lived in
-              Russia their whole lives — no gap between you and the system.</span></li>
+            </svg><span><b style="color:var(--ink)">Licensed, proven clinics only.</b>Our medical team works exclusively with four partner hospitals across ten treatment specialties.</span></li>
         </ul>
         <div class="quote-card" style="margin-top:28px">
           <p>“MediVia exists for one reason: to make getting treated in Russia an easy path, not a hard one.”</p>
-          <div class="who">Why MediVia exists</div>
+          <div class="who"></div>
         </div>
       </div>
     </div>
   </section>
-  <!-- ══ SERVICES ══ -->
+
+  <!-- ══ SERVICES (How it works — dual path) ══ -->
   <section class="pad" id="services">
     <div class="wrap">
-      <div class="head">
+      <div class="head mid">
         <p class="eyebrow">How it works</p>
-        <h2>From first message to full recovery</h2>
+        <h2>Your Clinical Path</h2>
         <div class="rule" style="margin-top:18px"></div>
-        <p>A clear path in five steps — and you're never guessing what comes next.</p>
+        <p>From your first medical report to your return home, every step is coordinated by one team and one dedicated coordinator.
+        </p>
       </div>
-      <div class="steps5 rv">
+      <div class="rail" id="rail">
+        <div class="rail-line"></div>
+        <div class="rail-fill" id="fill"></div>
 
-        <div class="svc step5">
-          <span class="stepnum">01</span>
-          <svg class="ic2" viewBox="0 0 36 36" aria-hidden="true">
-            <path d="M6 8h24a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H14l-6 5v-5H6a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"
-              stroke-linejoin="round" />
-            <line x1="11" y1="14" x2="25" y2="14" />
-            <line class="cu" x1="11" y1="19" x2="19" y2="19" stroke-width="2" />
-          </svg>
-          <h3>First contact</h3>
-          <p>Reach us on WhatsApp or through the form on this site — whichever is easier. Send what you already have: a
-            diagnosis, test results, even a phone photo of a report. No need to prepare anything formal first.</p>
+        <div class="stage">
+          <div class="node"><span class="num">01</span></div>
+          <div class="card clin"><span class="tag">Clinical</span>
+            <h3>We read your file</h3>
+            <p>Send your reports in any format. We translate them, put them in front of specialists we work with, and
+              come back with clear options — not promises.</p>
+          </div>
         </div>
 
-        <div class="svc step5">
-          <span class="stepnum">02</span>
-          <svg class="ic2" viewBox="0 0 36 36" aria-hidden="true">
-            <rect x="4" y="3" width="20" height="26" rx="2" />
-            <path class="cu" d="M12 33h20a0 0 0 0 0 0 0V9a2 2 0 0 0-2-2h-6" stroke-linejoin="round" />
-            <line x1="9" y1="10" x2="19" y2="10" />
-            <line x1="9" y1="15" x2="19" y2="15" />
-            <line x1="9" y1="20" x2="15" y2="20" />
-          </svg>
-          <h3>Medical review</h3>
-          <p>Our medical team reviews your case and matches it with the right clinic and specialist from our partner
-            network — the decision is based on your condition, not convenience.</p>
+        <div class="stage">
+          <div class="node"><span class="num">02</span></div>
+          <div class="card clin"><span class="tag">Clinical</span>
+            <h3>A plan and a price before you book</h3>
+            <p>The doctor's name, the hospital, the number of days, the expected cost — in writing, from the hospital's
+              own quote. No number appears later.</p>
+          </div>
         </div>
 
-        <div class="svc step5">
-          <span class="stepnum">03</span>
-          <svg class="ic2" viewBox="0 0 36 36" aria-hidden="true">
-            <path d="M20 4H10a1 1 0 0 0-1 1v26a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V11z" stroke-linejoin="round" />
-            <path class="cu" d="M20 4v7h7" stroke-linejoin="round" />
-            <line x1="13" y1="18" x2="23" y2="18" />
-            <line x1="13" y1="23" x2="23" y2="23" />
-            <line class="cu" x1="13" y1="28" x2="19" y2="28" stroke-width="2" />
-          </svg>
-          <h3>Clear plan, clear price</h3>
-          <p>You receive a proposed treatment plan and cost in writing before you decide anything. No hidden steps, no
-            surprises later.</p>
+        <div class="stage">
+          <div class="node"><span class="num">03</span></div>
+          <div class="card clin"><span class="tag">Clinical</span>
+            <h3>First examination within 24 hours</h3>
+            <p>No week of waiting to begin. The appointment is booked before your plane leaves, and your file is on the
+              doctor's desk when you arrive.</p>
+          </div>
         </div>
 
-        <div class="svc step5">
-          <span class="stepnum">04</span>
-          <svg class="ic2" viewBox="0 0 36 36" aria-hidden="true">
-            <path d="M5 20l26-9a1 1 0 0 1 1.3 1.2l-2 7" stroke-linejoin="round" />
-            <path d="M5 20l7 3 3 7 4-6" stroke-linejoin="round" />
-            <circle class="cu" cx="25" cy="24" r="5" />
-            <path class="cu" d="M25 21.5v2.5l1.8 1.1" stroke-width="1.6" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-          <h3>Travel &amp; arrival</h3>
-          <p>Once you're ready to proceed, we handle the visa invitation, transfers and accommodation — so the only
-            thing you need to do is arrive.</p>
+        <div class="stage">
+          <div class="node"><span class="num">04</span></div>
+          <div class="card clin"><span class="tag">Clinical</span>
+            <h3>Someone in every room</h3>
+            <p>You never enter an appointment alone. Word-for-word translation, then a written summary afterwards — so
+              you understand instead of guessing.</p>
+          </div>
         </div>
 
-        <div class="svc step5">
-          <span class="stepnum">05</span>
-          <svg class="ic2" viewBox="0 0 36 36" aria-hidden="true">
-            <path d="M18 6l3.5 5 6 .3-2 4.7 4 4.5-6 1.3-2 5.5-3.5-5-6-.3 2-4.7-4-4.5 6-1.3z" stroke-linejoin="round" />
-            <path class="cu" d="M14.5 18.5l2.5 2.5 5-5" stroke-width="1.8" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-          <h3>Treatment &amp; beyond</h3>
-          <p>During treatment, you're accompanied and everything is translated for you. After you return home, we stay
-            reachable for follow-up questions and support.</p>
+        <div class="stage">
+          <div class="node"><span class="num">05</span></div>
+          <div class="card clin"><span class="tag">Clinical</span>
+            <h3>You leave with a translated file</h3>
+            <p>A full report in your language and your home doctor's, plus follow-up after you land — because the
+              journey doesn't end at the gate.</p>
+          </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -1830,9 +1867,6 @@
         <p class="eyebrow">Start a case</p>
         <h2>Open your case file</h2>
         <div class="rule" style="margin-top:18px"></div>
-        <p>Tell us who you are and what's happening. A coordinator reads it — not a bot — and replies within the hour
-          with questions, options, or an honest “we're not the right fit”. Reviewing your case costs nothing and commits
-          you to nothing.</p>
       </div>
 
       <div class="sheet rv">
@@ -1862,8 +1896,8 @@
           <form id="intake" novalidate>
 
             <div class="pane show" data-pane="1">
-              <div class="pane-h">Who are we writing back to?</div>
-              <div class="pane-s">Basics only. Nothing here reaches a hospital until you say so.</div>
+              <div class="pane-s" style="margin-top:4px">Basics only. Nothing here reaches a hospital until you say so.
+              </div>
               <div class="f-grid">
                 <div class="field">
                   <label for="first">First name <span class="req">*</span></label>
@@ -2065,10 +2099,9 @@
         <p class="eyebrow">Speak to MediVia today</p>
         <h2>Not ready for a form? Write to a person.</h2>
         <div class="rule" style="margin-top:18px"></div>
-        <p>One message is enough for us to read your file and tell you honestly whether we're the right fit.</p>
       </div>
       <div class="channels rv">
-        <a class="chan" href="https://wa.me/79032809009">
+        <a class="chan" href="https://wa.me/79917557730">
           <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
             <circle cx="30" cy="30" r="30" fill="#1A3E4C" />
             <circle cx="30" cy="30" r="27" stroke="#7A8B7B" stroke-width=".5" />
@@ -2082,7 +2115,7 @@
             </g>
             <circle cx="40" cy="20" r="2.2" fill="#C88A66" />
           </svg>
-          <span><span class="t">WhatsApp</span><br><span class="v">+7 903 280 90 09</span></span>
+          <span><span class="t">WhatsApp</span><br><span class="v">+7 991 755-77-30</span></span>
         </a>
         <a class="chan" href="mailto:a@medical-via.com">
           <svg viewBox="0 0 60 60" fill="none" aria-hidden="true">
@@ -2117,45 +2150,6 @@
     </div>
   </section>
 
-  <footer>
-    <div class="wrap">
-      <div class="fgrid">
-        <div>
-          <span class="bw">Medi<i>Via</i></span>
-          <p class="about">Medical concierge · Russia. We connect international patients with licensed hospitals and
-            specialists in Moscow, and carry everything around their care — from the first message to the flight home.
-          </p>
-        </div>
-        <div>
-          <h4>Explore</h4>
-          <ul>
-            <li><a href="#safety">Your safety</a></li>
-            <li><a href="#services">What we handle</a></li>
-            <li><a href="#path">The path</a></li>
-            <li><a href="#moscow">Moscow</a></li>
-            <li><a href="#faq">Questions</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <ul>
-            <li><a href="https://wa.me/79032809009">+7 903 280 90 09</a></li>
-            <li><a href="mailto:a@medical-via.com">a@medical-via.com</a></li>
-            <li><a href="https://medical-via.com">medical-via.com</a></li>
-            <li><a href="#request">Start a case</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="fbot">
-        <small>© 2026 MediVia · Medical concierge · Russia</small>
-        <small>Confidential — your file is never shared without your consent</small>
-      </div>
-      <p class="disclaimer">MediVia is a medical concierge and coordination service. We facilitate access to licensed
-        hospitals and physicians in Russia; we do not practise medicine, provide diagnosis, prescribe treatment, or
-        guarantee any medical outcome. All clinical decisions are made by the treating physician together with the
-        patient. Nothing on this site is medical advice.</p>
-    </div>
-  </footer>
   <div class="stripe"></div>
 
   <script>
@@ -2185,6 +2179,22 @@
     /* reveal */
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
     document.querySelectorAll('.rv').forEach(n => io.observe(n));
+
+    /* how-it-works rail: light each stage + fill the line on scroll */
+    const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }), { threshold: .35 });
+    document.querySelectorAll('.stage').forEach(s => so.observe(s));
+    const rail = document.getElementById('rail'), fill = document.getElementById('fill');
+    function drawFill() {
+      if (!rail || !fill) return;
+      const r = rail.getBoundingClientRect();
+      const p = (innerHeight * .62 - r.top) / r.height;
+      fill.style.height = Math.max(0, Math.min(1, p)) * 100 + '%';
+    }
+    if (rail && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      addEventListener('scroll', drawFill, { passive: true });
+      addEventListener('resize', drawFill);
+      drawFill();
+    }
 
 
     /* reference */
