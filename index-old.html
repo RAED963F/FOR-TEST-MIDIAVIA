@@ -1666,112 +1666,6 @@ box-shadow:0 10px 35px rgba(0,0,0,.06);
     line-height:1.9;
 }
 
-    /* ── treatments ───────────────────────── */
-    #treatments {
-      scroll-margin-top: 96px
-    }
-
-    .tgrid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
-      gap: 20px
-    }
-
-    .tcard {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 3px;
-      padding: 30px 28px 26px;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform .3s, box-shadow .3s, border-color .3s
-    }
-
-    .tcard::before {
-      content: "";
-      position: absolute;
-      inset-block-start: 0;
-      inset-inline-start: 0;
-      width: 100%;
-      height: 2px;
-      background: var(--copper);
-      scale: 0 1;
-      transform-origin: left;
-      transition: scale .4s
-    }
-
-    .tcard:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-      border-color: var(--mist)
-    }
-
-    .tcard:hover::before {
-      scale: 1 1
-    }
-
-    .tcard h3 {
-      font-size: 1.24rem;
-      margin-bottom: 12px
-    }
-
-    .tbody {
-      color: var(--muted);
-      font-size: .9rem;
-      line-height: 1.7;
-      display: -webkit-box;
-      -webkit-line-clamp: 5;
-      -webkit-box-orient: vertical;
-      overflow: hidden
-    }
-
-    .tcard.open .tbody,
-    .tbody.noclamp {
-      display: block;
-      -webkit-line-clamp: unset;
-      overflow: visible
-    }
-
-    .tmore {
-      align-self: flex-start;
-      margin-top: 14px;
-      padding: 0;
-      background: none;
-      border: 0;
-      cursor: pointer;
-      font-family: var(--body);
-      font-size: .8rem;
-      font-weight: 500;
-      letter-spacing: .02em;
-      color: var(--copper-ink);
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      transition: color .25s
-    }
-
-    .tmore::after {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-inline-end: 1.5px solid currentColor;
-      border-block-end: 1.5px solid currentColor;
-      rotate: 45deg;
-      transition: rotate .3s;
-      margin-top: -3px
-    }
-
-    .tcard.open .tmore::after {
-      rotate: -135deg;
-      margin-top: 2px
-    }
-
-    .tmore:hover {
-      color: var(--copper)
-    }
-
   </style>
 </head>
 
@@ -1803,7 +1697,6 @@ box-shadow:0 10px 35px rgba(0,0,0,.06);
       <nav class="main">
         <a href="#about">Who we are</a>
         <a href="#services">How it works</a>
-        <a href="#treatments">Treatments</a>
       </nav>
       <a class="cta-top" href="#request">Start a case</a>
     </div>
@@ -1967,83 +1860,6 @@ box-shadow:0 10px 35px rgba(0,0,0,.06);
       </div>
     </div>
   </section>
-
-  <!-- ══ TREATMENTS ══ -->
-  <section class="tint pad" id="treatments">
-    <div class="wrap">
-      <div class="head mid">
-        <p class="eyebrow">Treatments</p>
-        <h2>Areas of care we coordinate</h2>
-        <div class="rule" style="margin-top:18px"></div>
-        <p>The ten specialties we coordinate across our partner hospitals in Russia — from first contact to full recovery.</p>
-      </div>
-
-      <div class="tgrid">
-
-        <article class="tcard rv">
-          <h3>Ophthalmology</h3>
-          <p class="tbody">Russia is a leading country in eye microsurgery — a field established here decades ago and still setting the standard in complex vision surgeries today. Leading research institutes in Moscow and across Russia have accumulated immense experience among ophthalmologists known worldwide for their methods and approaches to treatment. The often exclusive equipment found in Russian clinics, in the hands of great specialists, makes the impossible possible — giving patients back their sight.</p>
-          <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
-        </article>
-
-        <article class="tcard rv">
-          <h3>Dentistry</h3>
-          <p class="tbody">Modern dental clinics in Russia have long gone beyond simple tooth treatment. Today, Russian dentistry takes a comprehensive approach to dental health and bite correction, using the newest brace systems, mouthguards, and aligners. It includes treatment of bone tissue in the upper and lower jaw using natural human bone substitutes, and replacement of missing teeth through precise, computer-calculated planning using the newest scanners and dental printers — for both full and partial tooth printing — along with implants using some of the world's best implant systems. Russian specialists, alongside their American and European counterparts, are among the leaders in the number of new treatment methods invented and introduced into global practice.</p>
-          <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
-        </article>
-
-        <article class="tcard rv">
-          <h3>Plastic Surgery</h3>
-          <p class="tbody">The highest standard of aesthetics and beauty, given to Russia by nature itself, has set the highest bar for Russian plastic surgeons in performing any type of procedure. A Russian plastic surgeon is a surgeon equipped with acrylic technologies* in the field of plastic surgery, possessing an exceptionally high level of understanding of aesthetics.</p>
-          <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
-        </article>
-
-        <article class="tcard rv">
-          <h3>Aesthetic Medicine</h3>
-          <p class="tbody">Often patients — and especially male patients — are not ready for plastic surgery, but still want to look young and beautiful. This is where professional aesthetic medicine comes to help. Russian clinics have a range of the newest aesthetic devices, allowing remarkable results to be achieved without surgery and without significant recovery time. Specialists understand the patient's wishes and give clear recommendations on the choice of device and treatment method. Techniques known worldwide (Russia lips) reflect the aesthetics of a doctor-artist working on the patient's face.</p>
-          <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
-        </article>
-
-        <article class="tcard rv">
-          <h3>Traumatology</h3>
-          <p class="tbody">Traumatology and orthopedics have a history spanning decades, reaching back to the Soviet period. The great scientist and inventor Ilizarov gave the world an entirely new understanding of treatment in traumatology and orthopedics. He founded an institute that has given the world many doctors who, to this day, treat people for various bone fractures, bone diseases, and diseases of the spine. Russia is an advanced country with enormous experience in the field of traumatology and orthopedics.</p>
-          <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
-        </article>
-
-        <article class="tcard rv">
-          <h3>Cardiovascular Surgery</h3>
-          <p class="tbody">Russia is a world leader in the number of unique operations performed in cardiovascular surgery. Complex operations are a daily fight for a person's life. From diagnosis to full recovery — this reflects the experience, knowledge, history, and schools of the great cardiovascular surgeons of the USSR and Russia.</p>
-          <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
-        </article>
-
-        <article class="tcard rv">
-          <h3>Oncology</h3>
-          <p class="tbody">Russian cancer centers, historically among the first established in the world, offer a full cycle of treatment — from early diagnosis to rehabilitation. Tumors are removed using radiosurgery (CyberKnife) and proton therapy, which minimizes damage to healthy tissue. Chemotherapy and targeted therapy follow modern protocols, on par with Western ones. The most complex operations are performed daily for cancer of any location — from the head and neck to the pelvic organs. Patients benefit from high survival rates, a personalized approach, and prices significantly lower than in Europe and the US.</p>
-          <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
-        </article>
-
-        <article class="tcard rv">
-          <h3>Urology and Nephrology</h3>
-          <p class="tbody">Russian centers of urology and nephrology have colossal experience, applying advanced technologies in diagnostics and treatment. Prostate cancer is removed using the da Vinci robotic system, ensuring precision and preservation of function. Urolithiasis (kidney stones) is treated with laser lithotripsy — contactless crushing of stones of any complexity. Kidney transplantation and organ-preserving operations have become routine procedures in federal clinics.</p>
-          <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
-        </article>
-
-        <article class="tcard rv">
-          <h3>Gynecology</h3>
-          <p class="tbody">Russian gynecology centers offer a full range of care — from restoring reproductive health to high-tech oncological surgery. Cancer of the uterine body and cervix is successfully removed using the da Vinci robotic system, ensuring minimal blood loss and a short recovery. Infertility is treated with the IVF method with high efficiency, attracting patients from Europe, China, and CIS countries. For intimate rejuvenation and treatment of age-related changes, laser technologies are used without surgery. A high level of service and prices lower than in Europe — all available across federal centers and private clinics.</p>
-          <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
-        </article>
-
-        <article class="tcard rv">
-          <h3>Genetic Testing</h3>
-          <p class="tbody">In Russia, you can take a genetic test that will help identify a suitable partner for conception, as well as provide personal recommendations on nutrition and physical activity. DNA analysis will show which foods suit you, which type of physical activity is safe for you, and what to watch for in disease prevention. You will receive a simple report — what to add to your diet, what to avoid, and how to adjust your lifestyle to live longer and better. This is an individual health plan based on your own genetics.</p>
-          <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
   <!-- ══ INTAKE ══ -->
   <section class="tint pad" id="request">
     <div class="wrap">
@@ -2579,42 +2395,6 @@ box-shadow:0 10px 35px rgba(0,0,0,.06);
         });
       }, 700);
     });
-  </script>
-
-  <!-- ══ Treatments · read more ══ -->
-  <script>
-    (function () {
-      var cards = document.querySelectorAll('.tcard');
-      if (!cards.length) return;
-
-      // Show the toggle only when the text is actually clamped.
-      function measure(card) {
-        var body = card.querySelector('.tbody');
-        var btn = card.querySelector('.tmore');
-        if (!body || !btn || card.classList.contains('open')) return;
-        body.classList.remove('noclamp');
-        var overflows = body.scrollHeight - body.clientHeight > 4;
-        btn.hidden = !overflows;
-        body.classList.toggle('noclamp', !overflows);
-      }
-      function measureAll() { cards.forEach(measure); }
-
-      cards.forEach(function (card) {
-        var btn = card.querySelector('.tmore');
-        if (!btn) return;
-        btn.addEventListener('click', function () {
-          var open = card.classList.toggle('open');
-          btn.textContent = open ? 'Read less' : 'Read more';
-          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        });
-      });
-
-      measureAll();
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureAll);
-      addEventListener('load', measureAll);
-      var t;
-      addEventListener('resize', function () { clearTimeout(t); t = setTimeout(measureAll, 150); });
-    })();
   </script>
 </body>
 
