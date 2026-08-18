@@ -535,7 +535,7 @@
       color: #DCE5DE
     }
 
-    .hero .lead em{
+    .hero .lead em {
       font-style: normal;
       color: var(--copper)
     }
@@ -771,57 +771,57 @@
       margin-top: 16px
     }
 
-.rail-line{
+    .rail-line {
 
-position:absolute;
+      position: absolute;
 
-left:46px;
+      left: 46px;
 
-top:0;
+      top: 0;
 
-bottom:0;
+      bottom: 0;
 
-width:1px;
+      width: 1px;
 
-background:var(--mist);
+      background: var(--mist);
 
-}
+    }
 
-.rail-fill{
-    position:absolute;
-    top:0;
-    left:46px;
-    width:1px;
-    height:0;
-    background:var(--copper);
-}
+    .rail-fill {
+      position: absolute;
+      top: 0;
+      left: 46px;
+      width: 1px;
+      height: 0;
+      background: var(--copper);
+    }
 
-.stage{
-    display:grid;
-    grid-template-columns:92px 1fr;
-    gap:24px;
-    align-items:flex-start;
-    margin-bottom:42px;
-    position:relative;
-}
+    .stage {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 42px;
+      position: relative;
+    }
 
-   .node{
-    position:relative;
+    .node {
+      position: relative;
 
-    width:16px;
+      width: 16px;
 
-    height:16px;
+      height: 16px;
 
-    border-radius:50%;
+      border-radius: 50%;
 
-    background:#fff;
+      background: #fff;
 
-    border:3px solid var(--copper);
+      border: 3px solid var(--copper);
 
-    justify-self:center;
+      justify-self: center;
 
-    margin-top:18px;
-}
+      margin-top: 18px;
+    }
 
     .stage.on .node {
       background: var(--copper);
@@ -829,27 +829,27 @@ background:var(--mist);
       box-shadow: 0 0 0 6px rgba(200, 138, 102, .18)
     }
 
-    .num{
+    .num {
 
-position:absolute;
+      position: absolute;
 
-left:50%;
+      left: 50%;
 
-bottom:100%;
+      bottom: 100%;
 
-transform:translateX(-50%);
+      transform: translateX(-50%);
 
-margin-bottom:12px;
+      margin-bottom: 12px;
 
-font-size:.72rem;
+      font-size: .72rem;
 
-font-weight:600;
+      font-weight: 600;
 
-color:var(--muted);
+      color: var(--muted);
 
-letter-spacing:.08em;
+      letter-spacing: .08em;
 
-}
+    }
 
     .card {
       background: #fff;
@@ -860,29 +860,30 @@ letter-spacing:.08em;
       transition: opacity .7s, transform .7s
     }
 
-  .card.clin{
+    .card.clin {
 
-width:100%;
+      width: 100%;
 
-background:#fff;
+      background: #fff;
 
-border:1px solid var(--mist);
+      border: 1px solid var(--mist);
 
-padding:30px;
+      padding: 30px;
 
-border-radius:4px;
+      border-radius: 4px;
 
-transition:.35s;
+      transition: .35s;
 
-}
+    }
 
-.card.clin:hover{
+    .card.clin:hover {
 
-transform:translateY(-4px);
+      transform: translateY(-4px);
 
-box-shadow:0 10px 35px rgba(0,0,0,.06);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, .06);
 
-}
+    }
+
     .stage.on .card {
       opacity: 1;
       transform: none
@@ -925,7 +926,7 @@ box-shadow:0 10px 35px rgba(0,0,0,.06);
         translate: 0 0
       }
 
-      
+
 
       .stage {
         grid-template-columns: 1fr;
@@ -947,7 +948,7 @@ box-shadow:0 10px 35px rgba(0,0,0,.06);
         translate: 0 0
       }
 
-      .card.clin{
+      .card.clin {
         transform: translateY(12px)
       }
     }
@@ -1602,7 +1603,7 @@ box-shadow:0 10px 35px rgba(0,0,0,.06);
     }
 
 
-     /* ── split intro ──────────────────────── */
+    /* ── split intro ──────────────────────── */
     .split {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1661,10 +1662,10 @@ box-shadow:0 10px 35px rgba(0,0,0,.06);
       font-weight: 500
     }
 
-    .split p{
-    margin-top:24px;
-    line-height:1.9;
-}
+    .split p {
+      margin-top: 24px;
+      line-height: 1.9;
+    }
 
     /* ── treatments ───────────────────────── */
     #treatments {
@@ -1771,7 +1772,6 @@ box-shadow:0 10px 35px rgba(0,0,0,.06);
     .tmore:hover {
       color: var(--copper)
     }
-
   </style>
 </head>
 
@@ -1853,50 +1853,60 @@ box-shadow:0 10px 35px rgba(0,0,0,.06);
     </div>
   </section>
 -->
-<!-- ══ INTRO SPLIT ══ -->
-  <section class="pad">
+  <!-- ══ INTRO SPLIT ══ -->
+  <section class="pad" id="about">
     <div class="wrap split">
       <div class="rv">
 
-    <p class="eyebrow">Who we are</p>
+        <p class="eyebrow">Who we are</p>
 
-    <div class="rule"></div>
+        <div class="rule"></div>
 
 
-    <p class="lead">
-        MediVia was built on one simple idea: getting treated in Russia should be easy for Arab patients, not something they have to figure out alone.
-    </p>
+        <p class="lead">
+          MediVia was built on one simple idea: getting treated in Russia should be easy for Arab patients, not
+          something they have to figure out alone.
+        </p>
 
-    <p>
-        We are led by two Arabs who have lived in Russia their whole lives and know both worlds from the inside. Our medical direction comes from a doctor who runs his own successful clinic in Russia, holds numerous medical awards, and has built one of the widest partner networks among clinics and specialists across the country.
-    </p>
+        <p>
+          We are led by two Arabs who have lived in Russia their whole lives and know both worlds from the inside. Our
+          medical direction comes from a doctor who runs his own successful clinic in Russia, holds numerous medical
+          awards, and has built one of the widest partner networks among clinics and specialists across the country.
+        </p>
 
-    <p>
-        Our operations are led by someone with deep experience managing business between Russia and the Arab world — trusted by major Arab companies to handle their affairs in Russia, and familiar with exactly where the obstacles lie, and how to remove them.
-    </p>
+        <p>
+          Our operations are led by someone with deep experience managing business between Russia and the Arab world —
+          trusted by major Arab companies to handle their affairs in Russia, and familiar with exactly where the
+          obstacles lie, and how to remove them.
+        </p>
 
-    <p>
-        Together, that combination is the organization: medical judgment on one side, and the operational knowledge to make every step — finding the right doctor, understanding the process, trusting the price — simple and clear on the other.
-    </p>
+        <p>
+          Together, that combination is the organization: medical judgment on one side, and the operational knowledge to
+          make every step — finding the right doctor, understanding the process, trusting the price — simple and clear
+          on the other.
+        </p>
 
-</div>
+      </div>
       <div class="rv">
         <ul class="checks">
           <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <circle cx="12" cy="12" r="11" fill="#EEF0EC" />
               <path d="M17 9l-6.2 6.2L7 11.4" stroke="#92512E" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" />
-            </svg><span><b style="color:var(--ink)">Medical judgment at the helm.</b> A doctor who runs his own award-winning clinic in Russia leads our medical direction — not a call centre.</span></li>
+            </svg><span><b style="color:var(--ink)">Medical judgment at the helm.</b> A doctor who runs his own
+              award-winning clinic in Russia leads our medical direction — not a call centre.</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <circle cx="12" cy="12" r="11" fill="#EEF0EC" />
               <path d="M17 9l-6.2 6.2L7 11.4" stroke="#92512E" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" />
-            </svg><span><b style="color:var(--ink)">Operational knowledge that removes obstacles.</b>Years of managing business between Russia and the Arab world, for companies that trust us with it.</span></li>
+            </svg><span><b style="color:var(--ink)">Operational knowledge that removes obstacles.</b>Years of managing
+              business between Russia and the Arab world, for companies that trust us with it.</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <circle cx="12" cy="12" r="11" fill="#EEF0EC" />
               <path d="M17 9l-6.2 6.2L7 11.4" stroke="#92512E" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round" />
-            </svg><span><b style="color:var(--ink)">Licensed, proven clinics only.</b>Our medical team works exclusively with four partner hospitals across ten treatment specialties.</span></li>
+            </svg><span><b style="color:var(--ink)">Licensed, proven clinics only.</b>Our medical team works exclusively
+              with four partner hospitals across ten treatment specialties.</span></li>
         </ul>
         <div class="quote-card" style="margin-top:28px">
           <p>“MediVia exists for one reason: to make getting treated in Russia an easy path, not a hard one.”</p>
@@ -1913,7 +1923,8 @@ box-shadow:0 10px 35px rgba(0,0,0,.06);
         <p class="eyebrow">How it works</p>
         <h2>Your Clinical Path</h2>
         <div class="rule" style="margin-top:18px"></div>
-        <p>From your first medical report to your return home, every step is coordinated by one team and one dedicated coordinator.
+        <p>From your first medical report to your return home, every step is coordinated by one team and one dedicated
+          coordinator.
         </p>
       </div>
       <div class="rail" id="rail">
@@ -1975,68 +1986,115 @@ box-shadow:0 10px 35px rgba(0,0,0,.06);
         <p class="eyebrow">Treatments</p>
         <h2>Areas of care we coordinate</h2>
         <div class="rule" style="margin-top:18px"></div>
-        <p>The ten specialties we coordinate across our partner hospitals in Russia — from first contact to full recovery.</p>
+        <p>The ten specialties we coordinate across our partner hospitals in Russia — from first contact to full
+          recovery.</p>
       </div>
 
       <div class="tgrid">
 
         <article class="tcard rv">
           <h3>Ophthalmology</h3>
-          <p class="tbody">Russia is a leading country in eye microsurgery — a field established here decades ago and still setting the standard in complex vision surgeries today. Leading research institutes in Moscow and across Russia have accumulated immense experience among ophthalmologists known worldwide for their methods and approaches to treatment. The often exclusive equipment found in Russian clinics, in the hands of great specialists, makes the impossible possible — giving patients back their sight.</p>
+          <p class="tbody">Russia is a leading country in eye microsurgery — a field established here decades ago and
+            still setting the standard in complex vision surgeries today. Leading research institutes in Moscow and
+            across Russia have accumulated immense experience among ophthalmologists known worldwide for their methods
+            and approaches to treatment. The often exclusive equipment found in Russian clinics, in the hands of great
+            specialists, makes the impossible possible — giving patients back their sight.</p>
           <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
         </article>
 
         <article class="tcard rv">
           <h3>Dentistry</h3>
-          <p class="tbody">Modern dental clinics in Russia have long gone beyond simple tooth treatment. Today, Russian dentistry takes a comprehensive approach to dental health and bite correction, using the newest brace systems, mouthguards, and aligners. It includes treatment of bone tissue in the upper and lower jaw using natural human bone substitutes, and replacement of missing teeth through precise, computer-calculated planning using the newest scanners and dental printers — for both full and partial tooth printing — along with implants using some of the world's best implant systems. Russian specialists, alongside their American and European counterparts, are among the leaders in the number of new treatment methods invented and introduced into global practice.</p>
+          <p class="tbody">Modern dental clinics in Russia have long gone beyond simple tooth treatment. Today, Russian
+            dentistry takes a comprehensive approach to dental health and bite correction, using the newest brace
+            systems, mouthguards, and aligners. It includes treatment of bone tissue in the upper and lower jaw using
+            natural human bone substitutes, and replacement of missing teeth through precise, computer-calculated
+            planning using the newest scanners and dental printers — for both full and partial tooth printing — along
+            with implants using some of the world's best implant systems. Russian specialists, alongside their American
+            and European counterparts, are among the leaders in the number of new treatment methods invented and
+            introduced into global practice.</p>
           <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
         </article>
 
         <article class="tcard rv">
           <h3>Plastic Surgery</h3>
-          <p class="tbody">The highest standard of aesthetics and beauty, given to Russia by nature itself, has set the highest bar for Russian plastic surgeons in performing any type of procedure. A Russian plastic surgeon is a surgeon equipped with acrylic technologies* in the field of plastic surgery, possessing an exceptionally high level of understanding of aesthetics.</p>
+          <p class="tbody">The highest standard of aesthetics and beauty, given to Russia by nature itself, has set the
+            highest bar for Russian plastic surgeons in performing any type of procedure. A Russian plastic surgeon is a
+            surgeon equipped with acrylic technologies* in the field of plastic surgery, possessing an exceptionally
+            high level of understanding of aesthetics.</p>
           <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
         </article>
 
         <article class="tcard rv">
           <h3>Aesthetic Medicine</h3>
-          <p class="tbody">Often patients — and especially male patients — are not ready for plastic surgery, but still want to look young and beautiful. This is where professional aesthetic medicine comes to help. Russian clinics have a range of the newest aesthetic devices, allowing remarkable results to be achieved without surgery and without significant recovery time. Specialists understand the patient's wishes and give clear recommendations on the choice of device and treatment method. Techniques known worldwide (Russia lips) reflect the aesthetics of a doctor-artist working on the patient's face.</p>
+          <p class="tbody">Often patients — and especially male patients — are not ready for plastic surgery, but still
+            want to look young and beautiful. This is where professional aesthetic medicine comes to help. Russian
+            clinics have a range of the newest aesthetic devices, allowing remarkable results to be achieved without
+            surgery and without significant recovery time. Specialists understand the patient's wishes and give clear
+            recommendations on the choice of device and treatment method. Techniques known worldwide (Russia lips)
+            reflect the aesthetics of a doctor-artist working on the patient's face.</p>
           <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
         </article>
 
         <article class="tcard rv">
           <h3>Traumatology</h3>
-          <p class="tbody">Traumatology and orthopedics have a history spanning decades, reaching back to the Soviet period. The great scientist and inventor Ilizarov gave the world an entirely new understanding of treatment in traumatology and orthopedics. He founded an institute that has given the world many doctors who, to this day, treat people for various bone fractures, bone diseases, and diseases of the spine. Russia is an advanced country with enormous experience in the field of traumatology and orthopedics, Hip Replacement, Total & Partial Knee Replacement, Limb Lengthening Surgery.</p>
+          <p class="tbody">Traumatology and orthopedics have a history spanning decades, reaching back to the Soviet
+            period. The great scientist and inventor Ilizarov gave the world an entirely new understanding of treatment
+            in traumatology and orthopedics. He founded an institute that has given the world many doctors who, to this
+            day, treat people for various bone fractures, bone diseases, and diseases of the spine. Russia is an
+            advanced country with enormous experience in the field of traumatology and orthopedics, Hip Replacement,
+            Total & Partial Knee Replacement, Limb Lengthening Surgery.</p>
           <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
         </article>
 
         <article class="tcard rv">
           <h3>Cardiovascular Surgery</h3>
-          <p class="tbody">Russia is a world leader in the number of unique operations performed in cardiovascular surgery. Complex operations are a daily fight for a person's life. From diagnosis to full recovery — this reflects the experience, knowledge, history, and schools of the great cardiovascular surgeons of the USSR and Russia.</p>
+          <p class="tbody">Russia is a world leader in the number of unique operations performed in cardiovascular
+            surgery. Complex operations are a daily fight for a person's life. From diagnosis to full recovery — this
+            reflects the experience, knowledge, history, and schools of the great cardiovascular surgeons of the USSR
+            and Russia.</p>
           <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
         </article>
 
         <article class="tcard rv">
           <h3>Oncology</h3>
-          <p class="tbody">Russian cancer centers, historically among the first established in the world, offer a full cycle of treatment — from early diagnosis to rehabilitation. Tumors are removed using radiosurgery (CyberKnife) and proton therapy, which minimizes damage to healthy tissue. Chemotherapy and targeted therapy follow modern protocols, on par with Western ones. The most complex operations are performed daily for cancer of any location — from the head and neck to the pelvic organs. Patients benefit from high survival rates, a personalized approach, and prices significantly lower than in Europe and the US.</p>
+          <p class="tbody">Russian cancer centers, historically among the first established in the world, offer a full
+            cycle of treatment — from early diagnosis to rehabilitation. Tumors are removed using radiosurgery
+            (CyberKnife) and proton therapy, which minimizes damage to healthy tissue. Chemotherapy and targeted therapy
+            follow modern protocols, on par with Western ones. The most complex operations are performed daily for
+            cancer of any location — from the head and neck to the pelvic organs. Patients benefit from high survival
+            rates, a personalized approach, and prices significantly lower than in Europe and the US.</p>
           <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
         </article>
 
         <article class="tcard rv">
           <h3>Urology and Nephrology</h3>
-          <p class="tbody">Russian centers of urology and nephrology have colossal experience, applying advanced technologies in diagnostics and treatment. Prostate cancer is removed using the da Vinci robotic system, ensuring precision and preservation of function. Urolithiasis (kidney stones) is treated with laser lithotripsy — contactless crushing of stones of any complexity. Kidney transplantation and organ-preserving operations have become routine procedures in federal clinics.</p>
+          <p class="tbody">Russian centers of urology and nephrology have colossal experience, applying advanced
+            technologies in diagnostics and treatment. Prostate cancer is removed using the da Vinci robotic system,
+            ensuring precision and preservation of function. Urolithiasis (kidney stones) is treated with laser
+            lithotripsy — contactless crushing of stones of any complexity. Kidney transplantation and organ-preserving
+            operations have become routine procedures in federal clinics.</p>
           <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
         </article>
 
         <article class="tcard rv">
           <h3>Gynecology</h3>
-          <p class="tbody">Russian gynecology centers offer a full range of care — from restoring reproductive health to high-tech oncological surgery. Cancer of the uterine body and cervix is successfully removed using the da Vinci robotic system, ensuring minimal blood loss and a short recovery. Infertility is treated with the IVF method with high efficiency, attracting patients from Europe, China, and CIS countries. For intimate rejuvenation and treatment of age-related changes, laser technologies are used without surgery. A high level of service and prices lower than in Europe — all available across federal centers and private clinics.</p>
+          <p class="tbody">Russian gynecology centers offer a full range of care — from restoring reproductive health to
+            high-tech oncological surgery. Cancer of the uterine body and cervix is successfully removed using the da
+            Vinci robotic system, ensuring minimal blood loss and a short recovery. Infertility is treated with the IVF
+            method with high efficiency, attracting patients from Europe, China, and CIS countries. For intimate
+            rejuvenation and treatment of age-related changes, laser technologies are used without surgery. A high level
+            of service and prices lower than in Europe — all available across federal centers and private clinics.</p>
           <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
         </article>
 
         <article class="tcard rv">
           <h3>Genetic Testing</h3>
-          <p class="tbody">In Russia, you can take a genetic test that will help identify a suitable partner for conception, as well as provide personal recommendations on nutrition and physical activity. DNA analysis will show which foods suit you, which type of physical activity is safe for you, and what to watch for in disease prevention. You will receive a simple report — what to add to your diet, what to avoid, and how to adjust your lifestyle to live longer and better. This is an individual health plan based on your own genetics.</p>
+          <p class="tbody">In Russia, you can take a genetic test that will help identify a suitable partner for
+            conception, as well as provide personal recommendations on nutrition and physical activity. DNA analysis
+            will show which foods suit you, which type of physical activity is safe for you, and what to watch for in
+            disease prevention. You will receive a simple report — what to add to your diet, what to avoid, and how to
+            adjust your lifestyle to live longer and better. This is an individual health plan based on your own
+            genetics.</p>
           <button class="tmore" type="button" aria-expanded="false" hidden>Read more</button>
         </article>
 
