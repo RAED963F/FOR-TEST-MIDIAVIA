@@ -1551,7 +1551,8 @@
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 18px;
       max-width: 900px;
-      margin-inline: auto
+      margin-inline: auto;
+      direction: ltr;
     }
 
     .chan {
@@ -1562,7 +1563,29 @@
       border: 1px solid var(--line);
       border-radius: 3px;
       background: #fff;
-      transition: .3s
+      transition: .3s;
+      direction: ltr;
+    }
+
+    .chan > span {
+      direction: ltr;
+      text-align: left;
+      min-width: 0;
+    }
+
+    [dir="rtl"] .chan > span {
+      direction: rtl;
+      text-align: right;
+    }
+
+    /* Keep contact values readable in their native LTR direction
+       even when the surrounding Arabic card is RTL. */
+    .chan .v {
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
+      white-space: nowrap;
+      text-align: left;
     }
 
     .chan:hover {
@@ -1776,12 +1799,24 @@
     }
 
 
+    /* ── header actions / language ─────────────── */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex: none;
+    }
+
+    .header-actions .lang-switcher {
+      flex: none;
+    }
+
     /* ── i18n / RTL ───────────────────────────── */
     .lang-switcher {
+      flex: none;
       display: inline-flex;
       align-items: center;
       gap: 2px;
-      margin-inline-start: 8px;
       padding: 3px;
       border: 1px solid rgba(255, 255, 255, .28);
       border-radius: 3px;
@@ -1880,10 +1915,6 @@
     }
 
     @media(max-width:520px) {
-      .lang-switcher {
-        margin-inline-start: 4px;
-      }
-
       .lang-btn {
         padding-inline: 6px;
       }
@@ -2360,11 +2391,13 @@
         <a data-i18n="nav.how" href="index.html#services">How it works</a>
         <a data-i18n="nav.treatments" href="index.html#treatments">Treatments</a>
       </nav>
-      <div aria-label="Language" class="lang-switcher" role="group">
-        <button aria-pressed="true" class="lang-btn" data-lang="en" type="button">EN</button>
-        <button aria-pressed="false" class="lang-btn" data-lang="ar" type="button">العربية</button>
+      <div class="header-actions">
+        <a class="cta-top" data-i18n="nav.start" href="#request">Start a case</a>
+        <div aria-label="Language" class="lang-switcher" role="group">
+          <button aria-pressed="true" class="lang-btn" data-lang="en" type="button">EN</button>
+          <button aria-pressed="false" class="lang-btn" data-lang="ar" type="button">العربية</button>
+        </div>
       </div>
-      <a class="cta-top" data-i18n="nav.start" href="#request">Start a case</a>
     </div>
   </header>
 

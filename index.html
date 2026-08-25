@@ -1025,6 +1025,7 @@
 
     .step-h {
       flex: 1;
+      min-width: 0;
       padding: 15px 12px;
       text-align: center;
       font-size: .7rem;
@@ -1120,6 +1121,16 @@
     @media(max-width:640px) {
       .f-grid {
         grid-template-columns: 1fr
+      }
+
+      .step-h {
+        padding: 13px 6px;
+        font-size: .62rem;
+        letter-spacing: .06em
+      }
+
+      .step-h .n {
+        margin-inline-end: 3px
       }
     }
 
@@ -1555,7 +1566,8 @@
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 18px;
       max-width: 900px;
-      margin-inline: auto
+      margin-inline: auto;
+      direction: ltr;
     }
 
     .chan {
@@ -1566,7 +1578,19 @@
       border: 1px solid var(--line);
       border-radius: 3px;
       background: #fff;
-      transition: .3s
+      transition: .3s;
+      direction: ltr;
+    }
+
+    .chan > span {
+      direction: ltr;
+      text-align: left;
+      min-width: 0;
+    }
+
+    [dir="rtl"] .chan > span {
+      direction: rtl;
+      text-align: right;
     }
 
     .chan:hover {
@@ -1824,17 +1848,33 @@
     }
 
 
+    /* ── header actions / language ─────────────── */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex: none;
+    }
+
+    .header-actions .lang-switcher {
+      flex: none;
+    }
+
     /* ── i18n / RTL ───────────────────────────── */
     .lang-switcher {
-      display: inline-flex;
-      align-items: center;
-      gap: 2px;
-      margin-inline-start: 8px;
-      padding: 3px;
-      border: 1px solid rgba(255, 255, 255, .28);
-      border-radius: 3px;
-      background: rgba(255, 255, 255, .06);
+    flex: none;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+
+    border: 2px solid rgba(255, 255, 255, .28);
+    border-radius: 3px;
+    background: rgba(255, 255, 255, .06);
     }
+
+
 
     header.stuck .lang-switcher {
       border-color: var(--line);
@@ -1897,28 +1937,28 @@
     }
 
     @media(max-width:820px) {
-
-      [dir="rtl"] .rail-line,
-      [dir="rtl"] .rail-fill {
+    [dir="rtl"] .rail-line,
+    [dir="rtl"] .rail-fill {
         inset-inline-end: auto;
         inset-inline-start: 7px;
-      }
+    }
 
-      [dir="rtl"] .stage {
+    [dir="rtl"] .stage {
+        grid-template-columns: 1fr;
         padding-inline-start: 0;
         padding-inline-end: 36px;
-      }
+    }
 
-      [dir="rtl"] .node {
+    [dir="rtl"] .node {
         inset-inline-start: auto;
         inset-inline-end: 1px;
-      }
+    }
 
-      [dir="rtl"] .num {
+    [dir="rtl"] .num {
         inset-inline-start: auto;
         inset-inline-end: 0;
-      }
     }
+}
 
     [dir="rtl"] input[type="email"],
     [dir="rtl"] input[type="tel"],
@@ -1928,10 +1968,6 @@
     }
 
     @media(max-width:520px) {
-      .lang-switcher {
-        margin-inline-start: 4px;
-      }
-
       .lang-btn {
         padding-inline: 6px;
       }
@@ -1980,10 +2016,13 @@
         <a data-i18n="common.howItWorks" href="#services">How it works</a>
         <a data-i18n="treatments.eyebrow" href="#treatments">Treatments</a>
       </nav>
-      <div aria-label="Language" class="lang-switcher" data-i18n-aria-label="lang.switcher" role="group"><button
-          aria-pressed="true" class="lang-btn" data-lang="en" type="button">EN</button><button aria-pressed="false"
-          class="lang-btn" data-i18n="lang.arabic" data-lang="ar" type="button">العربية</button></div><a class="cta-top"
-        data-i18n="nav.startCase" href="#request">Start a case</a>
+      <div class="header-actions">
+        <a class="cta-top" data-i18n="nav.startCase" href="#request">Start a case</a>
+        <div aria-label="Language" class="lang-switcher" data-i18n-aria-label="lang.switcher" role="group">
+          <button aria-pressed="true" class="lang-btn" data-lang="en" type="button">EN</button>
+          <button aria-pressed="false" class="lang-btn" data-i18n="lang.arabic" data-lang="ar" type="button">العربية</button>
+        </div>
+      </div>
     </div>
   </header>
   <!-- ══ HERO ══ -->
@@ -2585,6 +2624,123 @@
     </div>
   </section>
   <div class="stripe"></div>
+  <!-- i18n fallback shim — self-contained, no external file required.
+       Provides window.i18nReady + window.t() and wires the EN / العربية switch.
+       If a real js/i18n.js loads first and defines these, this shim defers to it. -->
+  <script>
+    (function () {
+      /* Only install the fallback if a real i18n layer hasn't already. */
+      if (window.i18nReady && typeof window.t === 'function') return;
+
+      /* Dynamic UI strings built in JS (everything else already lives in the
+         DOM as data-i18n default text and is left untouched). */
+      var DICT = {
+        en: {
+          'common.readMore': 'Read more',
+          'common.readLess': 'Read less',
+          'common.removeImage': 'Remove image',
+          'common.removeFile': 'Remove file',
+          'action.sending': 'Sending…',
+          'upload.maxImages': 'You can attach up to 5 images.',
+          'upload.notImage': '“{name}” is not an image.',
+          'upload.notPdf': 'That file is not a PDF.',
+          'upload.tooLarge': '“{name}” is too large ({size}). Max 10 MB.',
+          'upload.pdfTooLarge': 'The PDF is too large ({size}). Max 10 MB.',
+          'review.name': 'Name',
+          'review.nationality': 'Nationality',
+          'review.age': 'Age',
+          'review.years': 'years',
+          'review.sex': 'Sex',
+          'review.whatsapp': 'WhatsApp',
+          'review.email': 'Email',
+          'review.problem': 'Main concern',
+          'review.details': 'Details',
+          'review.images': 'Images',
+          'review.files': 'files',
+          'review.pdf': 'PDF',
+          'review.notProvided': 'Not provided',
+          'form.male': 'Male',
+          'form.female': 'Female'
+        },
+        ar: {
+          'common.readMore': 'اقرأ المزيد',
+          'common.readLess': 'اقرأ أقل',
+          'common.removeImage': 'إزالة الصورة',
+          'common.removeFile': 'إزالة الملف',
+          'action.sending': 'جارٍ الإرسال…',
+          'upload.maxImages': 'يمكنك إرفاق حتى ٥ صور.',
+          'upload.notImage': '«{name}» ليس صورة.',
+          'upload.notPdf': 'هذا الملف ليس PDF.',
+          'upload.tooLarge': '«{name}» كبير جداً ({size}). الحد الأقصى ١٠ ميغابايت.',
+          'upload.pdfTooLarge': 'ملف PDF كبير جداً ({size}). الحد الأقصى ١٠ ميغابايت.',
+          'review.name': 'الاسم',
+          'review.nationality': 'الجنسية',
+          'review.age': 'العمر',
+          'review.years': 'سنة',
+          'review.sex': 'الجنس',
+          'review.whatsapp': 'واتساب',
+          'review.email': 'البريد',
+          'review.problem': 'الشكوى الرئيسية',
+          'review.details': 'التفاصيل',
+          'review.images': 'الصور',
+          'review.files': 'ملفات',
+          'review.pdf': 'PDF',
+          'review.notProvided': 'غير محدّد',
+          'form.male': 'ذكر',
+          'form.female': 'أنثى'
+        }
+      };
+
+      var lang = 'en';
+      try { var s = localStorage.getItem('medivia_lang'); if (s === 'ar' || s === 'en') lang = s; } catch (e) { }
+      var q = new URLSearchParams(location.search).get('lang');
+      if (q === 'ar' || q === 'en') lang = q;
+
+      /* t(key, params) — returns the string for the active language,
+         interpolating {name}/{size} tokens, falling back to the key. */
+      window.t = function (key, params) {
+        var table = DICT[lang] || DICT.en;
+        var str = (table[key] != null) ? table[key] : (DICT.en[key] != null ? DICT.en[key] : key);
+        if (params) {
+          str = str.replace(/\{(\w+)\}/g, function (m, p) {
+            return params[p] != null ? params[p] : m;
+          });
+        }
+        return str;
+      };
+
+      /* Apply the language to the DOM: dir/lang + the small dynamic strings
+         are handled by t(); the static data-i18n text is already the default. */
+      function apply(l) {
+        lang = (l === 'ar') ? 'ar' : 'en';
+        var de = document.documentElement;
+        de.lang = lang;
+        de.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+        var btns = document.querySelectorAll('.lang-btn');
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].setAttribute('aria-pressed', String(btns[i].getAttribute('data-lang') === lang));
+        }
+        try { localStorage.setItem('medivia_lang', lang); } catch (e) { }
+      }
+
+      function wire() {
+        var btns = document.querySelectorAll('.lang-btn');
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].addEventListener('click', function () { apply(this.getAttribute('data-lang')); });
+        }
+        apply(lang);
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', wire);
+      } else {
+        wire();
+      }
+
+      /* Resolve immediately so the page's .then() init runs right away. */
+      window.i18nReady = Promise.resolve();
+    })();
+  </script>
+
   <script src="js/i18n.js"></script>
   <script>
     window.i18nReady.then(() => {
