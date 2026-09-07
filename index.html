@@ -1025,7 +1025,6 @@
 
     .step-h {
       flex: 1;
-      min-width: 0;
       padding: 15px 12px;
       text-align: center;
       font-size: .7rem;
@@ -1121,16 +1120,6 @@
     @media(max-width:640px) {
       .f-grid {
         grid-template-columns: 1fr
-      }
-
-      .step-h {
-        padding: 13px 6px;
-        font-size: .62rem;
-        letter-spacing: .06em
-      }
-
-      .step-h .n {
-        margin-inline-end: 3px
       }
     }
 
@@ -1566,8 +1555,7 @@
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 18px;
       max-width: 900px;
-      margin-inline: auto;
-      direction: ltr;
+      margin-inline: auto
     }
 
     .chan {
@@ -1578,19 +1566,7 @@
       border: 1px solid var(--line);
       border-radius: 3px;
       background: #fff;
-      transition: .3s;
-      direction: ltr;
-    }
-
-    .chan > span {
-      direction: ltr;
-      text-align: left;
-      min-width: 0;
-    }
-
-    [dir="rtl"] .chan > span {
-      direction: rtl;
-      text-align: right;
+      transition: .3s
     }
 
     .chan:hover {
@@ -1614,13 +1590,10 @@
     }
 
     .chan .v {
-    font-size: 1rem;
-    color: var(--ink);
-    font-weight: 500;
-    direction: ltr;
-    unicode-bidi: isolate;
-    white-space: nowrap;
-}
+      font-size: 1rem;
+      color: var(--ink);
+      font-weight: 500
+    }
 
     /* ── footer ───────────────────────────── */
 
@@ -1848,33 +1821,17 @@
     }
 
 
-    /* ── header actions / language ─────────────── */
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex: none;
-    }
-
-    .header-actions .lang-switcher {
-      flex: none;
-    }
-
     /* ── i18n / RTL ───────────────────────────── */
     .lang-switcher {
-    flex: none;
-
-    display: inline-flex;
-    align-items: center;
-    gap: 2px;
-    padding: 3px;
-
-    border: 2px solid rgba(255, 255, 255, .28);
-    border-radius: 3px;
-    background: rgba(255, 255, 255, .06);
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      margin-inline-start: 8px;
+      padding: 3px;
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: 3px;
+      background: rgba(255, 255, 255, .06);
     }
-
-
 
     header.stuck .lang-switcher {
       border-color: var(--line);
@@ -1937,28 +1894,28 @@
     }
 
     @media(max-width:820px) {
-    [dir="rtl"] .rail-line,
-    [dir="rtl"] .rail-fill {
+
+      [dir="rtl"] .rail-line,
+      [dir="rtl"] .rail-fill {
         inset-inline-end: auto;
         inset-inline-start: 7px;
-    }
+      }
 
-    [dir="rtl"] .stage {
-        grid-template-columns: 1fr;
+      [dir="rtl"] .stage {
         padding-inline-start: 0;
         padding-inline-end: 36px;
-    }
+      }
 
-    [dir="rtl"] .node {
+      [dir="rtl"] .node {
         inset-inline-start: auto;
         inset-inline-end: 1px;
-    }
+      }
 
-    [dir="rtl"] .num {
+      [dir="rtl"] .num {
         inset-inline-start: auto;
         inset-inline-end: 0;
+      }
     }
-}
 
     [dir="rtl"] input[type="email"],
     [dir="rtl"] input[type="tel"],
@@ -1968,6 +1925,10 @@
     }
 
     @media(max-width:520px) {
+      .lang-switcher {
+        margin-inline-start: 4px;
+      }
+
       .lang-btn {
         padding-inline: 6px;
       }
@@ -2016,13 +1977,10 @@
         <a data-i18n="common.howItWorks" href="#services">How it works</a>
         <a data-i18n="treatments.eyebrow" href="#treatments">Treatments</a>
       </nav>
-      <div class="header-actions">
-        <a class="cta-top" data-i18n="nav.startCase" href="#request">Start a case</a>
-        <div aria-label="Language" class="lang-switcher" data-i18n-aria-label="lang.switcher" role="group">
-          <button aria-pressed="true" class="lang-btn" data-lang="en" type="button">EN</button>
-          <button aria-pressed="false" class="lang-btn" data-i18n="lang.arabic" data-lang="ar" type="button">العربية</button>
-        </div>
-      </div>
+      <div aria-label="Language" class="lang-switcher" data-i18n-aria-label="lang.switcher" role="group"><button
+          aria-pressed="true" class="lang-btn" data-lang="en" type="button">EN</button><button aria-pressed="false"
+          class="lang-btn" data-i18n="lang.arabic" data-lang="ar" type="button">العربية</button></div><a class="cta-top"
+        data-i18n="nav.startCase" href="#request">Start a case</a>
     </div>
   </header>
   <!-- ══ HERO ══ -->
@@ -2624,124 +2582,8 @@
     </div>
   </section>
   <div class="stripe"></div>
-  <!-- i18n fallback shim — self-contained, no external file required.
-       Provides window.i18nReady + window.t() and wires the EN / العربية switch.
-       If a real js/i18n.js loads first and defines these, this shim defers to it. -->
-  <script>
-    (function () {
-      /* Only install the fallback if a real i18n layer hasn't already. */
-      if (window.i18nReady && typeof window.t === 'function') return;
-
-      /* Dynamic UI strings built in JS (everything else already lives in the
-         DOM as data-i18n default text and is left untouched). */
-      var DICT = {
-        en: {
-          'common.readMore': 'Read more',
-          'common.readLess': 'Read less',
-          'common.removeImage': 'Remove image',
-          'common.removeFile': 'Remove file',
-          'action.sending': 'Sending…',
-          'upload.maxImages': 'You can attach up to 5 images.',
-          'upload.notImage': '“{name}” is not an image.',
-          'upload.notPdf': 'That file is not a PDF.',
-          'upload.tooLarge': '“{name}” is too large ({size}). Max 10 MB.',
-          'upload.pdfTooLarge': 'The PDF is too large ({size}). Max 10 MB.',
-          'review.name': 'Name',
-          'review.nationality': 'Nationality',
-          'review.age': 'Age',
-          'review.years': 'years',
-          'review.sex': 'Sex',
-          'review.whatsapp': 'WhatsApp',
-          'review.email': 'Email',
-          'review.problem': 'Main concern',
-          'review.details': 'Details',
-          'review.images': 'Images',
-          'review.files': 'files',
-          'review.pdf': 'PDF',
-          'review.notProvided': 'Not provided',
-          'form.male': 'Male',
-          'form.female': 'Female'
-        },
-        ar: {
-          'common.readMore': 'اقرأ المزيد',
-          'common.readLess': 'اقرأ أقل',
-          'common.removeImage': 'إزالة الصورة',
-          'common.removeFile': 'إزالة الملف',
-          'action.sending': 'جارٍ الإرسال…',
-          'upload.maxImages': 'يمكنك إرفاق حتى ٥ صور.',
-          'upload.notImage': '«{name}» ليس صورة.',
-          'upload.notPdf': 'هذا الملف ليس PDF.',
-          'upload.tooLarge': '«{name}» كبير جداً ({size}). الحد الأقصى ١٠ ميغابايت.',
-          'upload.pdfTooLarge': 'ملف PDF كبير جداً ({size}). الحد الأقصى ١٠ ميغابايت.',
-          'review.name': 'الاسم',
-          'review.nationality': 'الجنسية',
-          'review.age': 'العمر',
-          'review.years': 'سنة',
-          'review.sex': 'الجنس',
-          'review.whatsapp': 'واتساب',
-          'review.email': 'البريد',
-          'review.problem': 'الشكوى الرئيسية',
-          'review.details': 'التفاصيل',
-          'review.images': 'الصور',
-          'review.files': 'ملفات',
-          'review.pdf': 'PDF',
-          'review.notProvided': 'غير محدّد',
-          'form.male': 'ذكر',
-          'form.female': 'أنثى'
-        }
-      };
-
-      var lang = 'en';
-      try { var s = localStorage.getItem('medivia_lang'); if (s === 'ar' || s === 'en') lang = s; } catch (e) { }
-      var q = new URLSearchParams(location.search).get('lang');
-      if (q === 'ar' || q === 'en') lang = q;
-
-      /* t(key, params) — returns the string for the active language,
-         interpolating {name}/{size} tokens, falling back to the key. */
-      window.t = function (key, params) {
-        var table = DICT[lang] || DICT.en;
-        var str = (table[key] != null) ? table[key] : (DICT.en[key] != null ? DICT.en[key] : key);
-        if (params) {
-          str = str.replace(/\{(\w+)\}/g, function (m, p) {
-            return params[p] != null ? params[p] : m;
-          });
-        }
-        return str;
-      };
-
-      /* Apply the language to the DOM: dir/lang + the small dynamic strings
-         are handled by t(); the static data-i18n text is already the default. */
-      function apply(l) {
-        lang = (l === 'ar') ? 'ar' : 'en';
-        var de = document.documentElement;
-        de.lang = lang;
-        de.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-        var btns = document.querySelectorAll('.lang-btn');
-        for (var i = 0; i < btns.length; i++) {
-          btns[i].setAttribute('aria-pressed', String(btns[i].getAttribute('data-lang') === lang));
-        }
-        try { localStorage.setItem('medivia_lang', lang); } catch (e) { }
-      }
-
-      function wire() {
-        var btns = document.querySelectorAll('.lang-btn');
-        for (var i = 0; i < btns.length; i++) {
-          btns[i].addEventListener('click', function () { apply(this.getAttribute('data-lang')); });
-        }
-        apply(lang);
-      }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', wire);
-      } else {
-        wire();
-      }
-
-      /* Resolve immediately so the page's .then() init runs right away. */
-      window.i18nReady = Promise.resolve();
-    })();
-  </script>
-
   <script src="js/i18n.js"></script>
+  <script src="js/supabase-config.js"></script>
   <script>
     window.i18nReady.then(() => {
 
@@ -2789,10 +2631,64 @@
       }
 
 
-      /* reference */
+      /* provisional reference shown while filling in — the authoritative
+         MV-2026-XXXX is minted by the backend and shown on success */
       const REF = 'MV-2026-' + String(Math.floor(Math.random() * 9000) + 1000);
       document.getElementById('refno').textContent = REF;
       document.getElementById('doneRef').textContent = REF;
+
+      /* ── backend submission plumbing ─────────────────────────── */
+      const CFG = window.MEDIVIA_CONFIG || {};
+      const IDEM = (crypto.randomUUID ? crypto.randomUUID()
+        : Date.now() + '-' + Math.random().toString(16).slice(2));
+      let submitting = false, submitted = false;
+
+      const MSG = {
+        en: {
+          sending: 'Sending…',
+          netErr: "We couldn't reach the server. Check your connection and try again.",
+          srvErr: 'Something went wrong on our side. Please try again in a moment.',
+          tooLarge: 'A file is too large. Each image and the PDF must be 10 MB or less.',
+          badType: "One of your files isn't a supported type. Use JPG, PNG, WebP, HEIC or PDF.",
+          validation: 'Please review the highlighted fields and try again.',
+          notConfigured: 'Submission is not configured yet. Please contact us on WhatsApp.'
+        },
+        ar: {
+          sending: 'جارٍ الإرسال…',
+          netErr: 'تعذّر الوصول إلى الخادم. تحقّق من اتصالك وحاول مرة أخرى.',
+          srvErr: 'حدث خطأ لدينا. يرجى المحاولة بعد قليل.',
+          tooLarge: 'أحد الملفات كبير جداً. يجب ألّا يتجاوز كل ملف 10 ميغابايت.',
+          badType: 'أحد الملفات بصيغة غير مدعومة. استخدم JPG أو PNG أو WebP أو HEIC أو PDF.',
+          validation: 'يرجى مراجعة الحقول المميّزة والمحاولة مرة أخرى.',
+          notConfigured: 'خدمة الإرسال غير مهيّأة بعد. يرجى التواصل معنا عبر واتساب.'
+        }
+      };
+      const lang = () => (document.documentElement.lang === 'ar' ? 'ar' : 'en');
+      const msg = k => (MSG[lang()] || MSG.en)[k];
+
+      /* one persistent status line under the send button */
+      function submitStatus(text, isError) {
+        let el = document.getElementById('submitStatus');
+        if (!el) {
+          el = document.createElement('div');
+          el.id = 'submitStatus';
+          el.setAttribute('role', 'status');
+          el.setAttribute('aria-live', 'polite');
+          el.style.cssText = 'margin-top:12px;font-size:.86rem;line-height:1.5;text-align:center';
+          const wrap = document.getElementById('reviewWrap');
+          if (wrap) wrap.appendChild(el);
+        }
+        el.textContent = text || '';
+        el.style.color = isError ? 'var(--copper-ink)' : 'var(--sage)';
+        el.style.display = text ? 'block' : 'none';
+      }
+      function serverMessage(payload) {
+        if (!payload || !payload.error) return msg('srvErr');
+        if (payload.error === 'validation') return msg('validation');
+        if (payload.error === 'too_many_images' || payload.error === 'image_too_large' || payload.error === 'pdf_too_large') return msg('tooLarge');
+        if (payload.error === 'image_bad_type' || payload.error === 'pdf_bad_type') return msg('badType');
+        return msg('srvErr');
+      }
 
       /* intake */
       const MAX_IMG = 5, MAX_IMG_BYTES = 10 * 1024 * 1024, MAX_PDF_BYTES = 10 * 1024 * 1024;
@@ -2948,16 +2844,37 @@
         });
       }
 
-      $('#intake').addEventListener('submit', e => {
+      function showSuccess(reference) {
+        submitted = true;
+        if (reference) {
+          $('#doneRef').textContent = reference;
+          $('#refno').textContent = reference;
+        }
+        submitStatus('', false);
+        $('#reviewWrap').style.display = 'none';
+        $('#done').classList.add('show');
+        heads.forEach(h => { h.classList.add('done'); h.classList.remove('active'); });
+        scrollTo({
+          top: $('.sheet').getBoundingClientRect().top + scrollY - 110,
+          behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+        });
+      }
+
+      $('#intake').addEventListener('submit', async e => {
         e.preventDefault();
+        if (submitted || submitting) return;                 // guard duplicates
         if (!validate(1)) { goto(1); return; }
         if (!validate(2)) { goto(2); return; }
         if (!$('#ok').checked) { $('#okErr').classList.add('show'); return; }
         $('#okErr').classList.remove('show');
 
-        /* ── Payload for the backend phase ───────────────────────── */
+        if (!CFG.SUBMIT_URL || /YOUR-PROJECT-REF/.test(CFG.SUPABASE_URL || '')) {
+          submitStatus(msg('notConfigured'), true);
+          return;
+        }
+
+        /* ── build payload ───────────────────────────────────────── */
         const fd = new FormData();
-        fd.append('reference', REF);
         fd.append('firstName', $('#first').value.trim());
         fd.append('lastName', $('#last').value.trim());
         fd.append('nationality', $('#nat').value.trim());
@@ -2967,25 +2884,49 @@
         fd.append('email', $('#mail').value.trim());
         fd.append('reason', $('#reason').value.trim());
         fd.append('details', $('#detail').value.trim());
+        fd.append('consent', 'true');
+        fd.append('source', 'website-home');
         fd.append('submittedAt', new Date().toISOString());
+        fd.append('idempotencyKey', IDEM);
         images.forEach((im, i) => fd.append('images[' + i + ']', im.file, im.file.name));
         if (pdfFile) fd.append('report', pdfFile, pdfFile.name);
 
-        console.log('MediVia intake — ready to POST /api/cases');
-        console.table([...fd.entries()].map(([k, v]) => ({ field: k, value: v instanceof File ? v.name + ' (' + fmt(v.size) + ')' : v })));
-        // TODO (next phase): await fetch('/api/cases', { method:'POST', body: fd })
-
         const btn = $('#send');
-        btn.disabled = true; btn.textContent = t('action.sending');
-        setTimeout(() => {
-          $('#reviewWrap').style.display = 'none';
-          $('#done').classList.add('show');
-          heads.forEach(h => { h.classList.add('done'); h.classList.remove('active'); });
-          scrollTo({
-            top: $('.sheet').getBoundingClientRect().top + scrollY - 110,
-            behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+        const label = btn.textContent;
+        submitting = true;
+        btn.disabled = true;
+        btn.textContent = msg('sending');
+        submitStatus('', false);
+
+        try {
+          const res = await fetch(CFG.SUBMIT_URL, {
+            method: 'POST',
+            headers: {
+              'apikey': CFG.SUPABASE_ANON_KEY,
+              'Authorization': 'Bearer ' + CFG.SUPABASE_ANON_KEY
+            },
+            body: fd
           });
-        }, 700);
+
+          let data = null;
+          try { data = await res.json(); } catch (_) { /* ignore parse errors */ }
+
+          if (res.ok && data && data.reference) {
+            showSuccess(data.reference);                    // only on real confirmation
+            return;
+          }
+          // server responded but not a success
+          submitStatus(serverMessage(data), true);
+          submitting = false;
+          btn.disabled = false;
+          btn.textContent = label;
+        } catch (err) {
+          // network / CORS / offline
+          submitStatus(msg('netErr'), true);
+          submitting = false;
+          btn.disabled = false;
+          btn.textContent = label;
+        }
       });
 
     });
