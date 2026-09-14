@@ -17,3 +17,7 @@ window.MEDIVIA_CONFIG = {
 /* Derived endpoint for the intake Edge Function. */
 window.MEDIVIA_CONFIG.SUBMIT_URL =
   window.MEDIVIA_CONFIG.SUPABASE_URL.replace(/\/+$/, "") + "/functions/v1/submit-case";
+
+/* Derived endpoint for the newsletter Edge Function. */
+window.MEDIVIA_CONFIG.NEWSLETTER_URL =
+  window.MEDIVIA_CONFIG.SUPABASE_URL.replace(/\/+$/, "") + "/functions/v1/subscribe-newsletter";

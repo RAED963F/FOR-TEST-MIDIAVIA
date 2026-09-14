@@ -1934,7 +1934,237 @@
       }
     }
 
-    
+
+/* ── newsletter strip ─────────────────── */
+
+.nl {
+  border-block: 1px solid var(--line);
+}
+
+.nl-in {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(22px, 4vw, 52px);
+  align-items: center;
+  padding-block: clamp(38px, 5vw, 60px);
+}
+
+.nl-copy {
+  max-width: 48ch;
+}
+
+.nl-copy .eyebrow {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.nl-copy h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+}
+
+/* the wordmark inside running copy: "Via" carries the logo's copper, and
+   the pair stays LTR-isolated so Arabic never splits it */
+
+.brandword {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.brandword i {
+  font-style: normal;
+  color: var(--copper);
+}
+
+.nl-copy p {
+  margin-top: 10px;
+}
+
+.nl-form {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+  min-width: min(420px, 100%);
+}
+
+.nl-form input[type="email"] {
+  min-width: 0;
+  flex: 1;
+}
+
+.nl-form .btn {
+  white-space: nowrap;
+}
+
+.nl-status {
+  margin-top: 12px;
+  font-size: .82rem;
+  line-height: 1.5;
+  min-height: 1.2em;
+  display: none;
+}
+
+.nl-status.show {
+  display: block;
+}
+
+.nl-status.ok {
+  color: var(--sage);
+}
+
+.nl-status.err {
+  color: var(--copper-ink);
+}
+
+@media (max-width: 760px) {
+  .nl-in {
+    grid-template-columns: 1fr;
+  }
+
+  .nl-form {
+    flex-direction: column;
+  }
+
+  .nl-form .btn {
+    width: 100%;
+  }
+}
+
+/* ───────── Newsletter success toast ───────── */
+
+.nl-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translate(-50%, 20px);
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  min-width: 280px;
+  max-width: min(420px, calc(100vw - 32px));
+
+  padding: 14px 16px 14px 17px;
+
+  background: rgba(238, 240, 236, 0.78);
+  border: 1px solid rgba(200, 138, 102, 0.42);
+  border-radius: 16px;
+
+  box-shadow:
+    0 18px 50px rgba(26, 62, 76, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+
+  color: var(--ink);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity .28s ease,
+    transform .28s cubic-bezier(.2,.8,.2,1),
+    visibility .28s ease;
+}
+
+.nl-toast.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+
+.nl-toast-icon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+  background: rgba(26, 62, 76, 0.95);
+  color: #EEF0EC;
+
+  box-shadow:
+    0 5px 16px rgba(26, 62, 76, 0.18),
+    inset 0 1px 0 rgba(255,255,255,.18);
+}
+
+.nl-toast-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.nl-toast-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.nl-toast-title {
+  font-size: .88rem;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -.01em;
+}
+
+.nl-toast-text {
+  margin-top: 3px;
+  font-size: .76rem;
+  line-height: 1.4;
+  color: rgba(26, 62, 76, .72);
+}
+
+.nl-toast-close {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+
+  background: rgba(26, 62, 76, .07);
+  color: var(--ink);
+
+  cursor: pointer;
+
+  transition:
+    background .18s ease,
+    transform .18s ease;
+}
+
+.nl-toast-close:hover {
+  background: rgba(200, 138, 102, .18);
+  transform: scale(1.05);
+}
+
+.nl-toast-close svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* RTL */
+html[dir="rtl"] .nl-toast {
+  direction: rtl;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .nl-toast {
+    bottom: 18px;
+    min-width: 0;
+    width: calc(100vw - 32px);
+    padding: 13px 14px;
+  }
+}
+
   </style>
   <meta content="MediVia — Medical Concierge · Russia" data-i18n-content="seo.title" property="og:title" />
   <meta
@@ -1949,6 +2179,44 @@
 </head>
 
 <body>
+
+  <!-- Newsletter success toast -->
+  <div
+    class="nl-toast"
+    id="nlToast"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+  >
+    <div class="nl-toast-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M5 12.5L9.2 17L19 7"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+
+    <div class="nl-toast-copy">
+      <div class="nl-toast-title" id="nlToastTitle">Message received</div>
+      <div class="nl-toast-text" id="nlToastText">Thank you. We'll keep you updated.</div>
+    </div>
+
+    <button class="nl-toast-close" id="nlToastClose" type="button" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path
+          d="M6 6L18 18M18 6L6 18"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      </svg>
+    </button>
+  </div>
+
   <div class="stripe"></div>
   <header id="hdr">
     <div class="wrap bar">
@@ -1999,7 +2267,6 @@
     <div class="wrap hero-in">
       <p class="eyebrow" data-i18n="hero.eyebrow">Medical concierge · Russia</p>
       <h1 data-i18n-html="hero.title">From First Contact<br />to <em>Full Recovery</em></h1>
-      <p class="lead" data-i18n-html="hero.lead"><em>We're already at work</em> — the full site follows shortly.</p>
       <div class="hero-cta">
         <a class="btn btn-p" data-i18n="hero.cta" href="#request">Start a case — free review</a>
         <a class="btn btn-ghost" data-i18n="common.howItWorks" href="#services">How it works</a>
@@ -2084,6 +2351,47 @@
       </div>
     </div>
   </section>
+  <!-- ══ NEWSLETTER (compact strip · between Who we are / How it works) ══ -->
+<!-- ══ NEWSLETTER (compact strip · between Who we are / How it works) ══ -->
+<section class="nl tint" id="newsletter">
+  <div class="wrap nl-in">
+    <div class="nl-copy">
+      <span class="eyebrow" data-i18n="newsletter.eyebrow">Stay informed</span>
+      <h2 data-i18n="newsletter.title">Stay updated with MediVia</h2>
+      <p data-i18n="newsletter.description">Leave your email and we'll keep you informed about what's new.</p>
+    </div>
+
+    <form class="nl-form" id="nlForm" novalidate="">
+      <input
+        id="nlEmail"
+        name="email"
+        type="email"
+        autocomplete="email"
+        required=""
+        data-i18n-placeholder="newsletter.emailPlaceholder"
+        placeholder="Email address"
+        data-i18n-aria-label="newsletter.emailPlaceholder"
+        aria-label="Email address"
+      />
+
+      <button
+        class="btn btn-p"
+        id="nlBtn"
+        type="submit"
+        data-i18n="newsletter.button"
+      >
+        Subscribe
+      </button>
+    </form>
+  </div>
+
+  <div
+    aria-live="polite"
+    class="wrap nl-status"
+    id="nlStatus"
+    role="status"
+  ></div>
+</section>
   <!-- ══ SERVICES (How it works — dual path) ══ -->
   <section class="pad" id="services">
     <div class="wrap">
@@ -2969,6 +3277,295 @@
       })();
 
     });
+  </script>
+  <!-- ══ ADDED · hero video + newsletter (i18n-aware, no parallel language system) ══ -->
+  <script>
+    window.i18nReady.then(function () {
+      var CFG = window.MEDIVIA_CONFIG || {};
+
+      /* ---- fallback strings for the NEW keys only ----
+         Used only when locales/*.json don't yet provide them. Once you paste
+         the provided keys into locales/en.json + locales/ar.json this becomes
+         a no-op (safe to delete). It reads the site's own <html lang> state —
+         it is NOT a second language switcher. */
+      var STRINGS = {
+        en: {
+          'video.eyebrow': 'A short introduction to MediVia.',
+          'video.title': 'MediVia — a short introduction',
+          'video.play': 'Play video',
+          'video.subscribe': 'Stay updated with MediVia',
+          'newsletter.eyebrow': 'Stay informed',
+          'newsletter.title': 'Stay updated with MediVia',
+          'newsletter.description': "Leave your email and we'll keep you informed about what's new.",
+          'newsletter.emailPlaceholder': 'Email address',
+          'newsletter.button': 'Subscribe',
+          'newsletter.sending': 'Subscribing…',
+          'newsletter.success': "You're subscribed. We'll keep you updated.",
+          'newsletter.alreadySubscribed': "You're already subscribed.",
+          'newsletter.invalid': 'Please enter a valid email address.',
+          'newsletter.error': "We couldn't complete your subscription. Please try again.",
+          'newsletter.toastTitleError': "Couldn't subscribe"
+        },
+        ar: {
+          'video.eyebrow': 'مقدّمة قصيرة عن MediVia.',
+          'video.title': 'MediVia — مقدّمة قصيرة',
+          'video.play': 'تشغيل الفيديو',
+          'video.subscribe': 'ابقَ على اطلاع مع MediVia',
+          'newsletter.eyebrow': 'ابقَ على اطلاع',
+          'newsletter.title': 'ابقَ على اطلاع مع MediVia',
+          'newsletter.description': 'اترك بريدك الإلكتروني وسنطلعك على كل جديد.',
+          'newsletter.emailPlaceholder': 'البريد الإلكتروني',
+          'newsletter.button': 'اشتراك',
+          'newsletter.sending': 'جارٍ الاشتراك…',
+          'newsletter.success': 'تم الاشتراك بنجاح. سنبقيك على اطلاع بكل جديد.',
+          'newsletter.alreadySubscribed': 'هذا البريد مشترك بالفعل.',
+          'newsletter.invalid': 'يرجى إدخال بريد إلكتروني صحيح.',
+          'newsletter.error': 'تعذّر إكمال الاشتراك. يرجى المحاولة مرة أخرى.',
+          'newsletter.toastTitleError': 'تعذّر الاشتراك'
+        }
+      };
+
+      function lang() { return document.documentElement.lang === 'ar' ? 'ar' : 'en'; }
+
+      /* true when the real i18n system already provides this key */
+      function isTranslated(key) {
+        try { var v = (typeof t === 'function') ? t(key) : null; return !!(v && v !== key); }
+        catch (e) { return false; }
+      }
+
+      /* resolve a key: prefer real i18n, else fall back to STRINGS */
+      function tr(key) {
+        if (isTranslated(key)) { try { return t(key); } catch (e) {} }
+        var pack = STRINGS[lang()] || STRINGS.en;
+        return pack[key] != null ? pack[key] : key;
+      }
+
+      /* fill the NEW nodes with fallback text only where i18n hasn't */
+      var SCOPES = ['[data-yt]', '.hv-facade', '#newsletter'];
+      function applyFallback() {
+        SCOPES.forEach(function (sel) {
+          document.querySelectorAll(sel + '[data-i18n], ' + sel + ' [data-i18n]').forEach(function (n) {
+            var k = n.getAttribute('data-i18n');
+            if (!isTranslated(k)) { var v = tr(k); if (v && n.textContent !== v) n.textContent = v; }
+          });
+          document.querySelectorAll(sel + '[data-i18n-placeholder], ' + sel + ' [data-i18n-placeholder]').forEach(function (n) {
+            var k = n.getAttribute('data-i18n-placeholder'); if (!isTranslated(k)) n.setAttribute('placeholder', tr(k));
+          });
+          document.querySelectorAll(sel + '[data-i18n-aria-label], ' + sel + ' [data-i18n-aria-label]').forEach(function (n) {
+            var k = n.getAttribute('data-i18n-aria-label'); if (!isTranslated(k)) n.setAttribute('aria-label', tr(k));
+          });
+        });
+      }
+      /* ---- the wordmark inside the newsletter headline ----
+         Both languages keep "MediVia" in Latin script, so the word is found in
+         the already-translated text and its "Via" is given the logo's copper.
+         No new strings, no second translation system — it simply re-runs every
+         time the site re-applies its own. */
+      function markWordmark() {
+        var h = document.querySelector('#newsletter .nl-copy h2');
+        if (!h || h.querySelector('.brandword')) return;
+        var text = h.textContent, at = text.indexOf('MediVia');
+        if (at < 0) return;
+        var word = document.createElement('span');
+        word.className = 'brandword';
+        word.appendChild(document.createTextNode('Medi'));
+        var via = document.createElement('i');
+        via.textContent = 'Via';
+        word.appendChild(via);
+        h.textContent = '';
+        h.appendChild(document.createTextNode(text.slice(0, at)));
+        h.appendChild(word);
+        h.appendChild(document.createTextNode(text.slice(at + 'MediVia'.length)));
+      }
+
+      function refresh() { applyFallback(); markWordmark(); }
+
+      refresh();
+      /* re-apply after the site flips <html lang>/dir (runs after i18n settles) */
+      new MutationObserver(function () { setTimeout(refresh, 0); })
+        .observe(document.documentElement, { attributes: true, attributeFilter: ['lang', 'dir'] });
+      document.addEventListener('medivia:languagechange', function () { setTimeout(refresh, 0); });
+
+      /* ---- desktop alignment probe ------------------------------------
+         The hero copy and the video card are keyed to two lines in the header:
+         the "M" of MediVia and the inline start of "Who we are". The nav's
+         x position depends on the width of its own translated labels, so it
+         cannot be expressed in CSS — this measures it and publishes it as
+         --nav-anchor. --vb-lift is measured the same way so the card's top
+         edge always lands --vb-gap below the hero's CTA row. Layout itself
+         stays in the stylesheet; both values have CSS fallbacks. */
+      (function () {
+        var root = document.documentElement;
+        var bar = document.querySelector('.bar');
+        var navFirst = document.querySelector('nav.main a');
+        var hero = document.querySelector('.hero');
+        var cta = document.querySelector('.hero-cta');
+        var bridge = document.querySelector('.vbridge');
+        if (!bar || !navFirst || !hero || !cta || !bridge) return;
+
+        function measure() {
+          /* under 1200px the nav is either hidden or too tight to key to, and
+             the card falls back to the centred composition */
+          if (innerWidth < 1200 || !navFirst.offsetParent) {
+            root.style.removeProperty('--nav-anchor');
+            root.style.removeProperty('--vb-lift');
+            root.style.removeProperty('--vb-drop');
+            return;
+          }
+          var rtl = getComputedStyle(root).direction === 'rtl';
+          var box = bar.getBoundingClientRect();
+          var cs = getComputedStyle(bar);
+          var start = rtl
+            ? box.right - parseFloat(cs.paddingRight)
+            : box.left + parseFloat(cs.paddingLeft);
+          var content = box.width - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+          var n = navFirst.getBoundingClientRect();
+          var anchor = rtl ? start - n.right : n.left - start;
+
+          if (anchor > 260 && anchor < content * .8) {
+            root.style.setProperty('--nav-anchor', anchor.toFixed(2) + 'px');
+          } else {
+            root.style.removeProperty('--nav-anchor');
+          }
+
+          var gap = parseFloat(getComputedStyle(root).getPropertyValue('--vb-gap')) || 28;
+          var lift = Math.max(0, hero.getBoundingClientRect().bottom - cta.getBoundingClientRect().bottom - gap);
+          root.style.setProperty('--vb-lift', lift.toFixed(2) + 'px');
+          /* a card shorter than its own lift would pull the next section up
+             over the hero's bottom edge — give that difference back below */
+          var h = bridge.getBoundingClientRect().height;
+          root.style.setProperty('--vb-drop', Math.max(0, lift - h).toFixed(2) + 'px');
+        }
+
+        measure();
+        addEventListener('resize', measure);
+        document.addEventListener('medivia:languagechange', function () { setTimeout(measure, 0); });
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+      })();
+
+      /* ---- video facades: click-to-play, one handler per [data-yt] box ----
+         Covers the hero card and the standalone bridge card. No iframe is
+         created until the visitor clicks, so lazy-loading is preserved. */
+      (function () {
+        var boxes = document.querySelectorAll('[data-yt]');
+        if (!boxes.length) return;
+
+        Array.prototype.forEach.call(boxes, function (box) {
+          var facade = box.querySelector('.hv-facade');
+          if (!facade) return;
+
+          var id = (CFG.YOUTUBE_ID && String(CFG.YOUTUBE_ID).trim()) || box.getAttribute('data-yt') || '';
+          var configured = id && id !== 'REPLACE_WITH_YOUTUBE_ID';
+
+          /* remote thumbnail only (never stored in the repo) */
+          if (configured) {
+            facade.style.backgroundImage = "url('https://i.ytimg.com/vi/" + id + "/hqdefault.jpg')";
+          }
+
+          facade.addEventListener('click', function () {
+            if (!configured) {
+              console.warn('[MediVia] No YouTube ID set. Add it via data-yt or window.MEDIVIA_CONFIG.YOUTUBE_ID.');
+              return;
+            }
+            var f = document.createElement('iframe');
+            f.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+            f.setAttribute('allowfullscreen', '');
+            f.setAttribute('title', tr('video.title'));
+            f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+            box.innerHTML = '';
+            box.appendChild(f);
+          });
+        });
+      })();
+
+      /* ---- newsletter subscribe (mirrors the intake form's anon-key pattern) ----
+         Every outcome (success, already-subscribed, invalid email, server error,
+         network error) surfaces through the glass toast — the old inline
+         #nlStatus text is no longer written to. */
+      (function () {
+        var form = document.getElementById('nlForm');
+        var input = document.getElementById('nlEmail');
+        var btn = document.getElementById('nlBtn');
+
+        var toast = document.getElementById('nlToast');
+        var toastTitle = document.getElementById('nlToastTitle');
+        var toastText = document.getElementById('nlToastText');
+        var toastClose = document.getElementById('nlToastClose');
+        if (!form || !input || !btn || !toast || !toastTitle || !toastText || !toastClose) return;
+
+        var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        var busy = false;
+        var toastTimer = null;
+
+        function hideToast() {
+          clearTimeout(toastTimer);
+          toast.classList.remove('show');
+        }
+
+        /* kind: 'success' | 'already' | 'invalid' | 'error' */
+        function showToast(kind) {
+          var isError = (kind === 'invalid' || kind === 'error');
+          toastTitle.textContent = tr(isError ? 'newsletter.toastTitleError' : 'newsletter.toastTitle');
+          toastText.textContent = tr(
+            kind === 'invalid' ? 'newsletter.invalid' :
+            kind === 'error' ? 'newsletter.error' :
+            'newsletter.toastText'
+          );
+          toastClose.setAttribute('aria-label', tr('newsletter.toastClose'));
+
+          toast.classList.add('show');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(hideToast, 6000);
+        }
+
+        toastClose.addEventListener('click', hideToast);
+
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          if (busy) return;
+          var email = input.value.trim();
+          if (!EMAIL_RE.test(email)) { hideToast(); showToast('invalid'); input.focus(); return; }
+
+          var url = CFG.NEWSLETTER_URL;
+          if (!url) { hideToast(); showToast('error'); return; }
+
+          busy = true;
+          var label = btn.textContent;
+          btn.disabled = true;
+          btn.textContent = tr('newsletter.sending');
+
+          try {
+            var res = await fetch(url, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'apikey': CFG.SUPABASE_ANON_KEY || '',
+                'Authorization': 'Bearer ' + (CFG.SUPABASE_ANON_KEY || '')
+              },
+              body: JSON.stringify({ email: email, source: 'website-home', lang: lang() })
+            });
+            var data = null; try { data = await res.json(); } catch (_) { }
+            var st = data && (data.status || data.error);
+
+            if (res.ok && (st === 'subscribed' || (data && data.subscribed === true))) {
+              form.reset(); hideToast(); showToast('success');
+            } else if (st === 'already' || st === 'already_subscribed' || res.status === 409) {
+              form.reset(); hideToast(); showToast('already');
+            } else if (st === 'invalid' || st === 'validation' || res.status === 400) {
+              hideToast(); showToast('invalid');
+            } else {
+              hideToast(); showToast('error');
+            }
+          } catch (err) {
+            hideToast(); showToast('error');
+          } finally {
+            busy = false; btn.disabled = false; btn.textContent = label;
+          }
+        });
+      })();
+
+    });
+
   </script>
 </body>
 
