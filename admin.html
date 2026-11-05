@@ -359,6 +359,11 @@
           <option value="completed">Completed</option>
           <option value="rejected">Rejected</option>
         </select>
+        <select id="archiveFilter" aria-label="Case archive filter">
+          <option value="active">Active cases</option>
+          <option value="archived">Archived cases</option>
+          <option value="all">All cases</option>
+        </select>
         <button id="refresh" class="btn btn-line" style="padding:9px 14px">Refresh</button>
         <span class="spacer"></span>
         <span class="count" id="count"></span>
@@ -502,13 +507,16 @@
     function currentFilter() {
       return {
         q: $("#search").value.trim().toLowerCase(),
-        status: $("#statusFilter").value
+        status: $("#statusFilter").value,
+        archive: $("#archiveFilter").value
       };
     }
 
     function render() {
-      const { q, status } = currentFilter();
+      const { q, status, archive } = currentFilter();
       const rows = ALL.filter(c => {
+        if (archive === "active" && c.archived_at) return false;
+        if (archive === "archived" && !c.archived_at) return false;
         if (status && c.status !== status) return false;
         if (!q) return true;
         const hay = [c.reference, c.first_name, c.last_name, c.nationality, c.email, c.reason]
@@ -564,6 +572,7 @@
 
     $("#search").addEventListener("input", render);
     $("#statusFilter").addEventListener("change", render);
+    $("#archiveFilter").addEventListener("change", render);
     $("#refresh").addEventListener("click", loadCases);
 
     /* ── detail drawer ─────────────────────────────────────── */
@@ -638,6 +647,42 @@
       });
       row.append(sel, saveMsg);
       body.append(t4, row);
+
+      // Archive is reversible: it hides a case from the active list without deleting data or files.
+      const archiveSection = document.createElement("div");
+      archiveSection.className = "sec-title";
+      archiveSection.textContent = "Case visibility";
+      const archiveRow = document.createElement("div");
+      archiveRow.className = "status-row";
+      const archiveBtn = document.createElement("button");
+      archiveBtn.className = "btn btn-line";
+      archiveBtn.textContent = c.archived_at ? "Restore case" : "Archive case";
+      const archiveMsg = document.createElement("span");
+      archiveMsg.style.cssText = "font-size:.8rem;color:var(--sage)";
+      archiveBtn.addEventListener("click", async () => {
+        const restoring = Boolean(c.archived_at);
+        const prompt = restoring
+          ? "Restore this case to the active cases list?"
+          : "Archive this case? It will disappear from the active list, but its data and files will be kept.";
+        if (!window.confirm(prompt)) return;
+        archiveBtn.disabled = true;
+        archiveMsg.textContent = restoring ? "Restoring…" : "Archiving…";
+        const archivedAt = restoring ? null : new Date().toISOString();
+        const { error } = await sb.from("cases")
+          .update({ archived_at: archivedAt })
+          .eq("id", c.id);
+        archiveBtn.disabled = false;
+        if (error) {
+          archiveMsg.textContent = "Could not update archive status.";
+          archiveMsg.style.color = "var(--copper-ink)";
+          return;
+        }
+        c.archived_at = archivedAt;
+        render();
+        closeDrawer();
+      });
+      archiveRow.append(archiveBtn, archiveMsg);
+      body.append(archiveSection, archiveRow);
 
       openDrawer();
     }
