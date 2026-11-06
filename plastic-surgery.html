@@ -4021,7 +4021,7 @@ html[dir="rtl"] .nl-toast {
                 </div>
                 <div class="field">
                   <label data-i18n="review.email" for="mail">Email</label>
-                  <input autocomplete="email" id="mail" name="email" type="email" />
+                  <input autocomplete="email" id="mail" name="email" type="email" required  />
                   <span class="errmsg" data-i18n="validation.email">That email doesn't look right.</span>
                 </div>
               </div>
@@ -4490,9 +4490,8 @@ html[dir="rtl"] .nl-toast {
           const sexMsg = $('#sexseg').parentElement.querySelector('.errmsg');
           if (sexMsg) sexMsg.classList.toggle('show', !sex);
           if (!sex) ok = false;
-          const mail = $('#mail');
-          if (mail.value.trim()) ok = mark(mail, !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value.trim())) && ok;
-          else mark(mail, false);
+          const m = $('#mail');
+ok = mark(m, !m.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m.value.trim())) && ok;
         }
         if (step === 2) {
           ok = mark($('#reason'), !$('#reason').value.trim()) && ok;
