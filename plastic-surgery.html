@@ -3330,6 +3330,54 @@ html[dir="rtl"] .nl-toast {
     padding: 13px 14px;
   }
 }
+
+
+/* ── MediVia Social Media Icons ── */
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+  direction: ltr;
+}
+
+.social-links a {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--on-dark, var(--aqua));
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 50%;
+  transition: all .3s ease;
+}
+
+.social-links a svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.social-links a:hover {
+  color: var(--copper-lite, var(--copper));
+  border-color: var(--copper);
+  transform: translateY(-3px);
+}
+
+/* Light background support */
+.tint .social-links a {
+  color: var(--aqua);
+  border-color: var(--line);
+}
+
+.tint .social-links a:hover {
+  color: var(--copper-ink);
+  border-color: var(--copper);
+}
+
+
   </style>
 </head>
 
@@ -4230,6 +4278,55 @@ html[dir="rtl"] .nl-toast {
         <div class="foot-wordmark">Medi<i>Via</i></div>
         <div class="foot-sub" data-i18n="foot.sub">Medical Concierge · Russia</div>
         <div class="foot-ar" dir="rtl">رفيقك في رحلة الشفاء</div>
+
+
+<div class="social-links" aria-label="MediVia social media">
+
+  <!-- Instagram -->
+  <a
+    href="https://www.instagram.com/medivia.ru/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram"
+    title="Instagram"
+  >
+    <svg viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="1.7"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/>
+    </svg>
+  </a>
+
+  <!-- YouTube -->
+  <a
+    href="https://www.youtube.com/@Medivia-ru"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="YouTube"
+    title="YouTube"
+  >
+    <svg viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="1.7"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         aria-hidden="true">
+      <rect x="2" y="5" width="20" height="14" rx="4"/>
+      <path d="M10 9L15 12L10 15Z"
+            fill="currentColor"
+            stroke="none"/>
+    </svg>
+  </a>
+
+</div>
+
       </div>
       <div class="foot-meta">
         <p data-i18n="foot.disc">MediVia is a medical concierge and coordination service. It does not provide medical

@@ -2411,6 +2411,43 @@ html[dir="rtl"] .nl-toast {
       }
     }
 
+
+/* ── MediVia Social Media ── */
+.social-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 30px;
+  direction: ltr;
+}
+
+.social-links a {
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--aqua);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  transition: all .3s ease;
+}
+
+.social-links a svg {
+  width: 21px;
+  height: 21px;
+}
+
+
+.social-links a:hover {
+  color: var(--copper);
+  border-color: var(--copper);
+  background: rgba(200, 138, 102, .10);
+  transform: translateY(-3px);
+}
+
+
   </style>
   <meta content="MediVia — Medical Concierge · Russia" data-i18n-content="seo.title" property="og:title" />
   <meta
@@ -3164,8 +3201,48 @@ html[dir="rtl"] .nl-toast {
               class="v">medical-via.com</span></span>
         </a>
       </div>
+       <!-- MediVia Social Media -->
+      <div class="social-links" aria-label="MediVia social media">
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/medivia.ru/"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Instagram"
+           title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.7"
+               stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r=".8"
+                    fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@Medivia-ru"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="YouTube"
+           title="YouTube">
+          <svg viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="1.7"
+               stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="14" rx="4"/>
+            <path d="M10 9L15 12L10 15Z"
+                  fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+
+      </div>
     </div>
+    
   </section>
+
+
+
+
   <div class="stripe"></div>
   <script src="js/i18n.js"></script>
   <script src="js/supabase-config.js"></script>
@@ -3567,8 +3644,10 @@ ok = mark(m, !m.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m.value.tr
       var STRINGS = {
         en: {
           'video.eyebrow': 'A short introduction to MediVia.',
-                    'video.heading': 'See how MediVia works',
-          'video.text': 'A short introduction to how we coordinate your treatment in Russia — from your first message to your flight home.',
+                    
+'video.heading': 'Discover Damas Medical Center in Moscow',
+'video.text': 'Bringing together a team of 30 specialist physicians, Damas Medical Center combines medical expertise with modern technology, offering specialized care in aesthetic medicine and surgery.',
+
 'video.title': 'MediVia — a short introduction',
           'video.play': 'Play video',
           'video.subscribe': 'Stay updated with MediVia',
@@ -3586,8 +3665,10 @@ ok = mark(m, !m.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m.value.tr
         },
         ar: {
           'video.eyebrow': 'مقدّمة قصيرة عن MediVia.',
-                    'video.heading': 'تعرّف على كيفية عمل MediVia',
-          'video.text': 'مقدّمة قصيرة عن كيفية تنسيق علاجك في روسيا — من رسالتك الأولى حتى عودتك إلى بلدك.',
+                    
+'video.heading': 'تعرّفوا على مركز داماس الطبي في موسكو',
+'video.text': 'يجمع مركز داماس الطبي فريقاً يضم ٣٠ طبيباً استشارياً، بين الخبرة الطبية والتقنيات الحديثة، ويقدّم خيارات متخصصة في الطب التجميلي والجراحة.',
+
 'video.title': 'MediVia — مقدّمة قصيرة',
           'video.play': 'تشغيل الفيديو',
           'video.subscribe': 'ابقَ على اطلاع مع MediVia',
