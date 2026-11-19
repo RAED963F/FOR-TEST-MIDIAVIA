@@ -2203,6 +2203,81 @@
       color: var(--copper);
     }
 
+
+/* ══ PROCEDURE → DOCTOR FILTER ══ */
+
+.feat-proc {
+  cursor: pointer;
+}
+
+.feat-proc:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 3px;
+}
+
+.feat-proc[aria-pressed="true"] {
+  border-color: var(--copper);
+  box-shadow: var(--shadow);
+}
+
+.feat-proc[aria-pressed="true"]::before {
+  scale: 1 1;
+}
+
+.proc-docs {
+  margin-top: clamp(28px, 3.4vw, 44px);
+  scroll-margin-top: 96px;
+}
+
+.proc-docs[hidden],
+.proc-docs [hidden] {
+  display: none;
+}
+
+.proc-docs-title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  color: var(--ink);
+  margin-bottom: clamp(18px, 2vw, 26px);
+  padding-block-end: 14px;
+  border-block-end: 1px solid var(--line);
+}
+
+.proc-docs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: clamp(18px, 2.2vw, 28px);
+}
+
+.proc-docs-grid .doc-card,
+.proc-docs-grid .doc-card:nth-child(3) {
+  grid-column: auto;
+}
+
+.doc-hospital {
+  margin-top: 10px;
+  font-size: .8rem;
+  line-height: 1.5;
+  color: var(--aqua-ink);
+}
+
+.doc-hospital b {
+  font-weight: 600;
+  color: var(--muted);
+  margin-inline-end: 6px;
+}
+
+.proc-docs-empty {
+  padding: 20px 24px;
+  color: var(--muted);
+  background: var(--fog);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  max-width: 60ch;
+}
+
+
     /* ══ DOCTOR PROFILE MODAL ══ one dialog per doctor, opened from its card.
        Palette is limited to fog / mist / sage / deep aqua / copper, the same
        five tokens the rest of the page draws from — a sophisticated, concierge
@@ -3378,6 +3453,709 @@ html[dir="rtl"] .nl-toast {
 }
 
 
+/* ══ MediVia Floating Social Icons ══ */
+.mv-floating-social {
+  position: fixed;
+  right: 22px;
+  bottom: 28px;
+  z-index: 9999;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  direction: ltr;
+}
+
+/* Icon buttons */
+.mv-floating-social a {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--aqua, #1A3E4C);
+  background: transparent;
+  border: 1px solid var(--line, rgba(26, 62, 76, .12));
+
+  box-shadow: none;
+  text-decoration: none;
+
+  animation: mv-gentle-float 4s ease-in-out infinite;
+
+  transition:
+    color .3s ease,
+    border-color .3s ease,
+    background .3s ease;
+}
+
+/* Slightly offset animation */
+.mv-floating-social a:nth-child(2) {
+  animation-delay: 1s;
+}
+
+/* Hover effect */
+.mv-floating-social a:hover {
+  color: var(--copper, #C88A66);
+  border-color: var(--copper, #C88A66);
+  background: rgba(200, 138, 102, .07);
+}
+
+/* Icon size */
+.mv-floating-social svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/* Gentle floating animation */
+@keyframes mv-gentle-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Keyboard accessibility */
+.mv-floating-social a:focus-visible {
+  outline: 3px solid var(--copper, #C88A66);
+  outline-offset: 4px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .mv-floating-social {
+    right: 14px;
+    bottom: 20px;
+    gap: 10px;
+  }
+
+  .mv-floating-social a {
+    width: 44px;
+    height: 44px;
+  }
+
+  .mv-floating-social svg {
+    width: 21px;
+    height: 21px;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .mv-floating-social a {
+    animation: none;
+    transition: none;
+  }
+}
+
+
+
+    /* ══ DOCTOR RESULTS GALLERY ══ opened from a doctor card's "View Results"
+       button. One dialog, one filterable gallery per doctor; the photos are the
+       optimised WebP copies in work-photo-web/ (see tools/build-results-gallery.py).
+       Logical properties throughout, so [dir="rtl"] mirrors it with no overrides.
+       z-index: gallery 310 < photo viewer 500. ══ */
+    .doc-results {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      width: 100%;
+      margin-top: 16px;
+      padding: 11px 18px;
+      border-radius: 2px;
+      border: 1px solid var(--aqua);
+      background: var(--aqua);
+      color: var(--fog);
+      font: 500 .8rem/1.2 var(--body);
+      letter-spacing: .04em;
+      cursor: pointer;
+      transition: background .25s, border-color .25s, color .25s;
+    }
+
+    .doc-results:hover,
+    .doc-results:focus-visible {
+      background: var(--copper);
+      border-color: var(--copper);
+      color: var(--aqua-ink);
+      outline: none;
+    }
+
+    .doc-results:focus-visible {
+      outline: 2px solid var(--copper-ink);
+      outline-offset: 3px;
+    }
+
+    .doc-results svg {
+      width: 16px;
+      height: 16px;
+      flex: none;
+    }
+
+    /* compact variant beside the doctor's name in the #doctors cards only
+       (the procedure-panel button keeps the full-width style above) */
+    .doc-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+    }
+
+    .doc-head .doc-name {
+      min-width: 0;
+    }
+
+    .doc-head .doc-results {
+      width: auto;
+      margin-top: 0;
+      flex: none;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: .7rem;
+      letter-spacing: .03em;
+      white-space: nowrap;
+    }
+
+    .doc-head .doc-results svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    body.res-open {
+      overflow-y: hidden;
+    }
+
+    .res-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 310;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(12px, 3vw, 36px);
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity .3s ease, visibility 0s linear .3s;
+    }
+
+    .res-modal.is-open {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity .3s ease;
+    }
+
+    .res-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(13, 32, 41, .62);
+      backdrop-filter: blur(9px);
+      -webkit-backdrop-filter: blur(9px);
+    }
+
+    .res-panel {
+      position: relative;
+      width: 100%;
+      max-width: 1120px;
+      height: min(880px, 100%);
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 60px 120px -40px rgba(13, 32, 41, .55);
+      transform: translateY(18px) scale(.98);
+      transition: transform .32s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .res-modal.is-open .res-panel {
+      transform: none;
+    }
+
+    .res-head {
+      flex: none;
+      padding: clamp(22px, 3vw, 34px) clamp(20px, 3.2vw, 40px) 0;
+      padding-inline-end: clamp(64px, 7vw, 84px);
+    }
+
+    .res-head .eyebrow {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .res-title {
+      font-family: var(--display);
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+
+    .res-sub {
+      margin-top: 6px;
+      font-size: .74rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--copper-ink);
+    }
+
+    .res-close {
+      position: absolute;
+      inset-block-start: 16px;
+      inset-inline-end: 16px;
+      z-index: 3;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--fog);
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background .25s, border-color .25s, color .25s, transform .25s;
+    }
+
+    .res-close:hover,
+    .res-close:focus-visible {
+      background: var(--copper);
+      border-color: var(--copper);
+      color: var(--aqua-ink);
+      transform: rotate(90deg);
+      outline: none;
+    }
+
+    .res-close svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .res-filters {
+      flex: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 18px clamp(20px, 3.2vw, 40px) 16px;
+      border-block-end: 1px solid var(--line);
+    }
+
+    .res-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      max-width: 100%;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      font: 500 .8rem/1.25 var(--body);
+      text-align: start;
+      cursor: pointer;
+      transition: background .25s, border-color .25s, color .25s;
+    }
+
+    .res-chip:hover {
+      border-color: var(--sage);
+    }
+
+    .res-chip:focus-visible {
+      outline: 2px solid var(--copper-ink);
+      outline-offset: 2px;
+    }
+
+    .res-chip[aria-pressed="true"] {
+      background: var(--aqua);
+      border-color: var(--aqua);
+      color: var(--fog);
+    }
+
+    .res-chip b {
+      font-weight: 600;
+      font-size: .72rem;
+      opacity: .65;
+    }
+
+    .res-body {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      padding: 22px clamp(20px, 3.2vw, 40px) clamp(24px, 3vw, 38px);
+      scrollbar-width: thin;
+      scrollbar-color: var(--sage) transparent;
+    }
+
+    .res-note {
+      font-size: .82rem;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    .res-status {
+      padding: 56px 12px;
+      text-align: center;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .res-group {
+      margin-top: 30px;
+    }
+
+    .res-group[hidden] {
+      display: none;
+    }
+
+    .res-group-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 12px;
+      margin-bottom: 14px;
+    }
+
+    .res-group-spec {
+      flex: 0 0 100%;
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--copper-ink);
+    }
+
+    .res-group-title {
+      font-family: var(--display);
+      font-size: clamp(1.15rem, 2vw, 1.4rem);
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--ink);
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .res-group-timing {
+      display: inline-flex;
+      align-items: center;
+      font-size: .74rem;
+      color: var(--muted);
+      background: var(--fog);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 11px;
+    }
+
+    .res-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+      gap: 14px;
+    }
+
+    .res-item {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      padding: 0;
+      margin: 0;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--fog);
+      overflow: hidden;
+      cursor: zoom-in;
+      box-shadow: 0 10px 24px -18px rgba(13, 32, 41, .45);
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+    }
+
+    .res-item:hover {
+      transform: translateY(-3px);
+      border-color: var(--sage);
+      box-shadow: 0 18px 32px -20px rgba(13, 32, 41, .5);
+    }
+
+    .res-item:focus-visible {
+      outline: 2px solid var(--copper-ink);
+      outline-offset: 2px;
+    }
+
+    .res-item img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .res-item-zoom {
+      position: absolute;
+      inset-block-end: 8px;
+      inset-inline-end: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(13, 32, 41, .6);
+      color: #EEF0EC;
+      pointer-events: none;
+      transition: background .25s;
+    }
+
+    .res-item:hover .res-item-zoom,
+    .res-item:focus-visible .res-item-zoom {
+      background: var(--copper);
+      color: var(--aqua-ink);
+    }
+
+    .res-item-zoom svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* photo viewer — full-bleed lightbox layered above the gallery, which
+       stays exactly where it was underneath */
+    .res-viewer {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      display: flex;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity .25s ease, visibility 0s linear .25s;
+    }
+
+    .res-viewer.is-open {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity .25s ease;
+    }
+
+    .res-viewer-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(13, 32, 41, .92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .res-viewer-panel {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px clamp(56px, 8vw, 110px) 16px;
+      pointer-events: none;
+    }
+
+    .res-viewer-panel>* {
+      pointer-events: auto;
+    }
+
+    .res-viewer-stage {
+      flex: 1 1 auto;
+      min-height: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      touch-action: pan-y pinch-zoom;
+      pointer-events: none;
+    }
+
+    .res-viewer-img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 6px;
+      background: rgba(238, 240, 236, .06);
+      box-shadow: 0 40px 90px -40px rgba(0, 0, 0, .7);
+      pointer-events: auto;
+      transition: opacity .2s;
+    }
+
+    .res-viewer.is-loading .res-viewer-img {
+      opacity: .82;
+    }
+
+    .res-viewer-cap {
+      flex: none;
+      padding-top: 14px;
+      max-width: min(100%, 780px);
+      text-align: center;
+      color: #EEF0EC;
+    }
+
+    .res-viewer-cap-title {
+      color: #EEF0EC;
+      font-size: .92rem;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
+    .res-viewer-cap-meta {
+      margin-top: 4px;
+      font-size: .78rem;
+      letter-spacing: .04em;
+      color: var(--on-dark-mute);
+    }
+
+    .res-viewer-close,
+    .res-viewer-nav {
+      position: absolute;
+      z-index: 2;
+      border-radius: 50%;
+      border: 1px solid rgba(238, 240, 236, .5);
+      background: rgba(13, 32, 41, .55);
+      color: #EEF0EC;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background .25s, border-color .25s, transform .25s;
+    }
+
+    .res-viewer-close {
+      inset-block-start: 14px;
+      inset-inline-end: 14px;
+      width: 42px;
+      height: 42px;
+    }
+
+    .res-viewer-nav {
+      inset-block-start: 50%;
+      margin-top: -24px;
+      width: 48px;
+      height: 48px;
+    }
+
+    .res-viewer-prev {
+      inset-inline-start: clamp(6px, 1.6vw, 24px);
+    }
+
+    .res-viewer-next {
+      inset-inline-end: clamp(6px, 1.6vw, 24px);
+    }
+
+    .res-viewer-close:hover,
+    .res-viewer-close:focus-visible,
+    .res-viewer-nav:hover,
+    .res-viewer-nav:focus-visible {
+      background: var(--copper);
+      border-color: var(--copper);
+      outline: none;
+    }
+
+    .res-viewer-close:hover,
+    .res-viewer-close:focus-visible {
+      transform: rotate(90deg);
+    }
+
+    .res-viewer-close svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .res-viewer-nav svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* the chevrons point along the reading direction */
+    [dir="rtl"] .res-viewer-nav svg {
+      transform: scaleX(-1);
+    }
+
+    .res-viewer-nav[hidden] {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .res-modal {
+        padding: 0;
+      }
+
+      .res-panel {
+        height: 100%;
+        max-width: none;
+        border-radius: 0;
+      }
+
+      .res-filters {
+        gap: 6px;
+        padding-block: 14px 12px;
+      }
+
+      .res-chip {
+        padding: 7px 13px;
+        font-size: .76rem;
+      }
+
+      .res-grid {
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 140px), 1fr));
+        gap: 10px;
+      }
+
+      .res-viewer-panel {
+        padding: 56px 8px 12px;
+      }
+
+      .res-viewer-nav {
+        width: 40px;
+        height: 40px;
+        margin-top: -20px;
+        background: rgba(13, 32, 41, .7);
+      }
+
+      .res-viewer-prev {
+        inset-inline-start: 6px;
+      }
+
+      .res-viewer-next {
+        inset-inline-end: 6px;
+      }
+    }
+
+    @media (max-height: 520px) {
+      .res-viewer-panel {
+        padding-block: 8px 6px;
+      }
+
+      .res-viewer-cap {
+        padding-top: 6px;
+      }
+
+      .res-viewer-cap-meta {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .res-modal,
+      .res-panel,
+      .res-item,
+      .res-viewer {
+        transition: none;
+      }
+    }
+
+
+
   </style>
 </head>
 
@@ -3616,7 +4394,14 @@ html[dir="rtl"] .nl-toast {
               height="800" />
           </div>
           <div class="doc-body">
-            <h3 class="doc-name" id="docName-lina" data-i18n="doc3.n">Doctor 03</h3>
+  <div class="doc-head">
+    <h3 class="doc-name" id="docName-lina" data-i18n="doc3.n">Doctor 03</h3>
+
+    <button type="button" class="doc-results"
+      data-results-doctor="isbir" aria-haspopup="dialog">
+      <span data-i18n="results.btn">View Results</span>
+    </button>
+  </div>
             <p class="doc-spec" data-i18n="doc3.s">Specialist</p>
             <p class="doc-years" data-i18n="doc3.y">15+ years experience</p>
             <p class="doc-bio" data-i18n="doc3.b">Short professional description.</p>
@@ -3630,7 +4415,14 @@ html[dir="rtl"] .nl-toast {
               height="800" />
           </div>
           <div class="doc-body">
-            <h3 class="doc-name" id="docName-amjad" data-i18n="doc1.n">Doctor 01</h3>
+  <div class="doc-head">
+    <h3 class="doc-name" id="docName-amjad" data-i18n="doc1.n">Doctor 01</h3>
+
+    <button type="button" class="doc-results"
+      data-results-doctor="amjad" aria-haspopup="dialog">
+      <span data-i18n="results.btn">View Results</span>
+    </button>
+  </div>
             <p class="doc-spec" data-i18n="doc1.s">Specialist</p>
             <p class="doc-years" data-i18n="doc1.y">10+ years experience</p>
             <p class="doc-bio" data-i18n="doc1.b">Short professional description.</p>
@@ -3810,6 +4602,65 @@ html[dir="rtl"] .nl-toast {
         </div>
       </div>
     </div>
+
+        <!-- ── doctor results gallery ── filled from work-photo-web/manifest.js the
+         first time a "View Results" button is used. All copy is data-i18n or
+         set by the results script from the same TR/EXTRA dictionary. ── -->
+    <div class="res-modal" id="resModal" role="dialog" aria-modal="true" aria-labelledby="resTitle" aria-hidden="true"
+      data-results-category="plastic-surgery">
+      <div class="res-backdrop" data-res-close></div>
+      <div class="res-panel" role="document">
+        <button type="button" class="res-close" data-res-close aria-label="Close" data-i18n-aria-label="results.close">
+          <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path>
+          </svg>
+        </button>
+        <div class="res-head">
+          <span class="eyebrow" data-i18n="results.eyebrow">Before &amp; After Results</span>
+          <h3 class="res-title" id="resTitle"></h3>
+          <p class="res-sub" id="resSub"></p>
+        </div>
+        <div class="res-filters" id="resFilters" role="group" aria-label="Filter by procedure type"
+          data-i18n-aria-label="results.filters"></div>
+        <div class="res-body" id="resBody" tabindex="-1"></div>
+      </div>
+    </div>
+
+    <div class="res-viewer" id="resViewer" role="dialog" aria-modal="true" aria-hidden="true"
+      aria-label="Result photo viewer" data-i18n-aria-label="results.viewer">
+      <div class="res-viewer-backdrop" data-viewer-close></div>
+      <div class="res-viewer-panel" role="document">
+        <button type="button" class="res-viewer-close" id="resViewerClose" data-viewer-close aria-label="Close"
+          data-i18n-aria-label="results.close">
+          <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path>
+          </svg>
+        </button>
+        <button type="button" class="res-viewer-nav res-viewer-prev" id="resPrev" aria-label="Previous photo"
+          data-i18n-aria-label="results.prev">
+          <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+            <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="1.8"></path>
+          </svg>
+        </button>
+        <div class="res-viewer-stage">
+          <img class="res-viewer-img" id="resViewerImg" src="" alt="" decoding="async" />
+        </div>
+        <button type="button" class="res-viewer-nav res-viewer-next" id="resNext" aria-label="Next photo"
+          data-i18n-aria-label="results.next">
+          <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+            <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="1.8"></path>
+          </svg>
+        </button>
+        <div class="res-viewer-cap" aria-live="polite">
+          <p class="res-viewer-cap-title" id="resCapTitle"></p>
+          <p class="res-viewer-cap-meta" id="resCapMeta"></p>
+        </div>
+      </div>
+    </div>
+
+
   </section>
 
   <!-- ══ GALLERY ══ -->
@@ -3848,43 +4699,67 @@ html[dir="rtl"] .nl-toast {
   </section>
 
   <!-- ══ PROCEDURES ══ -->
-  <section class="pad">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow" data-i18n="proc.eyebrow">What we coordinate</p>
-        <h2 data-i18n="proc.title">Procedures within plastic surgery</h2>
-        <div class="rule" style="margin-top:18px"></div>
-        <p data-i18n="proc.intro">Damas Medical Center covers the full spectrum of aesthetic and reconstructive work.
-        </p>
-      </div>
-      <div class="feat-grid">
-        <article class="feat rv">
-          <h3 data-i18n="p1.t">Rhinoplasty</h3>
-          <p data-i18n="p1.x">Reshaping and functional correction of the nose, balancing profile and breathing.</p>
-        </article>
-        <article class="feat rv">
-          <h3 data-i18n="p2.t">Face & Eyelids</h3>
-          <p data-i18n="p2.x">Facelift, blepharoplasty and rejuvenation for a natural, well-rested look.</p>
-        </article>
-        <article class="feat rv">
-          <h3 data-i18n="p3.t">Breast Surgery</h3>
-          <p data-i18n="p3.x">Augmentation, reduction, lift and reconstruction, tailored to each patient.</p>
-        </article>
-        <article class="feat rv">
-          <h3 data-i18n="p4.t">Body Contouring</h3>
-          <p data-i18n="p4.x">Liposuction, abdominoplasty and post–weight-loss contouring of the figure.</p>
-        </article>
-        <article class="feat rv">
-          <h3 data-i18n="p5.t">Reconstructive Surgery</h3>
-          <p data-i18n="p5.x">Restoring form and function after trauma, surgery or congenital differences.</p>
-        </article>
-        <article class="feat rv">
-          <h3 data-i18n="p6.t">Hair Transplantation</h3>
-          <p data-i18n="p6.x">Modern follicular techniques for natural, lasting hair restoration.</p>
-        </article>
-      </div>
+
+<!-- ══ PROCEDURES ══ -->
+<section class="pad">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow" data-i18n="proc.eyebrow">What we coordinate</p>
+      <h2 data-i18n="proc.title">Procedures within plastic surgery</h2>
+      <div class="rule" style="margin-top:18px"></div>
+      <p data-i18n="proc.intro">
+        Damas Medical Center covers the full spectrum of aesthetic and reconstructive work.
+      </p>
     </div>
-  </section>
+
+    <div class="feat-grid">
+      <article class="feat feat-proc rv" data-procedure-id="rhinoplasty"
+        role="button" tabindex="0" aria-pressed="false" aria-controls="procDoctors">
+        <h3 data-i18n="p1.t">Rhinoplasty</h3>
+        <p data-i18n="p1.x">Reshaping and functional correction of the nose, balancing profile and breathing.</p>
+      </article>
+
+      <article class="feat feat-proc rv" data-procedure-id="faceEyelids"
+        role="button" tabindex="0" aria-pressed="false" aria-controls="procDoctors">
+        <h3 data-i18n="p2.t">Face & Eyelids</h3>
+        <p data-i18n="p2.x">Facelift, blepharoplasty and rejuvenation for a natural, well-rested look.</p>
+      </article>
+
+      <article class="feat feat-proc rv" data-procedure-id="breastSurgery"
+        role="button" tabindex="0" aria-pressed="false" aria-controls="procDoctors">
+        <h3 data-i18n="p3.t">Breast Surgery</h3>
+        <p data-i18n="p3.x">Augmentation, reduction, lift and reconstruction, tailored to each patient.</p>
+      </article>
+
+      <article class="feat feat-proc rv" data-procedure-id="bodyContouring"
+        role="button" tabindex="0" aria-pressed="false" aria-controls="procDoctors">
+        <h3 data-i18n="p4.t">Body Contouring</h3>
+        <p data-i18n="p4.x">Liposuction, abdominoplasty and post–weight-loss contouring of the figure.</p>
+      </article>
+
+      <article class="feat feat-proc rv" data-procedure-id="reconstructiveSurgery"
+        role="button" tabindex="0" aria-pressed="false" aria-controls="procDoctors">
+        <h3 data-i18n="p5.t">Reconstructive Surgery</h3>
+        <p data-i18n="p5.x">Restoring form and function after trauma, surgery or congenital differences.</p>
+      </article>
+
+      <article class="feat feat-proc rv" data-procedure-id="hairTransplantation"
+        role="button" tabindex="0" aria-pressed="false" aria-controls="procDoctors">
+        <h3 data-i18n="p6.t">Hair Transplantation</h3>
+        <p data-i18n="p6.x">Modern follicular techniques for natural, lasting hair restoration.</p>
+      </article>
+    </div>
+
+    <div class="proc-docs" id="procDoctors" aria-live="polite" hidden>
+      <h3 class="proc-docs-title" id="procDoctorsTitle"
+        data-i18n="pdocs.title">Doctors specializing in this procedure</h3>
+      <div class="proc-docs-grid" id="procDoctorsGrid"></div>
+      <p class="proc-docs-empty" id="procDoctorsEmpty"
+        data-i18n="pdocs.empty" hidden></p>
+    </div>
+  </div>
+</section>
+
 
   <!-- ══ COSTS ══ -->
   <section class="tint pad" id="costs">
@@ -4364,10 +5239,10 @@ html[dir="rtl"] .nl-toast {
           "docs.title": "Anything you already have",
           "docs.intro": "Scans, lab results, a doctor's letter, a photo of the report on your desk. A phone photo is fine — we translate it.",
           "docs.imagesLabel": "Images — up to 5, max 10 MB each",
-          "docs.imagesDrop": "Drop images here, or browse",
+          "docs.imagesDrop": "Attach photos, this helps us to understand the situation more accurately and faster",
           "docs.imagesHint": "JPG, PNG, HEIC or WebP · 5 files · 10 MB each",
           "docs.pdfLabel": "PDF report — one file, max 10 MB",
-          "docs.pdfDrop": "Drop a PDF here, or browse",
+          "docs.pdfDrop": "Upload your medical report as a PDF to help our team understand your case and assess it more accurately.",
           "docs.pdfHint": "One PDF · up to 10 MB",
           "docs.privacy": "Your documents go to your coordinator and nowhere else. They reach a hospital only after you have chosen that hospital — and you can ask us to delete everything at any time.",
           "review.title": "Review before sending", "review.subtitle": "Read it once more",
@@ -4398,7 +5273,13 @@ html[dir="rtl"] .nl-toast {
           "doc5.modal.position": "Plastic Surgeon.",
           "doc5.modal.experienceValue": "12 years",
           "doc5.modal.overview": "Dr. Anna Petrovna Pershukova is a plastic surgeon at Damas Medical Center with 12 years of experience in the field. She is known for attentive, patient-focused consultations, taking the time to understand each patient's goals before recommending a course of care.",
-          "doc5.modal.expertise1": "Plastic Surgery"
+          "doc5.modal.expertise1": "Plastic Surgery",
+          "results.btn": "View Results",
+"pdocs.title": "Doctors specializing in this procedure",
+"pdocs.titleFor": "Doctors specializing in {{procedure}}",
+"pdocs.hospital": "Hospital",
+"pdocs.empty": "Doctor assignment for this procedure is being confirmed. Contact us and we will match you with the right specialist.",
+"hosp.damas": "Damas Medical Center",
         },
         ar: {
           "intake.confidential": "سرّي · يراجعه منسّق",
@@ -4416,10 +5297,10 @@ html[dir="rtl"] .nl-toast {
           "docs.title": "أي مستندات لديك",
           "docs.intro": "تحاليل، تقارير، رسالة من طبيب، أو صورة لتقرير لديك. صورة الهاتف تكفي — ونحن نتولى ترجمتها.",
           "docs.imagesLabel": "الصور — حتى ٥ صور، بحد أقصى ١٠ ميغابايت للصورة",
-          "docs.imagesDrop": "اسحب الصور إلى هنا أو اخترها",
+          "docs.imagesDrop": "قم بارفاق الصور فهذا يساعدنا على فهم الحالة بشكل ادق و اسرع",
           "docs.imagesHint": "JPG أو PNG أو HEIC أو WebP · ٥ ملفات · ١٠ ميغابايت لكل ملف",
           "docs.pdfLabel": "تقرير PDF — ملف واحد، بحد أقصى ١٠ ميغابايت",
-          "docs.pdfDrop": "اسحب ملف PDF إلى هنا أو اختره",
+          "docs.pdfDrop": "ارفع تقريرك الطبي بصيغة PDF لمساعدتنا على فهم حالتك وتقييمها بدقة أكبر.",
           "docs.pdfHint": "ملف PDF واحد · حتى ١٠ ميغابايت",
           "docs.privacy": "تصل مستنداتك إلى منسّقك فقط. ولا تُرسل إلى مستشفى إلا بعد اختيارك له — ويمكنك طلب حذف كل شيء في أي وقت.",
           "review.title": "راجع قبل الإرسال", "review.subtitle": "اقرأه مرة أخيرة",
@@ -4450,7 +5331,13 @@ html[dir="rtl"] .nl-toast {
           "doc5.modal.position": "جراح تجميل.",
           "doc5.modal.experienceValue": "12 عامًا",
           "doc5.modal.overview": "الدكتورة آنا بيتروفنا بيرشوكوفا جراحة تجميل في مركز داماس الطبي، تمتلك خبرة 12 عامًا في هذا المجال. تُعرف باستشاراتها المتأنية التي تركّز على المريضة، إذ تحرص على فهم أهداف كل مريضة قبل التوصية بخطة الرعاية المناسبة.",
-          "doc5.modal.expertise1": "جراحة تجميلية"
+          "doc5.modal.expertise1": "جراحة تجميلية",
+          "results.btn": "عرض النتائج",
+"pdocs.title": "الأطباء المتخصصون في هذا الإجراء",
+"pdocs.titleFor": "الأطباء المتخصصون في {{procedure}}",
+"pdocs.hospital": "المستشفى",
+"pdocs.empty": "لا يزال اعتماد الأطباء لهذا الإجراء قيد التأكيد. تواصل معنا لنساعدك في اختيار الأخصائي المناسب.",
+"hosp.damas": "مركز داماس الطبي",
         }
       };
 
@@ -4459,7 +5346,11 @@ html[dir="rtl"] .nl-toast {
         let text = dict(document.documentElement.lang === 'ar' ? 'ar' : 'en')[key] || key;
         if (vars) Object.entries(vars).forEach(([k, v]) => { text = text.replaceAll('{{' + k + '}}', v); });
         return text;
+        
       }
+
+      window.t = t;
+      
       function apply(lang) {
         const d = dict(lang);
         document.documentElement.lang = lang;
@@ -4476,6 +5367,9 @@ html[dir="rtl"] .nl-toast {
         markWordmark();
         measureNavAnchor();
         try { localStorage.setItem('medivia_lang', lang); } catch (e) {}
+        document.dispatchEvent(
+  new CustomEvent('medivia:languagechange')
+);
       }
 
       /* ---- desktop alignment probe ------------------------------------
@@ -4839,17 +5733,33 @@ ok = mark(m, !m.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m.value.tr
         }
       }
 
-      cards.forEach(function (card) {
-        var modal = document.getElementById(card.getAttribute('data-modal-target'));
-        if (!modal) return;
-        card.addEventListener('click', function () { openDoctor(modal, card); });
-        card.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
-            e.preventDefault();
-            openDoctor(modal, card);
-          }
-        });
-      });
+      
+function bindCard(card) {
+  var modal = document.getElementById(
+    card.getAttribute('data-modal-target')
+  );
+
+  if (!modal || card.dataset.modalBound === 'true') return;
+
+  card.dataset.modalBound = 'true';
+
+  card.addEventListener('click', function () {
+    openDoctor(modal, card);
+  });
+
+  card.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+      e.preventDefault();
+      openDoctor(modal, card);
+    }
+  });
+}
+
+cards.forEach(bindCard);
+
+/* Allow dynamically generated doctor cards to use the same profile modal */
+window.MediViaBindDoctorCard = bindCard;
+
 
       modals.forEach(function (modal) {
         qa('[data-modal-close]', modal).forEach(function (el) {
@@ -4870,6 +5780,693 @@ ok = mark(m, !m.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m.value.tr
       });
     })();
   </script>
+
+<!-- ══ PROCEDURE → DOCTOR FILTER ══ -->
+<script>
+(function () {
+  var SPECIALTIES = {
+    plasticSurgery: {
+      hospitals: ['damas-medical-center']
+    }
+  };
+
+  var HOSPITALS = {
+    'damas-medical-center': {
+      nameKey: 'hosp.damas'
+    }
+  };
+
+  var DOCTORS = {
+    amjad: {
+      specialtyId: 'plasticSurgery',
+      hospitalId: 'damas-medical-center',
+      modalId: 'doc-modal-amjad',
+      resultsId: 'amjad'
+    },
+    lina: {
+      specialtyId: 'plasticSurgery',
+      hospitalId: 'damas-medical-center',
+      modalId: 'doc-modal-lina',
+      resultsId: 'isbir'
+    },
+    anna: {
+      specialtyId: 'plasticSurgery',
+      hospitalId: 'damas-medical-center',
+      modalId: 'doc-modal-anna'
+    }
+  };
+
+  var PROCEDURES = {
+    rhinoplasty: {
+      specialtyId: 'plasticSurgery',
+      titleKey: 'p1.t',
+      doctorIds: ['lina', 'amjad']
+    },
+    faceEyelids: {
+      specialtyId: 'plasticSurgery',
+      titleKey: 'p2.t',
+      doctorIds: ['anna', 'lina', 'amjad']
+    },
+    breastSurgery: {
+      specialtyId: 'plasticSurgery',
+      titleKey: 'p3.t',
+      doctorIds: ['anna', 'lina', 'amjad']
+    },
+    bodyContouring: {
+      specialtyId: 'plasticSurgery',
+      titleKey: 'p4.t',
+      doctorIds: ['anna', 'lina', 'amjad']
+    },
+    reconstructiveSurgery: {
+      specialtyId: 'plasticSurgery',
+      titleKey: 'p5.t',
+      doctorIds: ['lina', 'amjad']
+    },
+    hairTransplantation: {
+      specialtyId: 'plasticSurgery',
+      titleKey: 'p6.t',
+      doctorIds: []
+    }
+  };
+
+  var panel = document.getElementById('procDoctors');
+  var grid = document.getElementById('procDoctorsGrid');
+  var empty = document.getElementById('procDoctorsEmpty');
+  var title = document.getElementById('procDoctorsTitle');
+
+  var selectors = Array.prototype.slice.call(
+    document.querySelectorAll('[data-procedure-id]')
+  );
+
+  if (!panel || !grid || !selectors.length) return;
+
+  var current = null;
+
+  
+function tr(key, vars) {
+  return typeof window.t === 'function'
+    ? window.t(key, vars)
+    : key;
+}
+
+function el(tag, cls, key) {
+  var n = document.createElement(tag);
+
+  if (cls) n.className = cls;
+
+  if (key) {
+    n.textContent = tr(key);
+  }
+
+  return n;
+}
+
+
+  function sourceCard(doc) {
+    return document.querySelector(
+      '#doctors .doc-card[data-modal-target="' +
+      doc.modalId + '"]'
+    );
+  }
+
+  function keyOf(card, selector) {
+    var n = card.querySelector(selector);
+    return n ? n.getAttribute('data-i18n') : null;
+  }
+
+  function buildCard(doc) {
+    var src = sourceCard(doc);
+    var hosp = HOSPITALS[doc.hospitalId];
+
+    if (
+      !src ||
+      !hosp ||
+      !document.getElementById(doc.modalId)
+    ) return null;
+
+    var nameKey = keyOf(src, '.doc-name');
+    var specKey = keyOf(src, '.doc-spec');
+    var yearsKey = keyOf(src, '.doc-years');
+
+    var card = el('article', 'doc-card');
+
+    card.setAttribute('data-modal-target', doc.modalId);
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-haspopup', 'dialog');
+
+    var shot = el('div', 'doc-shot');
+    var srcImg = src.querySelector('.doc-shot img');
+
+    if (srcImg) {
+      var img = document.createElement('img');
+
+      img.src = srcImg.getAttribute('src');
+      img.alt = '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.width = 640;
+      img.height = 800;
+
+      img.addEventListener('error', function () {
+        img.classList.add('is-missing');
+      });
+
+      shot.appendChild(img);
+    }
+
+    var body = el('div', 'doc-body');
+    var name = el('h3', 'doc-name', nameKey);
+
+    name.id = 'procDocName-' + doc.modalId;
+    card.setAttribute('aria-labelledby', name.id);
+
+    body.appendChild(name);
+    body.appendChild(el('p', 'doc-spec', specKey));
+
+    if (yearsKey) {
+      body.appendChild(el('p', 'doc-years', yearsKey));
+    }
+
+    var h = el('p', 'doc-hospital');
+    h.appendChild(el('b', null, 'pdocs.hospital'));
+    h.appendChild(el('span', null, hosp.nameKey));
+
+    body.appendChild(h);
+    body.appendChild(el('span', 'doc-view', 'doc.card.view'));
+
+    if (doc.resultsId) {
+      var rb = el('button', 'doc-results');
+
+      rb.type = 'button';
+      rb.setAttribute('data-results-doctor', doc.resultsId);
+      rb.setAttribute('aria-haspopup', 'dialog');
+
+      rb.setAttribute(
+        'aria-label',
+        tr('results.btn') + ' — ' + tr(nameKey)
+      );
+
+      rb.innerHTML =
+        '<svg aria-hidden="true" fill="none" viewBox="0 0 24 24">' +
+        '<rect x="3.5" y="4.5" width="17" height="15" rx="2" stroke="currentColor" stroke-width="1.6"></rect>' +
+        '<path d="M12 4.5v15M6.5 15l2.5-3 2 2.4M14.5 15l2-2.6 2 2.6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>' +
+        '</svg>';
+
+      rb.appendChild(el('span', null, 'results.btn'));
+
+      rb.addEventListener('click', function (e) {
+        e.stopPropagation();
+
+        if (typeof window.MediViaOpenResults === 'function') {
+          window.MediViaOpenResults(rb);
+        }
+      });
+
+      rb.addEventListener('keydown', function (e) {
+        e.stopPropagation();
+      });
+
+      body.appendChild(rb);
+    }
+
+    card.appendChild(shot);
+    card.appendChild(body);
+
+    if (typeof window.MediViaBindDoctorCard === 'function') {
+      window.MediViaBindDoctorCard(card);
+    }
+
+    return card;
+  }
+
+  function render() {
+    var proc = PROCEDURES[current];
+
+    grid.textContent = '';
+
+    if (!proc) {
+      panel.hidden = true;
+      return;
+    }
+
+    title.removeAttribute('data-i18n');
+
+    title.textContent = tr('pdocs.titleFor', {
+      procedure: tr(proc.titleKey)
+    });
+
+    var count = 0;
+
+    proc.doctorIds.forEach(function (id) {
+      var doc = DOCTORS[id];
+      var card = doc && buildCard(doc);
+
+      if (card) {
+        grid.appendChild(card);
+        count++;
+      }
+    });
+
+    empty.textContent = tr('pdocs.empty');
+    empty.hidden = count > 0;
+    grid.hidden = count === 0;
+    panel.hidden = false;
+  }
+
+  function select(id, scroll) {
+    if (!PROCEDURES[id]) return;
+
+    current = id;
+
+    selectors.forEach(function (s) {
+      s.setAttribute(
+        'aria-pressed',
+        String(s.getAttribute('data-procedure-id') === id)
+      );
+    });
+
+    render();
+
+    if (scroll) {
+      panel.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
+    }
+  }
+
+  selectors.forEach(function (s) {
+    var id = s.getAttribute('data-procedure-id');
+
+    s.addEventListener('click', function () {
+      select(id, true);
+    });
+
+    s.addEventListener('keydown', function (e) {
+      if (
+        e.key === 'Enter' ||
+        e.key === ' ' ||
+        e.key === 'Spacebar'
+      ) {
+        e.preventDefault();
+        select(id, true);
+      }
+    });
+  });
+
+  document.addEventListener(
+    'medivia:languagechange',
+    function () {
+      if (current) render();
+    }
+  );
+
+  var match =
+    /procedure=([\w-]+)/.exec(location.search) ||
+    /procedure=([\w-]+)/.exec(location.hash);
+
+  if (match) select(match[1], false);
+
+})();
+</script>
+
+
+
+ <!-- ══ DOCTOR RESULTS GALLERY ══ "View Results" on a doctor card opens one
+       filterable gallery inside the page. Photos are the optimised WebP copies
+       listed in work-photo-web/manifest.js (built from work-photo/ by
+       tools/build-results-gallery.py); the manifest is fetched on first use, the
+       grid uses ~20-50 KB thumbnails, and the ~200 KB full-size version is only
+       requested when a photo is opened in the viewer. Nothing here opens a new
+       tab or window. Its own Escape/Tab handling runs in the capture phase and
+       stops propagation so it never double-fires with the other dialogs. -->
+  <script>
+    (function () {
+      var q = function (s, ctx) { return (ctx || document).querySelector(s); };
+      var qa = function (s, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(s)); };
+      var modal = document.getElementById('resModal');
+      var viewer = document.getElementById('resViewer');
+      var triggers = qa('.doc-results[data-results-doctor]');
+      if (!modal || !viewer || !triggers.length) return;
+
+      var MANIFEST_SRC = 'work-photo-web/manifest.js';
+      var category = modal.getAttribute('data-results-category');
+      var body = document.getElementById('resBody');
+      var filtersEl = document.getElementById('resFilters');
+      var titleEl = document.getElementById('resTitle');
+      var subEl = document.getElementById('resSub');
+      var vImg = document.getElementById('resViewerImg');
+      var vTitle = document.getElementById('resCapTitle');
+      var vMeta = document.getElementById('resCapMeta');
+      var vPrev = document.getElementById('resPrev');
+      var vNext = document.getElementById('resNext');
+      var ZOOM_ICON = '<svg aria-hidden="true" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"></circle><path d="M16 16l4.5 4.5M11 8.5v5M8.5 11h5" stroke="currentColor" stroke-linecap="round" stroke-width="1.7"></path></svg>';
+
+      var state = { open: false, btn: null, doctor: null, filter: 'all', groups: [], chips: [], statusKey: null, note: null, base: '' };
+      var vs = { open: false, list: [], index: 0, token: 0, lastFocus: null };
+
+      /* ---- language: the page's own dictionary (window.t) + the lang attribute ---- */
+      function T(key, vars) { return typeof window.t === 'function' ? window.t(key, vars) : key; }
+      function lang() { return document.documentElement.lang === 'ar' ? 'ar' : 'en'; }
+      function L(obj) { return obj ? (obj[lang()] || obj.en || '') : ''; }
+
+      function cardText(btn, sel) {
+        var card = btn && btn.closest('.doc-card');
+        var node = card && card.querySelector(sel);
+        return node ? node.textContent.trim() : '';
+      }
+
+      /* ---- manifest (loaded once, on first use) ---- */
+      var manifestPromise = null;
+      function loadManifest() {
+        if (window.MEDIVIA_RESULTS) return Promise.resolve(window.MEDIVIA_RESULTS);
+        if (!manifestPromise) {
+          manifestPromise = new Promise(function (resolve, reject) {
+            var s = document.createElement('script');
+            s.src = MANIFEST_SRC;
+            s.async = true;
+            s.onload = function () { window.MEDIVIA_RESULTS ? resolve(window.MEDIVIA_RESULTS) : reject(new Error('empty manifest')); };
+            s.onerror = function () { manifestPromise = null; reject(new Error('manifest failed to load')); };
+            document.head.appendChild(s);
+          });
+        }
+        return manifestPromise;
+      }
+
+      function url(item, w) { return state.base + item.src + '-' + w + '.webp'; }
+      function largest(item) { return item.v[item.v.length - 1]; }
+      function thumbWidths(item) {
+        var t = item.v.filter(function (w) { return w <= 800; });
+        return t.length ? t : [item.v[0]];
+      }
+
+      function make(tag, cls, text) {
+        var n = document.createElement(tag);
+        if (cls) n.className = cls;
+        if (text != null) n.textContent = text;
+        return n;
+      }
+
+      /* ---- rendering ---- */
+      function showStatus(key) {
+        state.statusKey = key;
+        state.groups = []; state.chips = []; state.note = null;
+        filtersEl.innerHTML = '';
+        body.innerHTML = '';
+        var p = make('p', 'res-status', T(key));
+        p.setAttribute('role', 'status');
+        body.appendChild(p);
+      }
+
+      function build(manifest) {
+        var cat = manifest.categories && manifest.categories[category];
+        var entries = (cat && cat.doctors && cat.doctors[state.doctor]) || [];
+        state.base = manifest.base || '';
+        if (!entries.length) { showStatus('results.empty'); return; }
+        state.statusKey = null;
+
+        var specs = cat.specialties.filter(function (s) {
+          return entries.some(function (e) { return e.specialty === s.id; });
+        });
+        var order = {};
+        specs.forEach(function (s, i) { order[s.id] = i; });
+        entries = entries.map(function (e, i) { return { e: e, i: i }; })
+          .sort(function (a, b) { return (order[a.e.specialty] - order[b.e.specialty]) || (a.i - b.i); })
+          .map(function (x) { return x.e; });
+
+        /* filters: "All" + one chip per specialty this doctor has results in */
+        filtersEl.innerHTML = '';
+        state.chips = [];
+        [{ id: 'all' }].concat(specs).forEach(function (s) {
+          var count = entries.filter(function (e) { return s.id === 'all' || e.specialty === s.id; })
+            .reduce(function (n, e) { return n + e.images.length; }, 0);
+          var chip = make('button', 'res-chip');
+          chip.type = 'button';
+          var label = make('span');
+          chip.appendChild(label);
+          chip.appendChild(make('b', null, String(count)));
+          chip.addEventListener('click', function () { setFilter(s.id); });
+          filtersEl.appendChild(chip);
+          state.chips.push({ el: chip, label: label, spec: s });
+        });
+
+        /* one group per procedure, its photos inside */
+        body.innerHTML = '';
+        state.note = make('p', 'res-note');
+        body.appendChild(state.note);
+        state.groups = entries.map(function (entry) {
+          var spec = specs.filter(function (s) { return s.id === entry.specialty; })[0];
+          var g = { entry: entry, spec: spec, items: [] };
+          g.el = make('section', 'res-group');
+          var head = make('div', 'res-group-head');
+          g.specEl = make('span', 'res-group-spec');
+          g.titleEl = make('h4', 'res-group-title');
+          g.timingEl = make('span', 'res-group-timing');
+          head.appendChild(g.specEl);
+          head.appendChild(g.titleEl);
+          head.appendChild(g.timingEl);
+          var grid = make('div', 'res-grid');
+          entry.images.forEach(function (item, i) {
+            var b = make('button', 'res-item');
+            b.type = 'button';
+            var img = document.createElement('img');
+            var tw = thumbWidths(item);
+            img.src = url(item, tw[0]);
+            img.srcset = tw.map(function (w) { return url(item, w) + ' ' + w + 'w'; }).join(', ');
+            img.sizes = '(max-width: 640px) 46vw, (max-width: 1160px) 30vw, 260px';
+            img.width = item.w; img.height = item.h;
+            img.loading = 'lazy'; img.decoding = 'async'; img.alt = '';
+            b.appendChild(img);
+            var zoom = make('span', 'res-item-zoom');
+            zoom.innerHTML = ZOOM_ICON;
+            b.appendChild(zoom);
+            b.addEventListener('click', function () { openViewer(b); });
+            grid.appendChild(b);
+            g.items.push({ btn: b, item: item, index: i });
+          });
+          g.el.appendChild(head);
+          g.el.appendChild(grid);
+          body.appendChild(g.el);
+          return g;
+        });
+        setFilter('all');
+        localize();
+      }
+
+      function setFilter(id) {
+        state.filter = id;
+        state.chips.forEach(function (c) { c.el.setAttribute('aria-pressed', String(c.spec.id === id)); });
+        state.groups.forEach(function (g) { g.el.hidden = id !== 'all' && g.entry.specialty !== id; });
+        body.scrollTop = 0;
+      }
+
+      /* every piece of copy this script owns — safe to call at any time, never re-renders images */
+      function localize() {
+        triggers.forEach(function (b) {
+          b.setAttribute('aria-label', T('results.btn') + ' — ' + cardText(b, '.doc-name'));
+        });
+        if (!state.btn) return;
+        titleEl.textContent = cardText(state.btn, '.doc-name');
+        subEl.textContent = cardText(state.btn, '.doc-spec');
+        if (state.statusKey) {
+          var s = q('.res-status', body);
+          if (s) s.textContent = T(state.statusKey);
+        }
+        if (state.note) state.note.textContent = T('results.note');
+        state.chips.forEach(function (c) {
+          c.label.textContent = c.spec.id === 'all' ? T('results.all') : L(c.spec.label);
+        });
+        state.groups.forEach(function (g) {
+          var title = L(g.entry.title);
+          var timing = L(g.entry.timing);
+          g.specEl.textContent = g.spec ? L(g.spec.label) : '';
+          g.titleEl.textContent = title;
+          g.timingEl.textContent = timing;
+          g.timingEl.hidden = !timing;
+          g.items.forEach(function (it, i) {
+            it.btn.setAttribute('aria-label', T('results.viewLarger', { title: title, n: i + 1, total: g.items.length }));
+          });
+        });
+        if (vs.open) renderViewerText();
+      }
+
+      /* ---- gallery open / close ---- */
+      function openGallery(btn) {
+        state.btn = btn;
+        state.doctor = btn.getAttribute('data-results-doctor');
+        state.filter = 'all';
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('res-open');
+        state.open = true;
+        showStatus('results.loading');
+        localize();
+        var close = q('.res-close', modal);
+        if (close) close.focus();
+        loadManifest().then(function (m) {
+          if (state.open && state.btn === btn) build(m);
+        }).catch(function (err) {
+          console.warn('[MediVia] results gallery:', err);
+          if (state.open && state.btn === btn) { showStatus('results.error'); localize(); }
+        });
+      }
+
+      function closeGallery() {
+        if (vs.open) closeViewer(true);
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('res-open');
+        state.open = false;
+        if (state.btn && typeof state.btn.focus === 'function') state.btn.focus();
+      }
+
+      /* lets the procedure panel's doctor cards open this same gallery */
+      window.MediViaOpenResults = openGallery;
+
+      triggers.forEach(function (btn) {
+        /* the button sits inside a clickable doctor card — keep that card's own
+           "open profile" handler out of it */
+        btn.addEventListener('click', function (e) { e.stopPropagation(); openGallery(btn); });
+        btn.addEventListener('keydown', function (e) { e.stopPropagation(); });
+      });
+      qa('[data-res-close]', modal).forEach(function (n) { n.addEventListener('click', closeGallery); });
+
+      /* ---- photo viewer ---- */
+      function visibleItems() {
+        var out = [];
+        state.groups.forEach(function (g) {
+          if (g.el.hidden) return;
+          g.items.forEach(function (it) { out.push({ g: g, it: it }); });
+        });
+        return out;
+      }
+
+      function renderViewerText() {
+        var cur = vs.list[vs.index];
+        if (!cur) return;
+        var timing = L(cur.g.entry.timing);
+        vTitle.textContent = L(cur.g.entry.title);
+        vMeta.textContent = (timing ? timing + ' · ' : '') + (vs.index + 1) + ' / ' + vs.list.length;
+        vImg.alt = L(cur.g.entry.title);
+      }
+
+      function renderViewer() {
+        var cur = vs.list[vs.index];
+        if (!cur) return;
+        var my = ++vs.token;
+        var item = cur.it.item;
+        var tw = thumbWidths(item);
+        var largeUrl = url(item, largest(item));
+        /* the grid thumbnail is already cached: show it at once, swap the large one in when it is ready */
+        vImg.src = url(item, tw[tw.length - 1]);
+        viewer.classList.add('is-loading');
+        var big = new Image();
+        var done = function () {
+          if (my !== vs.token) return;
+          viewer.classList.remove('is-loading');
+          preloadNeighbours();
+        };
+        big.onload = function () { if (my === vs.token) vImg.src = largeUrl; done(); };
+        big.onerror = done;
+        big.src = largeUrl;
+        renderViewerText();
+        var multi = vs.list.length > 1;
+        vPrev.hidden = !multi;
+        vNext.hidden = !multi;
+      }
+
+      function preloadNeighbours() {
+        if (vs.list.length < 2) return;
+        [1, -1].forEach(function (d) {
+          var n = vs.list[(vs.index + d + vs.list.length) % vs.list.length];
+          if (n) (new Image()).src = url(n.it.item, largest(n.it.item));
+        });
+      }
+
+      function openViewer(btn) {
+        vs.list = visibleItems();
+        vs.index = 0;
+        vs.list.forEach(function (x, i) { if (x.it.btn === btn) vs.index = i; });
+        vs.lastFocus = btn;
+        vs.open = true;
+        renderViewer();
+        viewer.classList.add('is-open');
+        viewer.setAttribute('aria-hidden', 'false');
+        var close = document.getElementById('resViewerClose');
+        if (close) close.focus();
+      }
+
+      function closeViewer(skipFocus) {
+        vs.open = false;
+        vs.token++;
+        viewer.classList.remove('is-open', 'is-loading');
+        viewer.setAttribute('aria-hidden', 'true');
+        vImg.removeAttribute('src');
+        /* land back on the photo the viewer ended on, so the gallery underneath
+           is exactly where the visitor left it */
+        var cur = vs.list[vs.index];
+        var back = (cur && cur.it.btn) || vs.lastFocus;
+        if (!skipFocus && back) {
+          back.focus({ preventScroll: true });
+          if (back.scrollIntoView) back.scrollIntoView({ block: 'nearest' });
+        }
+      }
+
+      function step(delta) {
+        if (vs.list.length < 2) return;
+        vs.index = (vs.index + delta + vs.list.length) % vs.list.length;
+        renderViewer();
+      }
+
+      qa('[data-viewer-close]', viewer).forEach(function (n) { n.addEventListener('click', function () { closeViewer(); }); });
+      vPrev.addEventListener('click', function () { step(-1); });
+      vNext.addEventListener('click', function () { step(1); });
+
+      /* swipe: the content follows the finger, so in RTL "next" is a swipe to the right */
+      var tx = 0, ty = 0, tracking = false;
+      viewer.addEventListener('touchstart', function (e) {
+        if (e.touches.length !== 1) { tracking = false; return; }
+        tracking = true; tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+      }, { passive: true });
+      viewer.addEventListener('touchend', function (e) {
+        if (!tracking || !e.changedTouches.length) return;
+        tracking = false;
+        var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+        if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+        var rtl = document.documentElement.dir === 'rtl';
+        step((dx < 0) !== rtl ? 1 : -1);
+      }, { passive: true });
+
+      /* ---- keyboard (capture phase, like the certificate viewer) ---- */
+      function trap(e, container) {
+        var items = qa('button:not([disabled]):not([hidden])', container).filter(function (n) { return n.offsetParent !== null; });
+        if (!items.length) return;
+        var first = items[0], last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+
+      document.addEventListener('keydown', function (e) {
+        if (!state.open) return;
+        var rtl = document.documentElement.dir === 'rtl';
+        if (vs.open) {
+          if (e.key === 'Escape' || e.key === 'Esc') { e.stopPropagation(); closeViewer(); }
+          else if (e.key === 'ArrowLeft') { e.stopPropagation(); e.preventDefault(); step(rtl ? 1 : -1); }
+          else if (e.key === 'ArrowRight') { e.stopPropagation(); e.preventDefault(); step(rtl ? -1 : 1); }
+          else if (e.key === 'Tab') { e.stopPropagation(); trap(e, q('.res-viewer-panel', viewer)); }
+          return;
+        }
+        if (e.key === 'Escape' || e.key === 'Esc') { e.stopPropagation(); closeGallery(); }
+        else if (e.key === 'Tab') { e.stopPropagation(); trap(e, q('.res-panel', modal)); }
+      }, true);
+
+      document.addEventListener('medivia:languagechange', localize);
+      localize();
+    })();
+  </script>
+
+
 
   <!-- ══ NEWSLETTER ══ posts to the existing subscribe-newsletter Edge Function
        with the public anon key. No new backend, no second language system —
@@ -5046,6 +6643,50 @@ ok = mark(m, !m.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m.value.tr
 
 })();
   </script>
+
+
+<!-- MediVia Floating Social Icons -->
+<div class="mv-floating-social" aria-label="Follow MediVia">
+
+  <!-- Instagram -->
+  <a
+    class="mv-instagram"
+    href="https://www.instagram.com/medivia.ru/"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Follow MediVia on Instagram"
+    title="Instagram"
+  >
+    <svg viewBox="0 0 24 24"
+         fill="none"
+         stroke="currentColor"
+         stroke-width="2"
+         stroke-linecap="round"
+         stroke-linejoin="round"
+         aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="1"/>
+    </svg>
+  </a>
+
+  <!-- YouTube -->
+  <a
+    class="mv-youtube"
+    href="https://www.youtube.com/@Medivia-ru"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Follow MediVia on YouTube"
+    title="YouTube"
+  >
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <rect x="2" y="5" width="20" height="14" rx="4"/>
+  <path d="M10 9L15 12L10 15Z" fill="currentColor" stroke="none"/>
+</svg>
+  </a>
+
+</div>
+
 </body>
 
 </html>
